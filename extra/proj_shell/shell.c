@@ -8,7 +8,7 @@
 #include <pwd.h>
 
 //
-// 2013008264 LEE
+// HYU 2013008264 LEE
 // Simple shell project
 // Finished date 2018.03.16
 //
@@ -20,8 +20,7 @@ char ** split_string(char * string); // split string with 'space' & '\n'
 int r_wait(int * pid); // error return -1
 int func_shell(char ** args); // error return 1
 int func_cd(char ** args); // error return 1
-int loop(void); // Launch the loop for interactive mode error return 1
-int batch(FILE * fp); // Launch batch mode. error return 1
+int loop(FILE * fp); // Launch the loop for interactive mode error return 1
 int exec_func(char ** args); //execute the function.
 
 int main(int argc, char * argv[])
@@ -29,7 +28,7 @@ int main(int argc, char * argv[])
 	if(argc == 1) 
 	{
 		//Execute interactive mode
-		if(loop())
+		if(loop(stdin))
 		{
 			fprintf(stderr, "Error!\n");
 			return 1;
@@ -42,58 +41,13 @@ int main(int argc, char * argv[])
 	for(i = 1; i < argc; i++)
 	{
 		fp = fopen(argv[i], "r");
-		if(batch(fp)){
+		if(loop(fp)){
 			fprintf(stderr, "Failed to implementing batch\n");
 		}
 	}
 }
 
-int batch(FILE * fp)
-{
-	char input[512];
-	int len, i, count;
-	char ** argvs;
-	char ** args;
-	
-	while(fgets(input, 512, fp) != NULL)
-	{
-		count = 0;
-		len = strlen(input);
-
-		for(i = 0; i < len; i++)
-		{
-			if(input[i] == ';' && input[i+1] != '\0' && input[i+1] != ';')
-				count++;		
-		}
-
-		fprintf(stderr, "%s", input);	
-		argvs = split_semi(input, count);
-		
-		for(i = 0; i <= count; i++)
-		{
-			if(argvs[i][0] == '\n')
-				break;
-
-			args = split_string(argvs[i]);
-			if(args[0] != NULL)
-			{
-				if(exec_func(args))
-				{
-					fprintf(stderr, "Failed to exec_func\n");
-					return 1;
-				}
-			}
-			free(args);
-		}
-
-		//Wait all processes.
-		while(r_wait(NULL) > 0){}
-		free(argvs);
-	}
-	return 0;
-}
-
-int loop(void)
+int loop(FILE * fp)
 {
 	char ** argvs;
 	char ** args;
@@ -103,12 +57,19 @@ int loop(void)
 
 	for(;;)
 	{
+		if(fp == stdin){
 		getcwd(cwd, BUF_SIZE);
 		printf("prompt : %s > ", cwd);
-		if(fgets(input, BUF_SIZE, stdin)==NULL)
+		}
+		if(fgets(input, BUF_SIZE, fp)==NULL)
 		{
-			printf("\n");
+			if(fp == stdin)
+				printf("\n");
 			exit(0);
+		}
+		if(fp != stdin)
+		{
+			printf("%s", input);
 		}
 		len = strlen(input);
 		count = 0;
@@ -167,10 +128,9 @@ char ** split_semi(char * string, int count)
 	char ** result = (char**)malloc(sizeof(char *)*(count+1));
 	
 	result[0] = strtok_r(string, ";", &ptr);
-	
-	for(i = 1; i <= count; i++){
+	for(i = 1; i <= count; i++)
 		result[i] = strtok_r(NULL, ";", &ptr);
-	}
+	
 	return result;
 }
 
