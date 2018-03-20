@@ -10,7 +10,7 @@
 //
 // HYU 2013008264 LEE
 // Simple shell project
-// Finished date 2018.03.16
+// Update date 
 //
 
 #define BUF_SIZE 512
@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
 		//Execute interactive mode
 		if(loop(stdin))
 		{
-			fprintf(stderr, "Error!\n");
+			//fprintf(stderr, "Error!\n");
 			return 1;
 		}
 	}
@@ -42,7 +42,8 @@ int main(int argc, char * argv[])
 	{
 		fp = fopen(argv[i], "r");
 		if(loop(fp)){
-			fprintf(stderr, "Failed to implementing batch\n");
+			//fprintf(stderr, "Failed to implementing batch\n");
+			return 0;
 		}
 	}
 }
@@ -58,8 +59,8 @@ int loop(FILE * fp)
 	for(;;)
 	{
 		if(fp == stdin){
-		getcwd(cwd, BUF_SIZE);
-		printf("prompt : %s > ", cwd);
+			getcwd(cwd, BUF_SIZE);
+			printf("prompt : %s > ", cwd);
 		}
 		if(fgets(input, BUF_SIZE, fp)==NULL)
 		{
@@ -92,7 +93,7 @@ int loop(FILE * fp)
 			{
 				if(exec_func(args))
 				{	
-					fprintf(stderr, "Failed to exec_func\n");
+					//fprintf(stderr, "Failed to exec_func\n");
 					return 1;
 				}
 				free(args);
@@ -107,13 +108,14 @@ int loop(FILE * fp)
 
 char ** split_string(char * string)
 {
-	char * ptr;
-	int len = strlen(string);
-	char ** result;
-	int i = 0;
-
-	result = (char**)malloc(sizeof(char*)*len);
-
+	char * ptr, **result;
+	int len = strlen(string), i = 0;
+	
+	if((result = (char**)malloc(sizeof(char*)*len)) == NULL)
+	{
+		fprintf(stderr, "Failed to allocate memory\n");
+		exit(1);
+	}
 	result[i++] = strtok_r(string, " \n", &ptr);
 	while((result[i++] = strtok_r(NULL, " \n", &ptr)) != NULL){}
 	
@@ -122,10 +124,14 @@ char ** split_string(char * string)
 
 char ** split_semi(char * string, int count)
 {
-	char * ptr;
+	char * ptr, ** result;
 	int i;
 
-	char ** result = (char**)malloc(sizeof(char *)*(count+1));
+	if((result = (char**)malloc(sizeof(char *)*(count+1))) == NULL)
+	{
+		fprintf(stderr, "Failed to allocate memory\n");
+		exit(1);
+	}
 	
 	result[0] = strtok_r(string, ";", &ptr);
 	for(i = 1; i <= count; i++)
@@ -136,10 +142,10 @@ char ** split_semi(char * string, int count)
 
 int func_cd(char ** args)
 {
-	if(strcmp(args[0], "cd"))
+	if(strcmp(args[0], "cd") || args[1] == NULL)
 	{
-		fprintf(stderr, "Failed to cd : args[0] is not cd\n");
-		return 1;
+		fprintf(stderr, "Failed to cd : args[0] is not cd or args[1] is NULL pointer\n");
+		return 0;
 	}
 	if(!strcmp(args[1], "~"))
 	{
@@ -151,6 +157,7 @@ int func_cd(char ** args)
 		strcat(buf, username);
 		args[1] = buf;
 	}
+	
 	if(chdir(args[1]))
 	{
 		fprintf(stderr, "Failed to cd : error in chdir func check directory name\n");
