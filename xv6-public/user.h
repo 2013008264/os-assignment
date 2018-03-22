@@ -24,6 +24,10 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 
+//user system call
+int myfunction(char *);
+int getppid(void);
+
 // ulib.c
 int stat(char*, struct stat*);
 char* strcpy(char*, char*);

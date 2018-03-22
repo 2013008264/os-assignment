@@ -42,6 +42,13 @@ sys_getpid(void)
   return myproc()->pid;
 }
 
+// user system call
+int
+sys_getppid(void)
+{
+	return myproc()->parent->pid;
+}
+
 int
 sys_sbrk(void)
 {
