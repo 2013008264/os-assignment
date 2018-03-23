@@ -10,7 +10,7 @@
 //
 // HYU 2013008264 LEE
 // Simple shell project
-// Update date 
+// Update date 03/23/2018
 //
 
 #define BUF_SIZE 512
@@ -18,7 +18,6 @@
 char ** split_semi(char * string, int count); // split string with ; token
 char ** split_string(char * string); // split string with 'space' & '\n'
 int r_wait(int * pid); // error return -1
-int func_shell(char ** args); // error return 1
 int func_cd(char ** args); // error return 1
 int loop(FILE * fp); // Launch the loop for interactive mode error return 1
 int exec_func(char ** args); //execute the function.
@@ -29,10 +28,7 @@ int main(int argc, char * argv[])
 	{
 		//Execute interactive mode
 		if(loop(stdin))
-		{
-			//fprintf(stderr, "Error!\n");
 			return 1;
-		}
 	}
 
 	//Execute batch mode
@@ -41,11 +37,15 @@ int main(int argc, char * argv[])
 	for(i = 1; i < argc; i++)
 	{
 		fp = fopen(argv[i], "r");
-		if(loop(fp)){
-			//fprintf(stderr, "Failed to implementing batch\n");
-			return 0;
+		if(fp == NULL){
+			perror("Failed to open file");
+			continue;
 		}
+		else if(loop(fp)){
+			return 1;
+		}fclose(fp);
 	}
+	return 0;
 }
 
 int loop(FILE * fp)
@@ -55,18 +55,19 @@ int loop(FILE * fp)
 	int len, i, count;
 	char input[BUF_SIZE];
 	char cwd[BUF_SIZE];
-
+	int childpid;
+	
 	for(;;)
 	{
 		if(fp == stdin){
 			getcwd(cwd, BUF_SIZE);
 			printf("prompt : %s > ", cwd);
 		}
-		if(fgets(input, BUF_SIZE, fp)==NULL)
+		if(fgets(input, BUF_SIZE, fp) == NULL)
 		{
 			if(fp == stdin)
 				printf("\n");
-			exit(0);
+			return 0;
 		}
 		if(fp != stdin)
 		{
@@ -74,32 +75,42 @@ int loop(FILE * fp)
 		}
 		len = strlen(input);
 		count = 0;
-
+		
 		for(i = 0; i < len; i++)
 		{
+			//To count effective ';'
 			if(input[i] == ';' && input[i+1] != '\0' && input[i+1] != ';')
 				count++;
 		}
-		
+
 		argvs = split_semi(input, count);
 		
 		for(i = 0; i <= count; i++)
 		{
+			//To avoid segmentation fault when user input is only single character ';'
 			if(argvs[i][0] == '\n')
-				break;
+				break;	
 
 			args = split_string(argvs[i]);
-			if(args[0] != NULL)
-			{
-				if(exec_func(args))
-				{	
-					//fprintf(stderr, "Failed to exec_func\n");
-					return 1;
+			//To avoid segmentation fault when user input is only single character ' '
+			if(args[0] == NULL);
+			else if(!(strcmp(args[0], "quit")) || !(strcmp(args[0],"exit")))
+				return 0;
+			else if(!strcmp(args[0], "cd"))
+				func_cd(args);
+			else{
+				childpid = fork();
+				if(childpid == 0){
+					if(args[0] != NULL)
+					{	
+						execvp(args[0], args);
+						perror("Failed to execute");
+						return 1;
+					}
 				}
-				free(args);
 			}
+			free(args);
 		}
-		
 		//Wait all processes.		
 		while(r_wait(NULL) > 0){}
 		free(argvs);
@@ -173,41 +184,10 @@ int func_cd(char ** args)
 	return 0;
 }
 
-int func_shell(char ** args)
-{
-	int childpid;
-	childpid = fork();
-	
-	if(childpid == -1)
-	{
-		perror("Failed to fork");
-		return 1;
-	}
-
-	if(childpid == 0)
-	{
-		execvp(args[0], args);
-		perror("Failed to exec");
-		return 1;
-	}
-
-	return 0;
-}
-
 int r_wait(int * pid)
 {
 	//Wait even if interrupted.
 	int retval;
 	while(((retval = wait(pid)) == -1) && (errno == EINTR)){};
 	return retval;
-}
-
-int exec_func(char ** args)
-{
-	if(!strcmp(args[0], "cd"))
-		return func_cd(args);
-	else if(!strcmp(args[0], "exit") || !strcmp(args[0], "quit"))
-		exit(0);
-	else
-		return func_shell(args);
 }
