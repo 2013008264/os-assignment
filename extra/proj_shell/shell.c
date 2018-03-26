@@ -20,7 +20,6 @@ char ** split_string(char * string); // split string with 'space' & '\n'
 int r_wait(int * pid); // error return -1
 int func_cd(char ** args); // error return 1
 int loop(FILE * fp); // Launch the loop for interactive mode error return 1
-int exec_func(char ** args); //execute the function.
 
 int main(int argc, char * argv[])
 {
