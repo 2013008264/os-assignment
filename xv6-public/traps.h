@@ -27,6 +27,8 @@
 #define T_SYSCALL       64      // system call
 #define T_DEFAULT      500      // catchall
 
+#define T_USER_SYSCALL 128		// User system call.
+
 #define T_IRQ0          32      // IRQ 0 corresponds to int T_IRQ
 
 #define IRQ_TIMER        0
