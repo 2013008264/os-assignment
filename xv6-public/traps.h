@@ -29,6 +29,8 @@
 
 #define T_USER_SYSCALL 128		// User system call.
 
+#define T_USER_YIELD    29
+
 #define T_IRQ0          32      // IRQ 0 corresponds to int T_IRQ
 
 #define IRQ_TIMER        0

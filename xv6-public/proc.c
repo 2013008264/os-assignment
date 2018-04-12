@@ -332,9 +332,12 @@ scheduler(void)
 
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
+	// Ptable.proc 이라는 배열을 돌고 있음.
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-      if(p->state != RUNNABLE)
+      if(p->state != RUNNABLE) // Scheduling 못하면 다시 올라가라 시발!
         continue;
+	  // 그냥 Context switching 을 Runnable 인거 찾으면 걍 바로 ㄱㄱ.
+	  // 아아아아아무것도 없는 RR 입니다.
 
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
@@ -386,8 +389,8 @@ void
 yield(void)
 {
   acquire(&ptable.lock);  //DOC: yieldlock
-  myproc()->state = RUNNABLE;
-  sched();
+  myproc()->state = RUNNABLE; // process 상태를 runnable 이 된다고 함.
+  sched(); // Schedule 이 여기서 일어남.
   release(&ptable.lock);
 }
 

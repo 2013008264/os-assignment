@@ -23,6 +23,7 @@ tvinit(void)
     SETGATE(idt[i], 0, SEG_KCODE<<3, vectors[i], 0);
   SETGATE(idt[T_SYSCALL], 1, SEG_KCODE<<3, vectors[T_SYSCALL], DPL_USER);
   SETGATE(idt[T_USER_SYSCALL], 1, SEG_KCODE<<3, vectors[T_USER_SYSCALL], DPL_USER);
+  
 
   initlock(&tickslock, "time");
 }
@@ -47,7 +48,7 @@ trap(struct trapframe *tf)
     return;
   }
 
-  switch(tf->trapno){
+  switch(tf->trapno){ // Sleep 이 일어났을 때.
   case T_IRQ0 + IRQ_TIMER:
     if(cpuid() == 0){
       acquire(&tickslock);
@@ -78,7 +79,6 @@ trap(struct trapframe *tf)
             cpuid(), tf->cs, tf->eip);
     lapiceoi();
     break;
-
   // USER interrupt
   case T_USER_SYSCALL:
 	cprintf("user interrupt 128 called!\n");
@@ -109,6 +109,7 @@ trap(struct trapframe *tf)
 
   // Force process to give up CPU on clock tick.
   // If interrupts were on while locks held, would need to check nlock.
+  // For interrupt timer interrupt.
   if(myproc() && myproc()->state == RUNNING &&
      tf->trapno == T_IRQ0+IRQ_TIMER)
     yield();

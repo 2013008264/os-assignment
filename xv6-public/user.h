@@ -23,10 +23,12 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int syscall(void);
 
 //user system call
 int myfunction(char *);
 int getppid(void);
+int yield(void);
 
 // ulib.c
 int stat(char*, struct stat*);
