@@ -29,6 +29,8 @@ int syscall(void);
 int myfunction(char *);
 int getppid(void);
 int yield(void);
+int setpriority(int, int);
+int getlev(void);
 
 // ulib.c
 int stat(char*, struct stat*);

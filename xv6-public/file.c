@@ -132,6 +132,7 @@ filewrite(struct file *f, char *addr, int n)
     // might be writing a device like the console.
     int max = ((MAXOPBLOCKS-1-1-2) / 2) * 512;
     int i = 0;
+	//pushcli();
     while(i < n){
       int n1 = n - i;
       if(n1 > max)
@@ -149,7 +150,7 @@ filewrite(struct file *f, char *addr, int n)
       if(r != n1)
         panic("short filewrite");
       i += r;
-    }
+    }//popcli();
     return i == n ? n : -1;
   }
   panic("filewrite");

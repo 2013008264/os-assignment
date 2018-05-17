@@ -36,15 +36,7 @@ enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
 // Per-process state
 struct proc {
-	//FCFS(Single), PRIORITY(Circular)
-	struct proc *next;
-	//PRIORITY
-	int priority;
-	//MLFQ
-	int level;
-	int ticks;
-
-	uint sz;                     // Size of process memory (bytes)
+  uint sz;                     // Size of process memory (bytes)
   pde_t* pgdir;                // Page table
   char *kstack;                // Bottom of kernel stack for this process
   enum procstate state;        // Process state
@@ -58,23 +50,6 @@ struct proc {
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
 };
-
-enum queuestate { UNUSED_Q, DELETABLE, ALL_SLEEPING, RUNNABLE_Q };
-
-struct queue_proc {
-	struct queue_proc * next;
-	struct queue_proc * prev;
-	struct proc * head;
-	struct proc * tail;
-	enum queuestate state;
-	int num_proc;
-	int num_runnable;
-	int priority;
-};
-
-#define L0_TQ 2
-#define L1_TQ 4
-#define L2_TQ 8
 
 // Process memory is laid out contiguously, low addresses first:
 //   text

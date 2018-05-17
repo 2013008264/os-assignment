@@ -50,6 +50,25 @@ sys_getppid(void)
 }
 
 int
+sys_setpriority(void)
+{
+	int n,  pid;
+	if(argint(0, &pid) < 0)
+		return -1;
+
+	if(argint(1, &n) < 0)
+		return -1;
+
+	return setpriority(pid, n);
+}
+
+int
+sys_getlev(void)
+{
+	return getlev();
+}
+
+int
 sys_sbrk(void)
 {
   int addr;

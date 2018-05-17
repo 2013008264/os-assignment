@@ -1,5 +1,3 @@
-SCHED_POLICY = DEFAULT
-
 OBJS = \
 	bio.o\
 	console.o\
@@ -79,7 +77,7 @@ AS = $(TOOLPREFIX)gas
 LD = $(TOOLPREFIX)ld
 OBJCOPY = $(TOOLPREFIX)objcopy
 OBJDUMP = $(TOOLPREFIX)objdump
-CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -O2 -Wall -MD -ggdb -m32 -Werror -fno-omit-frame-pointer -D $(SCHED_POLICY)
+CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -O2 -Wall -MD -ggdb -m32 -Werror -fno-omit-frame-pointer
 #CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -fvar-tracking -fvar-tracking-assignments -O0 -g -Wall -MD -gdwarf-2 -m32 -Werror -fno-omit-frame-pointer
 CFLAGS += $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector)
 ASFLAGS = -m32 -gdwarf-2 -Wa,-divide
@@ -177,20 +175,13 @@ UPROGS=\
 	_usertests\
 	_wc\
 	_zombie\
-	_user_yield\
-	_user_priority\
-	_2_user_test\
 	_my_userapp\
 	_my_userapp2\
-	_my_test\
 	_prac_int_app\
+	_user_yield\
+	_user_priority\
 	_user_priority2\
-	_p2_fcfs_test\
-	_p2_prior_test\
-	_p2_mlfq_basic_test\
-	_p2_mlfq_boost_test\
-	_p2_print_repeat\
-	_p2_mlfq_test_base\
+	_my_test\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
@@ -258,10 +249,10 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
 # check in that version.
 
 EXTRA=\
-	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c my_test.c p2_fcfs_test.c p2_print_repeat.c\
-	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c my_userapp2.c p2_prior_test.c p2_mlfq_test_base.c\
-	printf.c umalloc.c user_yield.c user_priority.c 2_user_test.c my_userapp.c p2_mlfq_basic_test.c\
-	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list prac_int_app.c user_priority2.c p2_mlfq_boost_test.c\
+	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c my_test.c user_priority.c\
+	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c user_yield.c\
+	printf.c umalloc.c my_userapp.c my_userapp2.c prac_int_app.c user_priority2.c\
+	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
 
 dist:

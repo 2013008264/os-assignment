@@ -120,6 +120,12 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
+int							setpriority(int, int);
+int							getlev(void);
+int							delete(struct proc*);
+int							insert(struct proc*);
+int							pick_now(void);
+void						boost(void);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

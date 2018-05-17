@@ -13,6 +13,7 @@ struct gatedesc idt[256];
 extern uint vectors[];  // in vectors.S: array of 256 entry pointers. All same.
 struct spinlock tickslock;
 uint ticks;
+uint curticks;
 
 void
 tvinit(void)
@@ -106,13 +107,50 @@ trap(struct trapframe *tf)
   // until it gets to the regular system call return.)
   if(myproc() && myproc()->killed && (tf->cs&3) == DPL_USER)
     exit();
-
+#ifdef MLFQ_SCHED
+	curticks++;
+	if(myproc() && myproc()->state == RUNNING &&
+     tf->trapno == T_IRQ0+IRQ_TIMER){
+		int tmp = (myproc()->ticks)++;
+		if(pick_now())
+			yield();
+		switch(myproc()->level) {
+		case 0:
+			if(tmp == 1) {
+				delete(myproc());
+				myproc()->level++;
+				insert(myproc());
+				yield();
+			}
+			break;
+		case 1:
+			if(tmp == 3) {
+				delete(myproc());
+				myproc()->level++;
+				insert(myproc());
+				yield();
+			}
+			break;
+		case 2:
+			if(tmp == 7)
+				yield();
+			break;
+		}
+	}
+	//cprintf("%d\n", curticks);
+	if(curticks == 100) {
+		curticks = 0;
+		boost();
+		//yield();
+	}
+#else
   // Force process to give up CPU on clock tick.
   // If interrupts were on while locks held, would need to check nlock.
   // For interrupt timer interrupt.
-  if(myproc() && myproc()->state == RUNNING &&
+	if(myproc() && myproc()->state == RUNNING &&
      tf->trapno == T_IRQ0+IRQ_TIMER)
     yield();
+#endif
 
   // Check if the process has been killed since we yielded
   if(myproc() && myproc()->killed && (tf->cs&3) == DPL_USER)

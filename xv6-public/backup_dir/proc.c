@@ -12,11 +12,9 @@ struct {
   struct proc proc[NPROC];
 } ptable;
 
-struct {
+struct{
 #ifdef PRIORITY_SCHED
 	struct queue_proc queue_arr[NPROC];
-#elif MLFQ_SCHED
-	struct queue_proc queue_arr[3];
 #else
 	struct queue_proc queue_arr[3];
 #endif
@@ -34,8 +32,7 @@ extern void trapret(void);
 static void wakeup1(void *chan);
 
 struct queue_proc * 
-q_init(int priority) 
-{
+q_init(int priority) {
 	struct queue_proc * q;
 #ifdef PRIORITY_SCHED
 	for(q = pqueue.queue_arr; q < &pqueue.queue_arr[NPROC]; q++)
@@ -49,36 +46,28 @@ q_init(int priority)
 			pqueue.num_q++;
 			return q;
 		}
-	panic("QUEUE is over allocated\n");
 	return 0;
 }
 
 struct queue_proc * 
-find_q(int priority) 
-{
+find_q(int priority) {
 	struct queue_proc * tmp = pqueue.now_q;
 	int i = 0;
-	
 	if(!pqueue.num_q)
 		return 0;
-	
 	while(tmp->priority != priority) {
 		tmp = tmp->prev;
 		if(i++ == pqueue.num_q)
 			return 0;
-	}
-	if(tmp->state != UNUSED_Q)
+	}if(tmp->state != UNUSED_Q)
 		return tmp;
 	
 	return 0;
 }
 
 void 
-insert_queue(struct queue_proc * queue)
-{
-	if(queue == 0)
-		panic("Unkown queue insertion error\n");
-
+insert_queue(struct queue_proc * queue) {
+	
 	int priority = queue->priority;
 	struct queue_proc * left = pqueue.head_q;
 	struct queue_proc * right = left->next;
@@ -92,21 +81,13 @@ insert_queue(struct queue_proc * queue)
 	for(int i = 0; i < pqueue.num_q; i++) {
 		l_priority = left->priority;	r_priority = right->priority;
 		if((r_priority == pqueue.head_q->priority)) {
-			if(r_priority < priority) {
-				left->next = queue;
-				right->prev = queue;
-				queue->prev = left;
-				queue->next = right;
-				pqueue.num_q++;
-			
-				pqueue.tail = queue;
-			}else {
-				left->prev = queue;
-				right->next = queue;
-				queue->prev = right;
-				queue->next = left;
-				pqueue.num_q++;
-			}
+			left->next = queue;
+			right->prev = queue;
+			queue->prev = left;
+			queue->next = right;
+			pqueue.num_q++;
+				
+			pqueue.tail = queue;
 		}
 		else if ((l_priority < priority) &&(priority < r_priority)) {
 			left->next= queue;
@@ -123,119 +104,91 @@ insert_queue(struct queue_proc * queue)
 }
 
 void 
-delete_queue(struct queue_proc * queue) 
-{
+delete_queue(struct queue_proc * queue) {
 	int priority = queue->priority;
 	struct queue_proc *tmp = pqueue.now_q;
-	
 	for(int i = 0; i < pqueue.num_q; i++) {
 		if(tmp->priority == priority)
 			break;
 		tmp = tmp->prev;
 	}
-
-	if(tmp->num_proc > 0)
+	if(tmp->num_proc > 0) {
 		return;
-
+	}
 	if(pqueue.num_q > 1) {
 		tmp->prev->next = tmp->next;
 		tmp->next->prev = tmp->prev;
-
-		if(tmp->priority == pqueue.tail->priority)
+		if(tmp->priority == pqueue.tail->priority) {
 			pqueue.tail = tmp->prev;
-
+		}
 		if(tmp->priority == pqueue.head_q->priority)
 			pqueue.head_q = tmp->next;
-	}
-	else {
+	}else {
 		pqueue.tail = pqueue.head_q = pqueue.now_q = 0;
 	}
 	tmp->state = UNUSED_Q;
 	pqueue.num_q--;
-	if(pqueue.num_q < 0)
-		panic("QUEUE delete error\n");
 	// Queue state.
 }
 /* Fin */
 void 
-insert_proc(struct queue_proc * queue, struct proc * p) 
-{
+insert_proc(struct queue_proc * queue, struct proc * p) {
 	if(queue == 0 || p == 0)
-		panic("Proc insert error\n");
-
+		return;
 	if(!queue->num_proc) {
 		queue->head = queue->tail = p;
 		p->next = p;
 		queue->num_proc++;
-	}
-	else {
+		
+	}else {
 		p->next = queue->head;
 		queue->tail->next = p;
 		queue->tail = p;
 		queue->num_proc++;
-	}
-
-	if(p->state == RUNNABLE || p->state == RUNNING)
+	}if(p->state == RUNNABLE || p->state == RUNNING) {
 		queue->num_runnable++;
+	}
 	if(queue->num_runnable)
 		queue->state = RUNNABLE_Q;
 }
 /* Fin */
 void 
-delete_proc(struct queue_proc * queue, struct proc * p) 
-{
+delete_proc(struct queue_proc * queue, struct proc * p) {
 	if(queue == 0 || p == 0)
-		panic("Proc delete error\n");
-
+		return;
 	struct proc * tmp = queue->head;
 	struct proc * ttmp;
 	int i;
-	if(queue->head == 0)
-		return ;
 	if(tmp->pid == p->pid) {
 		ttmp = tmp;
-		if(queue->num_proc > 1) {
-			queue->head = queue->head->next;
-			queue->tail->next = queue->head;
-		} 
-		else {
-			queue->head = queue->tail = 0;
-		}
-
-	}
-	else {
+		queue->head = queue->head->next;
+		queue->tail->next = queue->head;
+	}else {
 		for(i = 0; i < queue->num_proc-1; i++) {
 			if(tmp->next->pid == p->pid)
 				break;
 			tmp = tmp->next;
 		}
-		if(i == (queue->num_proc-1))
+		if(i == queue->num_proc)
 			return;
 		ttmp = tmp->next;
 		tmp->next = tmp->next->next;
-		if(ttmp->pid == queue->tail->pid)
+		if(ttmp->pid == queue->tail->pid) {
 			queue->tail = tmp;
+		}
 	}
-	
 	if(ttmp->state == RUNNABLE || ttmp->state == RUNNING)
 		queue->num_runnable--;
-	
 	queue->num_proc--;
-	
 	if(!queue->num_proc)
 		queue->state = DELETABLE;
-	
 	else if(!queue->num_runnable)
 		queue->state = ALL_SLEEPING;
 }
 
 int
-insert(struct proc * p) 
-{
+insert(struct proc * p) {
 #ifdef MLFQ_SCHED
-	if(p->level > 2 || p->level < 0)
-		panic("MLFQ Unknown queue level\n");
-
 	insert_proc(&pqueue.queue_arr[p->level], p);
 	return 0;
 #else
@@ -250,12 +203,8 @@ insert(struct proc * p)
 }
 
 int
-delete(struct proc * p) 
-{
+delete(struct proc * p) {
 #ifdef MLFQ_SCHED
-	if(p->level > 2 || p->level < 0)
-		panic("MLFQ Unkown queue level\n");
-
 	delete_proc(&pqueue.queue_arr[p->level], p);
 	return 0;
 #else
@@ -277,8 +226,7 @@ getlev(void) {
 }
 
 void
-boost(void) 
-{
+boost(void) {
 	struct proc * p;
 	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
 		switch(p->state) {
@@ -297,8 +245,7 @@ boost(void)
 }
 
 int 
-setpriority(int pid, int n) 
-{
+setpriority(int pid, int n) {
 #ifdef PRIORITY_SCHED
 	struct proc * p;
 	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
@@ -306,9 +253,7 @@ setpriority(int pid, int n)
 			break;
 
 	delete(p);
-	acquire(&ptable.lock);
 	p->priority = n;
-	release(&ptable.lock);
 	insert(p);
 	return p->priority;
 #endif
@@ -477,8 +422,10 @@ userinit(void)
   // writes to be visible, and the lock is also needed
   // because the assignment might not be atomic.
   acquire(&ptable.lock);
+
   p->state = RUNNABLE;
 	insert(p);
+
   release(&ptable.lock);
 }
 
@@ -594,7 +541,6 @@ exit(void)
 
   // Jump into the scheduler, never to return.
 	delete(curproc);
-
 	curproc->state = ZOMBIE;
   sched();
   panic("zombie exit");
@@ -659,6 +605,7 @@ scheduler(void)
 
 #ifdef MLFQ_SCHED
 	struct proc* tmp;
+	int ticks = 0;
 #endif
 
   struct cpu *c = mycpu();
@@ -668,7 +615,7 @@ scheduler(void)
 #elif MLFQ_SCHED
 	pick_now();
 #elif FCFS_SCHED
-	pick_now();
+	pqueue.now_q = pqueue.head_q;
 //#elif MLFQ_SCHED
 #else
 #endif
@@ -695,8 +642,10 @@ scheduler(void)
 			if(pick_now()) {
 				break;
 			}
+
 			if(3 - p->level != pqueue.now_q->priority) {
 				break;
+				cprintf("ASDf\n");
 			}
 			if(p->state != RUNNABLE) {
 				p = p->next;
@@ -704,15 +653,12 @@ scheduler(void)
 			}
 #elif FCFS_SCHED
 		for(;;) {
-		//	if(!pqueue.now_q->num_runnable){
-			if(!pqueue.now_q->num_runnable) {
+			if(!pqueue.now_q->num_runnable)
 				break;
-			}
 			if(p->state != RUNNABLE) {
 				p = p->next;
 				continue;
 			}
-
 //#elif MLFQ_SCHED
 #else
 		for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
@@ -733,53 +679,42 @@ scheduler(void)
 #elif FCFS_SCHED
 			p = pqueue.now_q->head;
 #elif MLFQ_SCHED
-/*			int change = 0;
+			int change = 0;
 			p->ticks++;
 			switch(p->level) {
 			case 0:
-				if(!(p->ticks % L0_TQ)) {
+				if(p->ticks == 2) {
 					change = 1;
 					p->ticks = 0;
 				}
 				break;
 			case 1:
-				if(!(p->ticks % L1_TQ)) {
+				if(p->ticks == 4) {
 					change = 1;
 					p->ticks = 0;
 				}
 				break;
 			case 2:
-				if(!(p->ticks % L2_TQ)) {
+				if(p->ticks == 8) {
 					p = p->next;
 					p->ticks = 0;
-				}break;
+				}
 			default:
 				break;
 			}
 			if(change) {
 				tmp = p;
 				p = p->next;
-				if(tmp->state != ZOMBIE) {
-					delete(tmp);
-					tmp->level++;
-					insert(tmp);
-				}
-			}*/
-			
-			tmp = p;
-			p = p->next;
-			tmp->ticks = 0;
-			//if(tmp->level < 2 && tmp->state != ZOMBIE) {
-			//	delete(tmp);
-			//	++tmp->level;
-			//	insert(tmp);
-			//}
-
-			//ticks++;
-			//if(ticks >= 100) {
-			//	ticks = 0;
-			//	boost();
-			//}
+				cprintf("%d\n", p->pid);
+				delete(tmp);
+				tmp->level++;
+				insert(tmp);
+			}
+			ticks++;
+			if(ticks == 100) {
+				ticks = 0;
+				boost();
+			}
 #endif
     }
     release(&ptable.lock);
