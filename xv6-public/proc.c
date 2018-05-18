@@ -33,6 +33,8 @@ extern void forkret(void);
 extern void trapret(void);
 static void wakeup1(void *chan);
 
+
+//Initiate queue and return that queue.
 struct queue_proc * 
 q_init(int priority) 
 {
@@ -53,6 +55,7 @@ q_init(int priority)
 	return 0;
 }
 
+// Find queue with priority.
 struct queue_proc * 
 find_q(int priority) 
 {
@@ -165,15 +168,15 @@ insert_proc(struct queue_proc * queue, struct proc * p)
 
 	if(!queue->num_proc) {
 		queue->head = queue->tail = p;
-		p->next = p;
-		queue->num_proc++;
+		p->next = p->prev = p;
 	}
 	else {
 		p->next = queue->head;
-		queue->tail->next = p;
+		queue->head->prev = queue->tail->next = p;
+		p->prev = queue->tail;
 		queue->tail = p;
-		queue->num_proc++;
 	}
+	queue->num_proc++;
 
 	if(p->state == RUNNABLE || p->state == RUNNING)
 		queue->num_runnable++;
@@ -187,37 +190,21 @@ delete_proc(struct queue_proc * queue, struct proc * p)
 	if(queue == 0 || p == 0)
 		panic("Proc delete error\n");
 
-	struct proc * tmp = queue->head;
-	struct proc * ttmp;
-	int i;
 	if(queue->head == 0)
 		return ;
-	if(tmp->pid == p->pid) {
-		ttmp = tmp;
-		if(queue->num_proc > 1) {
-			queue->head = queue->head->next;
-			queue->tail->next = queue->head;
-		} 
-		else {
-			queue->head = queue->tail = 0;
-		}
-
-	}
+	
+	if(queue->num_proc == 1) 
+		queue->head = queue->tail = 0;
 	else {
-		for(i = 0; i < queue->num_proc-1; i++) {
-			if(tmp->next->pid == p->pid)
-				break;
-			tmp = tmp->next;
-		}
-		if(i == (queue->num_proc-1))
-			return;
-		ttmp = tmp->next;
-		tmp->next = tmp->next->next;
-		if(ttmp->pid == queue->tail->pid)
-			queue->tail = tmp;
+		p->prev->next = p->next;
+		p->next->prev = p->prev;
+		if(p->pid == queue->head->pid)
+			queue->head = p->next;
+		else if(p->pid == queue->tail->pid)
+			queue->tail = p->prev;
 	}
 	
-	if(ttmp->state == RUNNABLE || ttmp->state == RUNNING)
+	if(p->state == RUNNABLE || p->state == RUNNING)
 		queue->num_runnable--;
 	
 	queue->num_proc--;
@@ -237,6 +224,8 @@ insert(struct proc * p)
 		panic("MLFQ Unknown queue level\n");
 
 	insert_proc(&pqueue.queue_arr[p->level], p);
+	p->now = &pqueue.queue_arr[p->level];
+
 	return 0;
 #else
 	struct queue_proc *q;
@@ -245,6 +234,7 @@ insert(struct proc * p)
 		insert_queue(q);
 	}
 	insert_proc(q, p);
+	p->now = q;
 	return 0;
 #endif
 }
@@ -257,13 +247,12 @@ delete(struct proc * p)
 		panic("MLFQ Unkown queue level\n");
 
 	delete_proc(&pqueue.queue_arr[p->level], p);
+	p->now = 0;
 	return 0;
 #else
-	struct queue_proc *q;
-	if(!(q = find_q(p->priority))) {
-		return 1;
-	}
+	struct queue_proc *q = p->now;
 	delete_proc(q, p);
+	p->now = 0;
 	if(q->state == DELETABLE) {
 		delete_queue(q);
 	}
@@ -272,8 +261,23 @@ delete(struct proc * p)
 }
 
 int 
-getlev(void) {
+getlev(void) 
+{
 	return myproc()->level;
+}
+
+int
+levelup(struct proc * p) 
+{
+	if(p->level > 1)
+		return 2;
+
+	acquire(&ptable.lock);
+	delete(p);
+	p->level++;
+	insert(p);
+	release(&ptable.lock);
+	return p->level;
 }
 
 void
@@ -285,10 +289,12 @@ boost(void)
 		case UNUSED: case EMBRYO: case ZOMBIE:
 			break;
 		case SLEEPING: case RUNNABLE: case RUNNING:
+			acquire(&ptable.lock);
 			delete(p);
 			p->level = 0;
 			p->ticks = 0;
 			insert(p);
+			release(&ptable.lock);
 			break;
 		default:
 			break;
@@ -312,7 +318,6 @@ setpriority(int pid, int n)
 	insert(p);
 	return p->priority;
 #endif
-	//cprintf("setpriority system call is only used by priority scheduling policy\n");
 	return 0;
 }
 
@@ -328,9 +333,8 @@ pick_now(void) {
 			q = q->prev;
 			continue;
 		}
-		else if(q->priority == pqueue.now_q->priority) {
+		else if(q->priority == pqueue.now_q->priority)
 			return 0;
-		}
 		else {
 			pqueue.now_q = q;
 			return 1;
@@ -350,6 +354,13 @@ pinit(void)
 		q_init(3 - i);
 		insert_queue(&pqueue.queue_arr[i]);
 	}
+	cprintf("MLFQ_SCHED!\n");
+#elif FCFS_SCHED
+	cprintf("FCFS_SCHED!\n");
+#elif PRIORITY_SCHED
+	cprintf("PRIORITY_SCHED!\n");
+#else
+	cprintf("RR_SCHED\n");
 #endif
 }
 
@@ -816,11 +827,7 @@ sleep(void * chan, struct spinlock *lk)
 
 	p->chan = chan;
 	p->state = SLEEPING;
-#ifdef MLFQ_SCHED
-	q = find_q(3 - p->level);
-#else
-	q = find_q(p->priority);
-#endif
+	q = p->now;//find_q(p->priority);
 	q->num_runnable--;
 	if(!q->num_runnable)
 		q->state = ALL_SLEEPING;
@@ -848,11 +855,7 @@ wakeup1(void *chan)
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){	
 		if(p->state == SLEEPING && p->chan == chan){
       p->state = RUNNABLE;
-#ifdef MLFQ_SCHED
-			q = find_q(3 - p->level);
-#else
-			q = find_q(p->priority);
-#endif
+			q = p->now;//find_q(3 - p->level);
 			q->num_runnable++;
 			q->state = RUNNABLE_Q;
 		}
@@ -883,11 +886,7 @@ kill(int pid)
       // Wake process from sleep if necessary.
       if(p->state == SLEEPING) {
         p->state = RUNNABLE;
-#ifdef MLFQ_SCHED
-				struct queue_proc * q = find_q(3 - p->level);
-#else
-				struct queue_proc * q = find_q(p->priority);
-#endif
+				struct queue_proc * q = p->now;//find_q(p->priority);
 				q->num_runnable++;
 				q->state = RUNNABLE_Q;
 			}

@@ -36,13 +36,15 @@ enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
 // Per-process state
 struct proc {
-	//FCFS(Single), PRIORITY(Circular)
-	struct proc *next;
+	//FCFS, PRIORITY(Circular linked list)
+	struct proc *next;					 // Next process in queue
+	struct proc *prev;					 // Prev process in queue
+	struct queue_proc *now;			 // Process 's current queue.
 	//PRIORITY
-	int priority;
+	int priority;								 // Process 's priority
 	//MLFQ
-	int level;
-	int ticks;
+	int level;									 // Process 's level.
+	int ticks;									 // Process 's current tick.
 
 	uint sz;                     // Size of process memory (bytes)
   pde_t* pgdir;                // Page table
@@ -62,19 +64,15 @@ struct proc {
 enum queuestate { UNUSED_Q, DELETABLE, ALL_SLEEPING, RUNNABLE_Q };
 
 struct queue_proc {
-	struct queue_proc * next;
-	struct queue_proc * prev;
-	struct proc * head;
-	struct proc * tail;
-	enum queuestate state;
-	int num_proc;
-	int num_runnable;
-	int priority;
+	struct queue_proc * next;		// Next bigger priority queue.
+	struct queue_proc * prev;		// Next smaller priority queue
+	struct proc * head;					// Queue 's head pointer (First come);
+	struct proc * tail;					// Queue 's tail pointer (Last come);
+	enum queuestate state;			// Queue 's state.
+	int num_proc;								// Queue 's number of process which is in this queue. 
+	int num_runnable;						// Queue 's number of runnable process which is in this queue
+	int priority;								// Queue 's priority. If FCFS, priority is always 0.
 };
-
-#define L0_TQ 2
-#define L1_TQ 4
-#define L2_TQ 8
 
 // Process memory is laid out contiguously, low addresses first:
 //   text

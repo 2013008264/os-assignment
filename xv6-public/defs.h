@@ -126,6 +126,7 @@ int							delete(struct proc*);
 int							insert(struct proc*);
 int							pick_now(void);
 void						boost(void);
+int							levelup(struct proc*);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

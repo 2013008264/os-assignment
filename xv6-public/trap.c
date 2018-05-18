@@ -116,32 +116,26 @@ trap(struct trapframe *tf)
 			yield();
 		switch(myproc()->level) {
 		case 0:
-			if(tmp == 1) {
-				delete(myproc());
-				myproc()->level++;
-				insert(myproc());
+			if(tmp >= 1) {
+				levelup(myproc());
 				yield();
 			}
 			break;
 		case 1:
-			if(tmp == 3) {
-				delete(myproc());
-				myproc()->level++;
-				insert(myproc());
+			if(tmp >= 3) {
+				levelup(myproc());
 				yield();
 			}
 			break;
 		case 2:
-			if(tmp == 7)
+			if(tmp >= 7)
 				yield();
 			break;
 		}
 	}
-	//cprintf("%d\n", curticks);
-	if(curticks == 100) {
+	if(curticks >= 100) {
 		curticks = 0;
 		boost();
-		//yield();
 	}
 #else
   // Force process to give up CPU on clock tick.
