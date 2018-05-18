@@ -11,7 +11,8 @@ int main(int argc, char * argv[])
 	}
 	if(pid > 0) {
 			for(int i = 0; i < 300; i++) {
-				printf(1, "parent\n");
+				printf(1, "parent, lev : %d\n", getlev());
+				yield();
 			}
 			wait();
 	}
@@ -27,13 +28,15 @@ int main(int argc, char * argv[])
 		if(cpid == 0) {
 			setpriority(getpid(), 100);
 			for(int i = 0; i < 100; i++) {
-				printf(1, "Grandchild\n");
+				printf(1, "Grandchild, lev : %d\n", getlev());
+				yield();
 			}
 		}else if(cpid > 0) {
 			for(int i = 0; i < 100; i++) {
 				if(i == 50)
 					setpriority(getpid(), 2);
-				printf(1, "child\n");
+				printf(1, "child, lev : %d\n", getlev());
+				yield();
 			}
 			wait();
 		}

@@ -16,14 +16,14 @@ main(int argc, char * argv[])
 		if(cpid < 0)
 			exit();
 		if(cpid == 0) {
-			for(;;)
+			for(int i = 0; i < 10000; i++)
 				printf(1, "Grandchild, level : %d\n", getlev());
 		}
 		else
-			for(;;)
+			for(int i = 0; i < 10000; i++)
 				printf(1, "Child, level : %d\n", getlev());
 	}else {
-		for(;;)
+		for(int i = 0; i < 10000; i++)
 			printf(1, "Parent, level : %d\n", getlev());
 	}
 	exit();

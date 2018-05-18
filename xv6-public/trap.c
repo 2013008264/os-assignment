@@ -136,6 +136,8 @@ trap(struct trapframe *tf)
 	if(curticks >= 100) {
 		curticks = 0;
 		boost();
+		if(myproc())
+			yield();
 	}
 #else
   // Force process to give up CPU on clock tick.
