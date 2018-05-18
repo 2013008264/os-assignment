@@ -728,58 +728,18 @@ scheduler(void)
       switchkvm();
 				
       c->proc = 0;
+
 #ifdef PRIORITY_SCHED
 			p = p->next;
+
 #elif FCFS_SCHED
 			p = pqueue.now_q->head;
-#elif MLFQ_SCHED
-/*			int change = 0;
-			p->ticks++;
-			switch(p->level) {
-			case 0:
-				if(!(p->ticks % L0_TQ)) {
-					change = 1;
-					p->ticks = 0;
-				}
-				break;
-			case 1:
-				if(!(p->ticks % L1_TQ)) {
-					change = 1;
-					p->ticks = 0;
-				}
-				break;
-			case 2:
-				if(!(p->ticks % L2_TQ)) {
-					p = p->next;
-					p->ticks = 0;
-				}break;
-			default:
-				break;
-			}
-			if(change) {
-				tmp = p;
-				p = p->next;
-				if(tmp->state != ZOMBIE) {
-					delete(tmp);
-					tmp->level++;
-					insert(tmp);
-				}
-			}*/
-			
+
+#elif MLFQ_SCHED			
 			tmp = p;
 			p = p->next;
 			tmp->ticks = 0;
-			//if(tmp->level < 2 && tmp->state != ZOMBIE) {
-			//	delete(tmp);
-			//	++tmp->level;
-			//	insert(tmp);
-			//}
-
-			//ticks++;
-			//if(ticks >= 100) {
-			//	ticks = 0;
-			//	boost();
-			//}
+			
 #endif
     }
     release(&ptable.lock);
