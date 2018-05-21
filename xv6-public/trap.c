@@ -82,8 +82,8 @@ trap(struct trapframe *tf)
     break;
   // USER interrupt
   case T_USER_SYSCALL:
-	cprintf("user interrupt 128 called!\n");
-	break;
+  cprintf("user interrupt 128 called!\n");
+  break;
 
   //PAGEBREAK: 13
   default:
@@ -94,7 +94,7 @@ trap(struct trapframe *tf)
       panic("trap");
     }
     // In user space, assume process misbehaved. 
-	// Example 이거는 user process. 가 잘못했을 경우. exit()으로 안 끝내고, return 으로 끝내면 처리가 안댐.
+  // Example 이거는 user process. 가 잘못했을 경우. exit()으로 안 끝내고, return 으로 끝내면 처리가 안댐.
     cprintf("pid %d %s: trap %d err %d on cpu %d "
             "eip 0x%x addr 0x%x--kill proc\n",
             myproc()->pid, myproc()->name, tf->trapno,
@@ -108,42 +108,42 @@ trap(struct trapframe *tf)
   if(myproc() && myproc()->killed && (tf->cs&3) == DPL_USER)
     exit();
 #ifdef MLFQ_SCHED
-	curticks++;
-	if(myproc() && myproc()->state == RUNNING &&
+  curticks++;
+  if(myproc() && myproc()->state == RUNNING &&
      tf->trapno == T_IRQ0+IRQ_TIMER){
-		int tmp = (myproc()->ticks)++;
-		if(pick_now())
-			yield();
-		switch(myproc()->level) {
-		case 0:
-			if(tmp >= 1) {
-				levelup(myproc());
-				yield();
-			}
-			break;
-		case 1:
-			if(tmp >= 3) {
-				levelup(myproc());
-				yield();
-			}
-			break;
-		case 2:
-			if(tmp >= 7)
-				yield();
-			break;
-		}
-	}
-	if(curticks >= 100) {
-		curticks = 0;
-		boost();
-		if(myproc())
-			yield();
-	}
+    int tmp = (myproc()->ticks)++;
+    if(pick_now())
+      yield();
+    switch(myproc()->level) {
+    case 0:
+      if(tmp >= 1) {
+        levelup(myproc());
+        yield();
+      }
+      break;
+    case 1:
+      if(tmp >= 3) {
+        levelup(myproc());
+        yield();
+      }
+      break;
+    case 2:
+      if(tmp >= 7)
+        yield();
+      break;
+    }
+  }
+  if(curticks >= 100) {
+    curticks = 0;
+    boost();
+    if(myproc())
+      yield();
+  }
 #else
   // Force process to give up CPU on clock tick.
   // If interrupts were on while locks held, would need to check nlock.
   // For interrupt timer interrupt.
-	if(myproc() && myproc()->state == RUNNING &&
+  if(myproc() && myproc()->state == RUNNING &&
      tf->trapno == T_IRQ0+IRQ_TIMER)
     yield();
 #endif

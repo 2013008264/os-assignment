@@ -46,26 +46,26 @@ sys_getpid(void)
 int
 sys_getppid(void)
 {
-	return myproc()->parent->pid;
+  return myproc()->parent->pid;
 }
 
 int
 sys_setpriority(void)
 {
-	int n,  pid;
-	if(argint(0, &pid) < 0)
-		return -1;
+  int n,  pid;
+  if(argint(0, &pid) < 0)
+    return -1;
 
-	if(argint(1, &n) < 0)
-		return -1;
+  if(argint(1, &n) < 0)
+    return -1;
 
-	return setpriority(pid, n);
+  return setpriority(pid, n);
 }
 
 int
 sys_getlev(void)
 {
-	return getlev();
+  return getlev();
 }
 
 int
@@ -106,8 +106,8 @@ sys_sleep(void)
 int
 sys_yield(void)
 {
-	yield();
-	return 0;
+  yield();
+  return 0;
 }
 
 // return how many clock tick interrupts have occurred
