@@ -91,7 +91,6 @@ insert_queue(struct queue_proc * queue)
 		queue->next = queue->prev = queue;
 		return ;
 	}
-	
 	for(int i = 0; i < pqueue.num_q; i++) {
 		l_priority = left->priority;	r_priority = right->priority;
 		if((r_priority == pqueue.head_q->priority)) {
@@ -100,7 +99,6 @@ insert_queue(struct queue_proc * queue)
 				right->prev = queue;
 				queue->prev = left;
 				queue->next = right;
-				pqueue.num_q++;
 			
 				pqueue.tail = queue;
 			}else {
@@ -108,8 +106,8 @@ insert_queue(struct queue_proc * queue)
 				right->next = queue;
 				queue->prev = right;
 				queue->next = left;
-				pqueue.num_q++;
 			}
+			return;
 		}
 		else if ((l_priority < priority) &&(priority < r_priority)) {
 			left->next= queue;
@@ -117,7 +115,6 @@ insert_queue(struct queue_proc * queue)
 
 			queue->prev = left;
 			queue->next = right;
-			pqueue.num_q++;
 			return;
 		}
 		left = left->next;
@@ -311,11 +308,11 @@ setpriority(int pid, int n)
 		if(p->pid == pid)
 			break;
 
-	delete(p);
 	acquire(&ptable.lock);
+	delete(p);
 	p->priority = n;
-	release(&ptable.lock);
 	insert(p);
+	release(&ptable.lock);
 	return p->priority;
 #endif
 	return 0;
