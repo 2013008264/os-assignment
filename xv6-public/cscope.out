@@ -1,4 +1,4 @@
-cscope 15 $HOME/CSE/OS/os_practice/xv6-public -q 0000001976 0000253247
+cscope 15 $HOME/CSE/OS/os_practice/xv6-public -q 0000001450 0000190536
 	@2_user_test.c
 
 1 
@@ -218,5616 +218,6 @@ ba£
 21 
 	#STA_A
  0x1
-
-	@backup/proc.c
-
-1 
-	~"ty≥s.h
-"
-
-2 
-	~"defs.h
-"
-
-3 
-	~"∑øm.h
-"
-
-4 
-	~"memœyout.h
-"
-
-5 
-	~"mmu.h
-"
-
-6 
-	~"x86.h
-"
-
-7 
-	~"¥oc.h
-"
-
-8 
-	~"•ölock.h
-"
-
-11 
-•ölock
- 
-	mlock
-;
-
-12 
-¥oc
- 
-	m¥oc
-[
-NPROC
-];
-
-13 } 
-	g±abÀ
-;
-
-15 
-¥oc
- *
-	göô¥oc
-;
-
-17 
-	g√xçid
- = 1;
-
-18 
-f‹kªt
-();
-
-19 
-å≠ªt
-();
-
-21 
-wakeup1
-(*
-ch™
-);
-
-24 
-	$pöô
-()
-
-26 
-	`öôlock
-(&
-±abÀ
-.
-lock
-, "ptable");
-
-27 
-	}
-}
-
-31 
-	$˝uid
-() {
-
-32  
-	`my˝u
-()-
-˝us
-;
-
-33 
-	}
-}
-
-37 
-˝u
-*
-
-38 
-	$my˝u
-()
-
-40 
-≠icid
-, 
-i
-;
-
-42 if(
-	`ªadeÊags
-()&
-FL_IF
-)
-
-43 
-	`∑nic
-("mycpu called with interruptsÉnabled\n");
-
-45 
-≠icid
- = 
-	`œpicid
-();
-
-48 
-i
- = 0; i < 
-n˝u
-; ++i) {
-
-49 i‡(
-˝us
-[
-i
-].
-≠icid
- ==ápicid)
-
-50  &
-˝us
-[
-i
-];
-
-52 
-	`∑nic
-("unknownápicid\n");
-
-53 
-	}
-}
-
-57 
-¥oc
-*
-
-58 
-	$my¥oc
-() {
-
-59 
-˝u
- *
-c
-;
-
-60 
-¥oc
- *
-p
-;
-
-61 
-	`push˛i
-();
-
-62 
-c
- = 
-	`my˝u
-();
-
-63 
-p
- = 
-c
-->
-¥oc
-;
-
-64 
-	`p›˛i
-();
-
-65  
-p
-;
-
-66 
-	}
-}
-
-73 
-¥oc
-*
-
-74 
-	$Ælo˝roc
-()
-
-76 
-¥oc
- *
-p
-;
-
-77 *
-•
-;
-
-79 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-81 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++)
-
-82 if(
-p
-->
-°©e
- =
-UNUSED
-)
-
-83 
-found
-;
-
-85 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-88 
-found
-:
-
-89 
-p
-->
-°©e
- = 
-EMBRYO
-;
-
-90 
-p
-->
-pid
- = 
-√xçid
-++;
-
-92 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-95 if((
-p
-->
-k°ack
- = 
-	`kÆloc
-()) == 0){
-
-96 
-p
-->
-°©e
- = 
-UNUSED
-;
-
-99 
-•
- = 
-p
-->
-k°ack
- + 
-KSTACKSIZE
-;
-
-102 
-•
- - *
-p
-->
-tf
-;
-
-103 
-p
-->
-tf
- = (
-å≠‰ame
-*)
-•
-;
-
-107 
-•
- -= 4;
-
-108 *(
-uöt
-*)
-•
- = (uöt)
-å≠ªt
-;
-
-110 
-•
- - *
-p
-->
-c⁄ãxt
-;
-
-111 
-p
-->
-c⁄ãxt
- = (c⁄ãxt*)
-•
-;
-
-112 
-	`mem£t
-(
-p
-->
-c⁄ãxt
-, 0,  *p->context);
-
-113 
-p
-->
-c⁄ãxt
-->
-eù
- = (
-uöt
-)
-f‹kªt
-;
-
-115  
-p
-;
-
-116 
-	}
-}
-
-121 
-	$u£röô
-()
-
-123 
-¥oc
- *
-p
-;
-
-124 
-_bö¨y_öôcode_°¨t
-[], 
-_bö¨y_öôcode_size
-[];
-
-126 
-p
- = 
-	`Ælo˝roc
-();
-
-128 
-öô¥oc
- = 
-p
-;
-
-129 if((
-p
-->
-pgdú
- = 
-	`£tupkvm
-()) == 0)
-
-130 
-	`∑nic
-("userinit: out of memory?");
-
-131 
-	`öôuvm
-(
-p
-->
-pgdú
-, 
-_bö¨y_öôcode_°¨t
-, ()
-_bö¨y_öôcode_size
-);
-
-132 
-p
-->
-sz
- = 
-PGSIZE
-;
-
-133 
-	`mem£t
-(
-p
-->
-tf
-, 0, (*p->tf));
-
-134 
-p
-->
-tf
-->
-cs
- = (
-SEG_UCODE
- << 3Ë| 
-DPL_USER
-;
-
-135 
-p
-->
-tf
-->
-ds
- = (
-SEG_UDATA
- << 3Ë| 
-DPL_USER
-;
-
-136 
-p
-->
-tf
-->
-es
- =Ö->tf->
-ds
-;
-
-137 
-p
-->
-tf
-->
-ss
- =Ö->tf->
-ds
-;
-
-138 
-p
-->
-tf
-->
-eÊags
- = 
-FL_IF
-;
-
-139 
-p
-->
-tf
-->
-e•
- = 
-PGSIZE
-;
-
-140 
-p
-->
-tf
-->
-eù
- = 0;
-
-142 
-	`ß„°r˝y
-(
-p
-->
-«me
-, "initcode", (p->name));
-
-143 
-p
-->
-cwd
- = 
-	`«mei
-("/");
-
-149 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-151 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-153 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-154 
-	}
-}
-
-159 
-	$grow¥oc
-(
-n
-)
-
-161 
-uöt
- 
-sz
-;
-
-162 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-164 
-sz
- = 
-cuΩroc
-->sz;
-
-165 if(
-n
- > 0){
-
-166 if((
-sz
- = 
-	`Ælocuvm
-(
-cuΩroc
-->
-pgdú
-, sz, sz + 
-n
-)) == 0)
-
-168 } if(
-n
- < 0){
-
-169 if((
-sz
- = 
-	`dóŒocuvm
-(
-cuΩroc
-->
-pgdú
-, sz, sz + 
-n
-)) == 0)
-
-172 
-cuΩroc
-->
-sz
- = sz;
-
-173 
-	`swôchuvm
-(
-cuΩroc
-);
-
-175 
-	}
-}
-
-181 
-	$f‹k
-()
-
-183 
-i
-, 
-pid
-;
-
-184 
-¥oc
- *
-≈
-;
-
-185 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-188 if((
-≈
- = 
-	`Ælo˝roc
-()) == 0){
-
-193 if((
-≈
-->
-pgdú
- = 
-	`c›yuvm
-(
-cuΩroc
-->pgdú, cuΩroc->
-sz
-)) == 0){
-
-194 
-	`k‰ì
-(
-≈
-->
-k°ack
-);
-
-195 
-≈
-->
-k°ack
- = 0;
-
-196 
-≈
-->
-°©e
- = 
-UNUSED
-;
-
-199 
-≈
-->
-sz
- = 
-cuΩroc
-->sz;
-
-200 
-≈
-->
-∑ª¡
- = 
-cuΩroc
-;
-
-201 *
-≈
-->
-tf
- = *
-cuΩroc
-->tf;
-
-204 
-≈
-->
-tf
-->
-óx
- = 0;
-
-206 
-i
- = 0; i < 
-NOFILE
-; i++)
-
-207 if(
-cuΩroc
-->
-ofûe
-[
-i
-])
-
-208 
-≈
-->
-ofûe
-[
-i
-] = 
-	`fûedup
-(
-cuΩroc
-->ofile[i]);
-
-209 
-≈
-->
-cwd
- = 
-	`idup
-(
-cuΩroc
-->cwd);
-
-211 
-	`ß„°r˝y
-(
-≈
-->
-«me
-, 
-cuΩroc
-->name, (curproc->name));
-
-213 
-pid
- = 
-≈
-->pid;
-
-215 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-217 
-≈
-->
-°©e
- = 
-RUNNABLE
-;
-
-219 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-221  
-pid
-;
-
-222 
-	}
-}
-
-228 
-	$exô
-()
-
-230 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-231 
-¥oc
- *
-p
-;
-
-232 
-fd
-;
-
-234 if(
-cuΩroc
- =
-öô¥oc
-)
-
-235 
-	`∑nic
-("initÉxiting");
-
-238 
-fd
- = 0; fd < 
-NOFILE
-; fd++){
-
-239 if(
-cuΩroc
-->
-ofûe
-[
-fd
-]){
-
-240 
-	`fûe˛o£
-(
-cuΩroc
-->
-ofûe
-[
-fd
-]);
-
-241 
-cuΩroc
-->
-ofûe
-[
-fd
-] = 0;
-
-245 
-	`begö_›
-();
-
-246 
-	`ùut
-(
-cuΩroc
-->
-cwd
-);
-
-247 
-	`íd_›
-();
-
-248 
-cuΩroc
-->
-cwd
- = 0;
-
-250 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-253 
-	`wakeup1
-(
-cuΩroc
-->
-∑ª¡
-);
-
-256 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-257 if(
-p
-->
-∑ª¡
- =
-cuΩroc
-){
-
-258 
-p
-->
-∑ª¡
- = 
-öô¥oc
-;
-
-259 if(
-p
-->
-°©e
- =
-ZOMBIE
-)
-
-260 
-	`wakeup1
-(
-öô¥oc
-);
-
-265 
-cuΩroc
-->
-°©e
- = 
-ZOMBIE
-;
-
-266 
-	`sched
-();
-
-267 
-	`∑nic
-("zombieÉxit");
-
-268 
-	}
-}
-
-273 
-	$waô
-()
-
-275 
-¥oc
- *
-p
-;
-
-276 
-havekids
-, 
-pid
-;
-
-277 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-279 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-282 
-havekids
- = 0;
-
-283 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-284 if(
-p
-->
-∑ª¡
- !
-cuΩroc
-)
-
-286 
-havekids
- = 1;
-
-287 if(
-p
-->
-°©e
- =
-ZOMBIE
-){
-
-289 
-pid
- = 
-p
-->pid;
-
-290 
-	`k‰ì
-(
-p
-->
-k°ack
-);
-
-291 
-p
-->
-k°ack
- = 0;
-
-292 
-	`‰ìvm
-(
-p
-->
-pgdú
-);
-
-293 
-p
-->
-pid
- = 0;
-
-294 
-p
-->
-∑ª¡
- = 0;
-
-295 
-p
-->
-«me
-[0] = 0;
-
-296 
-p
-->
-kûÀd
- = 0;
-
-297 
-p
-->
-°©e
- = 
-UNUSED
-;
-
-298 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-299  
-pid
-;
-
-304 if(!
-havekids
- || 
-cuΩroc
-->
-kûÀd
-){
-
-305 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-310 
-	`¶ìp
-(
-cuΩroc
-, &
-±abÀ
-.
-lock
-);
-
-312 
-	}
-}
-
-323 
-	$scheduÀr
-()
-
-325 
-¥oc
- *
-p
-;
-
-326 
-˝u
- *
-c
- = 
-	`my˝u
-();
-
-327 
-c
-->
-¥oc
- = 0;
-
-331 
-	`°i
-();
-
-334 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-336 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-337 if(
-p
-->
-°©e
- !
-RUNNABLE
-)
-
-345 
-c
-->
-¥oc
- = 
-p
-;
-
-346 
-	`swôchuvm
-(
-p
-);
-
-347 
-p
-->
-°©e
- = 
-RUNNING
-;
-
-349 
-	`swtch
-(&(
-c
-->
-scheduÀr
-), 
-p
-->
-c⁄ãxt
-);
-
-350 
-	`swôchkvm
-();
-
-354 
-c
-->
-¥oc
- = 0;
-
-356 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-359 
-	}
-}
-
-369 
-	$sched
-()
-
-371 
-öã«
-;
-
-372 
-¥oc
- *
-p
- = 
-	`my¥oc
-();
-
-374 if(!
-	`hﬁdög
-(&
-±abÀ
-.
-lock
-))
-
-375 
-	`∑nic
-("schedÖtable.lock");
-
-376 if(
-	`my˝u
-()->
-n˛i
- != 1)
-
-377 
-	`∑nic
-("schedÜocks");
-
-378 if(
-p
-->
-°©e
- =
-RUNNING
-)
-
-379 
-	`∑nic
-("schedÑunning");
-
-380 if(
-	`ªadeÊags
-()&
-FL_IF
-)
-
-381 
-	`∑nic
-("sched interruptible");
-
-382 
-öã«
- = 
-	`my˝u
-()->intena;
-
-383 
-	`swtch
-(&
-p
-->
-c⁄ãxt
-, 
-	`my˝u
-()->
-scheduÀr
-);
-
-384 
-	`my˝u
-()->
-öã«
- = intena;
-
-385 
-	}
-}
-
-389 
-	$yõld
-()
-
-391 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-392 
-	`my¥oc
-()->
-°©e
- = 
-RUNNABLE
-;
-
-393 
-	`sched
-();
-
-394 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-395 
-	}
-}
-
-400 
-	$f‹kªt
-()
-
-402 
-fú°
- = 1;
-
-404 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-406 i‡(
-fú°
-) {
-
-410 
-fú°
- = 0;
-
-411 
-	`iöô
-(
-ROOTDEV
-);
-
-412 
-	`öôlog
-(
-ROOTDEV
-);
-
-416 
-	}
-}
-
-421 
-	$¶ìp
-(*
-ch™
-, 
-•ölock
- *
-lk
-)
-
-423 
-¥oc
- *
-p
- = 
-	`my¥oc
-();
-
-425 if(
-p
- == 0)
-
-426 
-	`∑nic
-("sleep");
-
-428 if(
-lk
- == 0)
-
-429 
-	`∑nic
-("sleep withoutÜk");
-
-437 if(
-lk
- !&
-±abÀ
-.
-lock
-){
-
-438 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-439 
-	`ªÀa£
-(
-lk
-);
-
-442 
-p
-->
-ch™
- = chan;
-
-443 
-p
-->
-°©e
- = 
-SLEEPING
-;
-
-445 
-	`sched
-();
-
-448 
-p
-->
-ch™
- = 0;
-
-451 if(
-lk
- !&
-±abÀ
-.
-lock
-){
-
-452 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-453 
-	`acquúe
-(
-lk
-);
-
-455 
-	}
-}
-
-461 
-	$wakeup1
-(*
-ch™
-)
-
-463 
-¥oc
- *
-p
-;
-
-465 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++)
-
-466 if(
-p
-->
-°©e
- =
-SLEEPING
- &&Ö->
-ch™
- == chan)
-
-467 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-468 
-	}
-}
-
-472 
-	$wakeup
-(*
-ch™
-)
-
-474 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-475 
-	`wakeup1
-(
-ch™
-);
-
-476 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-477 
-	}
-}
-
-483 
-	$kûl
-(
-pid
-)
-
-485 
-¥oc
- *
-p
-;
-
-487 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-488 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-489 if(
-p
-->
-pid
- ==Öid){
-
-490 
-p
-->
-kûÀd
- = 1;
-
-492 if(
-p
-->
-°©e
- =
-SLEEPING
-)
-
-493 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-494 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-498 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-500 
-	}
-}
-
-507 
-	$¥ocdump
-()
-
-509 *
-°©es
-[] = {
-
-510 [
-UNUSED
-] "unused",
-
-511 [
-EMBRYO
-] "embryo",
-
-512 [
-SLEEPING
-] "sleep ",
-
-513 [
-RUNNABLE
-] "runble",
-
-514 [
-RUNNING
-] "run ",
-
-515 [
-ZOMBIE
-] "zombie"
-
-517 
-i
-;
-
-518 
-¥oc
- *
-p
-;
-
-519 *
-°©e
-;
-
-520 
-uöt
- 
-pc
-[10];
-
-522 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-523 if(
-p
-->
-°©e
- =
-UNUSED
-)
-
-525 if(
-p
-->
-°©e
- >0 &&Ö->°©ê< 
-	`NELEM
-(
-°©es
-) && states[p->state])
-
-526 
-°©e
- = 
-°©es
-[
-p
-->state];
-
-528 
-°©e
- = "???";
-
-529 
-	`˝rötf
-("%d %†%s", 
-p
-->
-pid
-, 
-°©e
-,Ö->
-«me
-);
-
-530 if(
-p
-->
-°©e
- =
-SLEEPING
-){
-
-531 
-	`gëˇŒîpcs
-((
-uöt
-*)
-p
-->
-c⁄ãxt
-->
-ebp
-+2, 
-pc
-);
-
-532 
-i
-=0; i<10 && 
-pc
-[i] != 0; i++)
-
-533 
-	`˝rötf
-(" %p", 
-pc
-[
-i
-]);
-
-535 
-	`˝rötf
-("\n");
-
-537 
-	}
-}
-
-	@backup/proc.h
-
-2 
-	s˝u
- {
-
-3 
-uch¨
- 
-	m≠icid
-;
-
-4 
-c⁄ãxt
- *
-	mscheduÀr
-;
-
-5 
-èsk°©e
- 
-	mts
-;
-
-6 
-£gdesc
- 
-	mgdt
-[
-NSEGS
-];
-
-7 vﬁ©ûê
-uöt
- 
-	m°¨ãd
-;
-
-8 
-	mn˛i
-;
-
-9 
-	möã«
-;
-
-10 
-¥oc
- *
-	m¥oc
-;
-
-13 
-˝u
- 
-˝us
-[
-NCPU
-];
-
-14 
-n˝u
-;
-
-27 
-	sc⁄ãxt
- {
-
-28 
-uöt
- 
-	medi
-;
-
-29 
-uöt
- 
-	mesi
-;
-
-30 
-uöt
- 
-	mebx
-;
-
-31 
-uöt
- 
-	mebp
-;
-
-32 
-uöt
- 
-	meù
-;
-
-35 
-	e¥oc°©e
- { 
-	mUNUSED
-, 
-	mEMBRYO
-, 
-	mSLEEPING
-, 
-	mRUNNABLE
-, 
-	mRUNNING
-, 
-	mZOMBIE
- };
-
-38 
-	s¥oc
- {
-
-39 
-uöt
- 
-	msz
-;
-
-40 
-pde_t
-* 
-	mpgdú
-;
-
-41 *
-	mk°ack
-;
-
-42 
-¥oc°©e
- 
-	m°©e
-;
-
-43 
-	mpid
-;
-
-44 
-¥oc
- *
-	m∑ª¡
-;
-
-45 
-å≠‰ame
- *
-	mtf
-;
-
-46 
-c⁄ãxt
- *
-	mc⁄ãxt
-;
-
-47 *
-	mch™
-;
-
-48 
-	mkûÀd
-;
-
-49 
-fûe
- *
-	mofûe
-[
-NOFILE
-];
-
-50 
-öode
- *
-	mcwd
-;
-
-51 
-	m«me
-[16];
-
-	@backup_dir/proc.c
-
-1 
-	~"ty≥s.h
-"
-
-2 
-	~"defs.h
-"
-
-3 
-	~"∑øm.h
-"
-
-4 
-	~"memœyout.h
-"
-
-5 
-	~"mmu.h
-"
-
-6 
-	~"x86.h
-"
-
-7 
-	~"¥oc.h
-"
-
-8 
-	~"•ölock.h
-"
-
-11 
-•ölock
- 
-	mlock
-;
-
-12 
-¥oc
- 
-	m¥oc
-[
-NPROC
-];
-
-13 } 
-	g±abÀ
-;
-
-16 #ifde‡
-PRIORITY_SCHED
-
-
-17 
-queue_¥oc
- 
-	mqueue_¨r
-[
-NPROC
-];
-
-19 
-queue_¥oc
- 
-	mqueue_¨r
-[3];
-
-21 
-queue_¥oc
- * 
-	mhód_q
-;
-
-22 
-queue_¥oc
- * 
-	mnow_q
-;
-
-23 
-queue_¥oc
- * 
-	mèû
-;
-
-24 
-	mnum_q
-;
-
-25 } 
-	gpqueue
-;
-
-27 
-¥oc
- *
-	göô¥oc
-;
-
-29 
-	g√xçid
- = 1;
-
-30 
-f‹kªt
-();
-
-31 
-å≠ªt
-();
-
-32 
-wakeup1
-(*
-ch™
-);
-
-34 
-queue_¥oc
- *
-
-35 
-	$q_öô
-(
-¥i‹ôy
-) {
-
-36 
-queue_¥oc
- * 
-q
-;
-
-37 #ifde‡
-PRIORITY_SCHED
-
-
-38 
-q
- = 
-pqueue
-.
-queue_¨r
-; q < &pqueue.queue_¨r[
-NPROC
-]; q++)
-
-40 
-q
- = 
-pqueue
-.
-queue_¨r
-; q < &pqueue.queue_arr[3]; q++)
-
-42 if(
-q
-->
-°©e
- =
-UNUSED_Q
-) {
-
-43 
-q
-->
-°©e
- = 
-DELETABLE
-;
-
-44 
-q
-->
-√xt
- = q->
-¥ev
- = 0; q->
-hód
- = q->
-èû
- = 0; q->
-num_¥oc
- = q->
-num_ru¬abÀ
- = 0;
-
-45 
-q
-->
-¥i‹ôy
- =Öriority;
-
-46 
-pqueue
-.
-num_q
-++;
-
-47  
-q
-;
-
-50 
-	}
-}
-
-52 
-queue_¥oc
- *
-
-53 
-	$föd_q
-(
-¥i‹ôy
-) {
-
-54 
-queue_¥oc
- * 
-tmp
- = 
-pqueue
-.
-now_q
-;
-
-55 
-i
- = 0;
-
-56 if(!
-pqueue
-.
-num_q
-)
-
-58 
-tmp
-->
-¥i‹ôy
- !=Öriority) {
-
-59 
-tmp
- =Åmp->
-¥ev
-;
-
-60 if(
-i
-++ =
-pqueue
-.
-num_q
-)
-
-62 }if(
-tmp
-->
-°©e
- !
-UNUSED_Q
-)
-
-63  
-tmp
-;
-
-66 
-	}
-}
-
-69 
-	$ö£π_queue
-(
-queue_¥oc
- * 
-queue
-) {
-
-71 
-¥i‹ôy
- = 
-queue
-->priority;
-
-72 
-queue_¥oc
- * 
-À·
- = 
-pqueue
-.
-hód_q
-;
-
-73 
-queue_¥oc
- * 
-right
- = 
-À·
-->
-√xt
-;
-
-74 
-l_¥i‹ôy
-, 
-r_¥i‹ôy
-;
-
-75 if(
-pqueue
-.
-num_q
- == 1) {
-
-76 
-pqueue
-.
-now_q
- =Öqueue.
-èû
- =Öqueue.
-hód_q
- = 
-queue
-;
-
-77 
-queue
-->
-√xt
- = queue->
-¥ev
- = queue;
-
-81 
-i
- = 0; i < 
-pqueue
-.
-num_q
-; i++) {
-
-82 
-l_¥i‹ôy
- = 
-À·
-->
-¥i‹ôy
-; 
-r_¥i‹ôy
- = 
-right
-->priority;
-
-83 if((
-r_¥i‹ôy
- =
-pqueue
-.
-hód_q
-->
-¥i‹ôy
-)) {
-
-84 
-À·
-->
-√xt
- = 
-queue
-;
-
-85 
-right
-->
-¥ev
- = 
-queue
-;
-
-86 
-queue
-->
-¥ev
- = 
-À·
-;
-
-87 
-queue
-->
-√xt
- = 
-right
-;
-
-88 
-pqueue
-.
-num_q
-++;
-
-90 
-pqueue
-.
-èû
- = 
-queue
-;
-
-92 i‡((
-l_¥i‹ôy
- < 
-¥i‹ôy
-Ë&&’ri‹ôy < 
-r_¥i‹ôy
-)) {
-
-93 
-À·
-->
-√xt
-
-queue
-;
-
-94 
-right
-->
-¥ev
- = 
-queue
-;
-
-96 
-queue
-->
-¥ev
- = 
-À·
-;
-
-97 
-queue
-->
-√xt
- = 
-right
-;
-
-98 
-pqueue
-.
-num_q
-++;
-
-101 
-À·
- =Üe·->
-√xt
-;
-
-102 
-right
- =Ñight->
-√xt
-;
-
-104 
-	}
-}
-
-107 
-	$dñëe_queue
-(
-queue_¥oc
- * 
-queue
-) {
-
-108 
-¥i‹ôy
- = 
-queue
-->priority;
-
-109 
-queue_¥oc
- *
-tmp
- = 
-pqueue
-.
-now_q
-;
-
-110 
-i
- = 0; i < 
-pqueue
-.
-num_q
-; i++) {
-
-111 if(
-tmp
-->
-¥i‹ôy
- ==Öriority)
-
-113 
-tmp
- =Åmp->
-¥ev
-;
-
-115 if(
-tmp
-->
-num_¥oc
- > 0) {
-
-118 if(
-pqueue
-.
-num_q
- > 1) {
-
-119 
-tmp
-->
-¥ev
-->
-√xt
- =Åmp->next;
-
-120 
-tmp
-->
-√xt
-->
-¥ev
- =Åmp->prev;
-
-121 if(
-tmp
-->
-¥i‹ôy
- =
-pqueue
-.
-èû
-->priority) {
-
-122 
-pqueue
-.
-èû
- = 
-tmp
-->
-¥ev
-;
-
-124 if(
-tmp
-->
-¥i‹ôy
- =
-pqueue
-.
-hód_q
-->priority)
-
-125 
-pqueue
-.
-hód_q
- = 
-tmp
-->
-√xt
-;
-
-127 
-pqueue
-.
-èû
- =Öqueue.
-hód_q
- =Öqueue.
-now_q
- = 0;
-
-129 
-tmp
-->
-°©e
- = 
-UNUSED_Q
-;
-
-130 
-pqueue
-.
-num_q
---;
-
-132 
-	}
-}
-
-135 
-	$ö£π_¥oc
-(
-queue_¥oc
- * 
-queue
-, 
-¥oc
- * 
-p
-) {
-
-136 if(
-queue
- =0 || 
-p
- == 0)
-
-138 if(!
-queue
-->
-num_¥oc
-) {
-
-139 
-queue
-->
-hód
- = queue->
-èû
- = 
-p
-;
-
-140 
-p
-->
-√xt
- =Ö;
-
-141 
-queue
-->
-num_¥oc
-++;
-
-144 
-p
-->
-√xt
- = 
-queue
-->
-hód
-;
-
-145 
-queue
-->
-èû
-->
-√xt
- = 
-p
-;
-
-146 
-queue
-->
-èû
- = 
-p
-;
-
-147 
-queue
-->
-num_¥oc
-++;
-
-148 }if(
-p
-->
-°©e
- =
-RUNNABLE
- ||Ö->°©ê=
-RUNNING
-) {
-
-149 
-queue
-->
-num_ru¬abÀ
-++;
-
-151 if(
-queue
-->
-num_ru¬abÀ
-)
-
-152 
-queue
-->
-°©e
- = 
-RUNNABLE_Q
-;
-
-153 
-	}
-}
-
-156 
-	$dñëe_¥oc
-(
-queue_¥oc
- * 
-queue
-, 
-¥oc
- * 
-p
-) {
-
-157 if(
-queue
- =0 || 
-p
- == 0)
-
-159 
-¥oc
- * 
-tmp
- = 
-queue
-->
-hód
-;
-
-160 
-¥oc
- * 
-âmp
-;
-
-161 
-i
-;
-
-162 if(
-tmp
-->
-pid
- =
-p
-->pid) {
-
-163 
-âmp
- = 
-tmp
-;
-
-164 
-queue
-->
-hód
- = queue->hód->
-√xt
-;
-
-165 
-queue
-->
-èû
-->
-√xt
- = queue->
-hód
-;
-
-167 
-i
- = 0; i < 
-queue
-->
-num_¥oc
--1; i++) {
-
-168 if(
-tmp
-->
-√xt
-->
-pid
- =
-p
-->pid)
-
-170 
-tmp
- =Åmp->
-√xt
-;
-
-172 if(
-i
- =
-queue
-->
-num_¥oc
-)
-
-174 
-âmp
- = 
-tmp
-->
-√xt
-;
-
-175 
-tmp
-->
-√xt
- =Åmp->next->next;
-
-176 if(
-âmp
-->
-pid
- =
-queue
-->
-èû
-->pid) {
-
-177 
-queue
-->
-èû
- = 
-tmp
-;
-
-180 if(
-âmp
-->
-°©e
- =
-RUNNABLE
- ||Åtmp->°©ê=
-RUNNING
-)
-
-181 
-queue
-->
-num_ru¬abÀ
---;
-
-182 
-queue
-->
-num_¥oc
---;
-
-183 if(!
-queue
-->
-num_¥oc
-)
-
-184 
-queue
-->
-°©e
- = 
-DELETABLE
-;
-
-185 if(!
-queue
-->
-num_ru¬abÀ
-)
-
-186 
-queue
-->
-°©e
- = 
-ALL_SLEEPING
-;
-
-187 
-	}
-}
-
-190 
-	$ö£π
-(
-¥oc
- * 
-p
-) {
-
-191 #ifde‡
-MLFQ_SCHED
-
-
-192 
-	`ö£π_¥oc
-(&
-pqueue
-.
-queue_¨r
-[
-p
-->
-Àvñ
-],Ö);
-
-195 
-queue_¥oc
- *
-q
-;
-
-196 if(!(
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-))) {
-
-197 
-q
- = 
-	`q_öô
-(
-p
-->
-¥i‹ôy
-);
-
-198 
-	`ö£π_queue
-(
-q
-);
-
-200 
-	`ö£π_¥oc
-(
-q
-, 
-p
-);
-
-203 
-	}
-}
-
-206 
-	$dñëe
-(
-¥oc
- * 
-p
-) {
-
-207 #ifde‡
-MLFQ_SCHED
-
-
-208 
-	`dñëe_¥oc
-(&
-pqueue
-.
-queue_¨r
-[
-p
-->
-Àvñ
-],Ö);
-
-211 
-queue_¥oc
- *
-q
-;
-
-212 if(!(
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-))) {
-
-215 
-	`dñëe_¥oc
-(
-q
-, 
-p
-);
-
-216 if(
-q
-->
-°©e
- =
-DELETABLE
-) {
-
-217 
-	`dñëe_queue
-(
-q
-);
-
-221 
-	}
-}
-
-224 
-	$gëÀv
-() {
-
-225  
-	`my¥oc
-()->
-Àvñ
-;
-
-226 
-	}
-}
-
-229 
-	$boo°
-() {
-
-230 
-¥oc
- * 
-p
-;
-
-231 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++) {
-
-232 
-p
-->
-°©e
-) {
-
-233 
-UNUSED
-: 
-EMBRYO
-: 
-ZOMBIE
-:
-
-235 
-SLEEPING
-: 
-RUNNABLE
-: 
-RUNNING
-:
-
-236 
-	`dñëe
-(
-p
-);
-
-237 
-p
-->
-Àvñ
- = 0;
-
-238 
-p
-->
-ticks
- = 0;
-
-239 
-	`ö£π
-(
-p
-);
-
-245 
-	}
-}
-
-248 
-	$£çri‹ôy
-(
-pid
-, 
-n
-) {
-
-249 #ifde‡
-PRIORITY_SCHED
-
-
-250 
-¥oc
- * 
-p
-;
-
-251 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++)
-
-252 if(
-p
-->
-pid
- ==Öid)
-
-255 
-	`dñëe
-(
-p
-);
-
-256 
-p
-->
-¥i‹ôy
- = 
-n
-;
-
-257 
-	`ö£π
-(
-p
-);
-
-258  
-p
-->
-¥i‹ôy
-;
-
-262 
-	}
-}
-
-265 
-	$pick_now
-() {
-
-266 
-queue_¥oc
- *
-q
- = 
-pqueue
-.
-èû
-;
-
-267 if(!
-pqueue
-.
-now_q
-) {
-
-268 
-pqueue
-.
-now_q
- = 
-q
-;
-
-271 
-i
- = 0; i < 
-pqueue
-.
-num_q
-; i++) {
-
-272 if(!
-q
-->
-num_ru¬abÀ
-) {
-
-273 
-q
- = q->
-¥ev
-;
-
-276 if(
-q
-->
-¥i‹ôy
- =
-pqueue
-.
-now_q
-->priority) {
-
-280 
-pqueue
-.
-now_q
- = 
-q
-;
-
-285 
-	}
-}
-
-288 
-	$pöô
-()
-
-290 
-	`öôlock
-(&
-±abÀ
-.
-lock
-, "ptable");
-
-291 
-pqueue
-.
-num_q
- = 0;
-
-292 #ifde‡
-MLFQ_SCHED
-
-
-293 
-i
-;
-
-294 
-i
- = 0; i < 3; i++) {
-
-295 
-	`q_öô
-(3 - 
-i
-);
-
-296 
-	`ö£π_queue
-(&
-pqueue
-.
-queue_¨r
-[
-i
-]);
-
-299 
-	}
-}
-
-303 
-	$˝uid
-() {
-
-304  
-	`my˝u
-()-
-˝us
-;
-
-305 
-	}
-}
-
-309 
-˝u
-*
-
-310 
-	$my˝u
-()
-
-312 
-≠icid
-, 
-i
-;
-
-314 if(
-	`ªadeÊags
-()&
-FL_IF
-)
-
-315 
-	`∑nic
-("mycpu called with interruptsÉnabled\n");
-
-317 
-≠icid
- = 
-	`œpicid
-();
-
-320 
-i
- = 0; i < 
-n˝u
-; ++i) {
-
-321 i‡(
-˝us
-[
-i
-].
-≠icid
- ==ápicid)
-
-322  &
-˝us
-[
-i
-];
-
-324 
-	`∑nic
-("unknownápicid\n");
-
-325 
-	}
-}
-
-329 
-¥oc
-*
-
-330 
-	$my¥oc
-() {
-
-331 
-˝u
- *
-c
-;
-
-332 
-¥oc
- *
-p
-;
-
-333 
-	`push˛i
-();
-
-334 
-c
- = 
-	`my˝u
-();
-
-335 
-p
- = 
-c
-->
-¥oc
-;
-
-336 
-	`p›˛i
-();
-
-337  
-p
-;
-
-338 
-	}
-}
-
-345 
-¥oc
-*
-
-346 
-	$Ælo˝roc
-()
-
-348 
-¥oc
- *
-p
-;
-
-349 *
-•
-;
-
-351 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-353 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++)
-
-354 if(
-p
-->
-°©e
- =
-UNUSED
-)
-
-355 
-found
-;
-
-357 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-360 
-found
-:
-
-361 
-p
-->
-°©e
- = 
-EMBRYO
-;
-
-362 
-p
-->
-pid
- = 
-√xçid
-++;
-
-364 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-367 if((
-p
-->
-k°ack
- = 
-	`kÆloc
-()) == 0){
-
-368 
-p
-->
-°©e
- = 
-UNUSED
-;
-
-371 
-•
- = 
-p
-->
-k°ack
- + 
-KSTACKSIZE
-;
-
-374 
-•
- - *
-p
-->
-tf
-;
-
-375 
-p
-->
-tf
- = (
-å≠‰ame
-*)
-•
-;
-
-379 
-•
- -= 4;
-
-380 *(
-uöt
-*)
-•
- = (uöt)
-å≠ªt
-;
-
-382 
-•
- - *
-p
-->
-c⁄ãxt
-;
-
-383 
-p
-->
-c⁄ãxt
- = (c⁄ãxt*)
-•
-;
-
-384 
-	`mem£t
-(
-p
-->
-c⁄ãxt
-, 0,  *p->context);
-
-385 
-p
-->
-c⁄ãxt
-->
-eù
- = (
-uöt
-)
-f‹kªt
-;
-
-387  
-p
-;
-
-388 
-	}
-}
-
-393 
-	$u£röô
-()
-
-395 
-¥oc
- *
-p
-;
-
-396 
-_bö¨y_öôcode_°¨t
-[], 
-_bö¨y_öôcode_size
-[];
-
-398 
-p
- = 
-	`Ælo˝roc
-();
-
-400 
-öô¥oc
- = 
-p
-;
-
-401 if((
-p
-->
-pgdú
- = 
-	`£tupkvm
-()) == 0)
-
-402 
-	`∑nic
-("userinit: out of memory?");
-
-403 
-	`öôuvm
-(
-p
-->
-pgdú
-, 
-_bö¨y_öôcode_°¨t
-, ()
-_bö¨y_öôcode_size
-);
-
-404 
-p
-->
-sz
- = 
-PGSIZE
-;
-
-405 
-	`mem£t
-(
-p
-->
-tf
-, 0, (*p->tf));
-
-406 
-p
-->
-tf
-->
-cs
- = (
-SEG_UCODE
- << 3Ë| 
-DPL_USER
-;
-
-407 
-p
-->
-tf
-->
-ds
- = (
-SEG_UDATA
- << 3Ë| 
-DPL_USER
-;
-
-408 
-p
-->
-tf
-->
-es
- =Ö->tf->
-ds
-;
-
-409 
-p
-->
-tf
-->
-ss
- =Ö->tf->
-ds
-;
-
-410 
-p
-->
-tf
-->
-eÊags
- = 
-FL_IF
-;
-
-411 
-p
-->
-tf
-->
-e•
- = 
-PGSIZE
-;
-
-412 
-p
-->
-tf
-->
-eù
- = 0;
-
-414 
-	`ß„°r˝y
-(
-p
-->
-«me
-, "initcode", (p->name));
-
-415 
-p
-->
-cwd
- = 
-	`«mei
-("/");
-
-416 
-p
-->
-¥i‹ôy
- = 0;
-
-417 
-p
-->
-Àvñ
- = 0;
-
-418 
-p
-->
-ticks
- = 0;
-
-424 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-426 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-427 
-	`ö£π
-(
-p
-);
-
-429 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-430 
-	}
-}
-
-435 
-	$grow¥oc
-(
-n
-)
-
-437 
-uöt
- 
-sz
-;
-
-438 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-440 
-sz
- = 
-cuΩroc
-->sz;
-
-441 if(
-n
- > 0){
-
-442 if((
-sz
- = 
-	`Ælocuvm
-(
-cuΩroc
-->
-pgdú
-, sz, sz + 
-n
-)) == 0)
-
-444 } if(
-n
- < 0){
-
-445 if((
-sz
- = 
-	`dóŒocuvm
-(
-cuΩroc
-->
-pgdú
-, sz, sz + 
-n
-)) == 0)
-
-448 
-cuΩroc
-->
-sz
- = sz;
-
-449 
-	`swôchuvm
-(
-cuΩroc
-);
-
-451 
-	}
-}
-
-457 
-	$f‹k
-()
-
-459 
-i
-, 
-pid
-;
-
-460 
-¥oc
- *
-≈
-;
-
-461 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-464 if((
-≈
- = 
-	`Ælo˝roc
-()) == 0){
-
-469 if((
-≈
-->
-pgdú
- = 
-	`c›yuvm
-(
-cuΩroc
-->pgdú, cuΩroc->
-sz
-)) == 0){
-
-470 
-	`k‰ì
-(
-≈
-->
-k°ack
-);
-
-471 
-≈
-->
-k°ack
- = 0;
-
-472 
-≈
-->
-°©e
- = 
-UNUSED
-;
-
-475 
-≈
-->
-sz
- = 
-cuΩroc
-->sz;
-
-476 
-≈
-->
-∑ª¡
- = 
-cuΩroc
-;
-
-477 *
-≈
-->
-tf
- = *
-cuΩroc
-->tf;
-
-480 
-≈
-->
-tf
-->
-óx
- = 0;
-
-482 
-i
- = 0; i < 
-NOFILE
-; i++)
-
-483 if(
-cuΩroc
-->
-ofûe
-[
-i
-])
-
-484 
-≈
-->
-ofûe
-[
-i
-] = 
-	`fûedup
-(
-cuΩroc
-->ofile[i]);
-
-485 
-≈
-->
-cwd
- = 
-	`idup
-(
-cuΩroc
-->cwd);
-
-486 
-≈
-->
-¥i‹ôy
- = 0;
-
-487 
-≈
-->
-Àvñ
- = 0;
-
-488 
-≈
-->
-ticks
- = 0;
-
-490 
-	`ß„°r˝y
-(
-≈
-->
-«me
-, 
-cuΩroc
-->name, (curproc->name));
-
-492 
-pid
- = 
-≈
-->pid;
-
-494 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-496 
-≈
-->
-°©e
- = 
-RUNNABLE
-;
-
-497 
-	`ö£π
-(
-≈
-);
-
-499 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-500  
-pid
-;
-
-501 
-	}
-}
-
-507 
-	$exô
-()
-
-509 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-510 
-¥oc
- *
-p
-;
-
-511 
-fd
-;
-
-513 if(
-cuΩroc
- =
-öô¥oc
-)
-
-514 
-	`∑nic
-("initÉxiting");
-
-517 
-fd
- = 0; fd < 
-NOFILE
-; fd++){
-
-518 if(
-cuΩroc
-->
-ofûe
-[
-fd
-]){
-
-519 
-	`fûe˛o£
-(
-cuΩroc
-->
-ofûe
-[
-fd
-]);
-
-520 
-cuΩroc
-->
-ofûe
-[
-fd
-] = 0;
-
-524 
-	`begö_›
-();
-
-525 
-	`ùut
-(
-cuΩroc
-->
-cwd
-);
-
-526 
-	`íd_›
-();
-
-527 
-cuΩroc
-->
-cwd
- = 0;
-
-528 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-531 
-	`wakeup1
-(
-cuΩroc
-->
-∑ª¡
-);
-
-534 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-535 if(
-p
-->
-∑ª¡
- =
-cuΩroc
-){
-
-536 
-p
-->
-∑ª¡
- = 
-öô¥oc
-;
-
-537 if(
-p
-->
-°©e
- =
-ZOMBIE
-)
-
-538 
-	`wakeup1
-(
-öô¥oc
-);
-
-543 
-	`dñëe
-(
-cuΩroc
-);
-
-544 
-cuΩroc
-->
-°©e
- = 
-ZOMBIE
-;
-
-545 
-	`sched
-();
-
-546 
-	`∑nic
-("zombieÉxit");
-
-547 
-	}
-}
-
-552 
-	$waô
-()
-
-554 
-¥oc
- *
-p
-;
-
-555 
-havekids
-, 
-pid
-;
-
-556 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-558 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-561 
-havekids
- = 0;
-
-562 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-563 if(
-p
-->
-∑ª¡
- !
-cuΩroc
-)
-
-565 
-havekids
- = 1;
-
-566 if(
-p
-->
-°©e
- =
-ZOMBIE
-){
-
-568 
-pid
- = 
-p
-->pid;
-
-569 
-	`k‰ì
-(
-p
-->
-k°ack
-);
-
-570 
-p
-->
-k°ack
- = 0;
-
-571 
-	`‰ìvm
-(
-p
-->
-pgdú
-);
-
-572 
-p
-->
-pid
- = 0;
-
-573 
-p
-->
-∑ª¡
- = 0;
-
-574 
-p
-->
-«me
-[0] = 0;
-
-575 
-p
-->
-kûÀd
- = 0;
-
-576 
-p
-->
-°©e
- = 
-UNUSED
-;
-
-577 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-578  
-pid
-;
-
-583 if(!
-havekids
- || 
-cuΩroc
-->
-kûÀd
-){
-
-584 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-589 
-	`¶ìp
-(
-cuΩroc
-, &
-±abÀ
-.
-lock
-);
-
-591 
-	}
-}
-
-602 
-	$scheduÀr
-()
-
-604 
-¥oc
- *
-p
-;
-
-606 #ifde‡
-MLFQ_SCHED
-
-
-607 
-¥oc
-* 
-tmp
-;
-
-608 
-ticks
- = 0;
-
-611 
-˝u
- *
-c
- = 
-	`my˝u
-();
-
-612 
-c
-->
-¥oc
- = 0;
-
-613 #ifde‡
-PRIORITY_SCHED
-
-
-614 
-	`pick_now
-();
-
-615 #ñi‡
-MLFQ_SCHED
-
-
-616 
-	`pick_now
-();
-
-617 #ñi‡
-FCFS_SCHED
-
-
-618 
-pqueue
-.
-now_q
- =Öqueue.
-hód_q
-;
-
-624 
-	`°i
-();
-
-626 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-628 
-p
- = 
-pqueue
-.
-now_q
-->
-hód
-;
-
-629 #ifde‡
-PRIORITY_SCHED
-
-
-631 if(
-	`pick_now
-()) {
-
-634 if(
-p
-->
-¥i‹ôy
- !
-pqueue
-.
-now_q
-->priority)
-
-636 if(
-p
-->
-°©e
- !
-RUNNABLE
-){
-
-637 
-p
- =Ö->
-√xt
-;
-
-640 #ñi‡
-MLFQ_SCHED
-
-
-642 if(
-	`pick_now
-()) {
-
-646 if(3 - 
-p
-->
-Àvñ
- !
-pqueue
-.
-now_q
-->
-¥i‹ôy
-) {
-
-648 
-	`˝rötf
-("ASDf\n");
-
-650 if(
-p
-->
-°©e
- !
-RUNNABLE
-) {
-
-651 
-p
- =Ö->
-√xt
-;
-
-654 #ñi‡
-FCFS_SCHED
-
-
-656 if(!
-pqueue
-.
-now_q
-->
-num_ru¬abÀ
-)
-
-658 if(
-p
-->
-°©e
- !
-RUNNABLE
-) {
-
-659 
-p
- =Ö->
-√xt
-;
-
-664 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++) {
-
-665 if(
-p
-->
-°©e
- !
-RUNNABLE
-) {
-
-669 
-c
-->
-¥oc
- = 
-p
-;
-
-670 
-	`swôchuvm
-(
-p
-);
-
-671 
-p
-->
-°©e
- = 
-RUNNING
-;
-
-673 
-	`swtch
-(&(
-c
-->
-scheduÀr
-), 
-p
-->
-c⁄ãxt
-);
-
-674 
-	`swôchkvm
-();
-
-676 
-c
-->
-¥oc
- = 0;
-
-677 #ifde‡
-PRIORITY_SCHED
-
-
-678 
-p
- =Ö->
-√xt
-;
-
-679 #ñi‡
-FCFS_SCHED
-
-
-680 
-p
- = 
-pqueue
-.
-now_q
-->
-hód
-;
-
-681 #ñi‡
-MLFQ_SCHED
-
-
-682 
-ch™ge
- = 0;
-
-683 
-p
-->
-ticks
-++;
-
-684 
-p
-->
-Àvñ
-) {
-
-686 if(
-p
-->
-ticks
- == 2) {
-
-687 
-ch™ge
- = 1;
-
-688 
-p
-->
-ticks
- = 0;
-
-692 if(
-p
-->
-ticks
- == 4) {
-
-693 
-ch™ge
- = 1;
-
-694 
-p
-->
-ticks
- = 0;
-
-698 if(
-p
-->
-ticks
- == 8) {
-
-699 
-p
- =Ö->
-√xt
-;
-
-700 
-p
-->
-ticks
- = 0;
-
-705 if(
-ch™ge
-) {
-
-706 
-tmp
- = 
-p
-;
-
-707 
-p
- =Ö->
-√xt
-;
-
-708 
-	`˝rötf
-("%d\n", 
-p
-->
-pid
-);
-
-709 
-	`dñëe
-(
-tmp
-);
-
-710 
-tmp
-->
-Àvñ
-++;
-
-711 
-	`ö£π
-(
-tmp
-);
-
-713 
-ticks
-++;
-
-714 if(
-ticks
- == 100) {
-
-715 
-ticks
- = 0;
-
-716 
-	`boo°
-();
-
-720 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-723 
-	}
-}
-
-727 
-	$sched
-()
-
-729 
-öã«
-;
-
-730 
-¥oc
- *
-p
- = 
-	`my¥oc
-();
-
-732 if(!
-	`hﬁdög
-(&
-±abÀ
-.
-lock
-))
-
-733 
-	`∑nic
-("schedÖtable.lock");
-
-734 if(
-	`my˝u
-()->
-n˛i
- != 1)
-
-735 
-	`∑nic
-("schedÜocks");
-
-736 if(
-p
-->
-°©e
- =
-RUNNING
-)
-
-737 
-	`∑nic
-("schedÑunning");
-
-738 if(
-	`ªadeÊags
-()&
-FL_IF
-)
-
-739 
-	`∑nic
-("sched interruptible");
-
-740 
-öã«
- = 
-	`my˝u
-()->intena;
-
-741 
-	`swtch
-(&
-p
-->
-c⁄ãxt
-, 
-	`my˝u
-()->
-scheduÀr
-);
-
-742 
-	`my˝u
-()->
-öã«
- = intena;
-
-743 
-	}
-}
-
-747 
-	$yõld
-()
-
-749 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-750 
-	`my¥oc
-()->
-°©e
- = 
-RUNNABLE
-;
-
-751 
-	`sched
-();
-
-752 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-753 
-	}
-}
-
-758 
-	$f‹kªt
-()
-
-760 
-fú°
- = 1;
-
-762 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-764 i‡(
-fú°
-) {
-
-768 
-fú°
- = 0;
-
-769 
-	`iöô
-(
-ROOTDEV
-);
-
-770 
-	`öôlog
-(
-ROOTDEV
-);
-
-774 
-	}
-}
-
-777 
-	$¶ìp
-(* 
-ch™
-, 
-•ölock
- *
-lk
-)
-
-779 
-¥oc
- *
-p
- = 
-	`my¥oc
-();
-
-780 
-queue_¥oc
- *
-q
-;
-
-782 if(
-p
- == 0)
-
-783 
-	`∑nic
-("sleep");
-
-784 if(
-lk
- == 0)
-
-785 
-	`∑nic
-("sleep withoutÜk");
-
-787 if(
-lk
- !&
-±abÀ
-.
-lock
-) {
-
-788 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-789 
-	`ªÀa£
-(
-lk
-);
-
-792 
-p
-->
-ch™
- = chan;
-
-793 
-p
-->
-°©e
- = 
-SLEEPING
-;
-
-794 #ifde‡
-MLFQ_SCHED
-
-
-795 
-q
- = 
-	`föd_q
-(3 - 
-p
-->
-Àvñ
-);
-
-797 
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-);
-
-799 
-q
-->
-num_ru¬abÀ
---;
-
-800 if(!
-q
-->
-num_ru¬abÀ
-)
-
-801 
-q
-->
-°©e
- = 
-ALL_SLEEPING
-;
-
-803 
-	`sched
-();
-
-806 
-p
-->
-ch™
- = 0;
-
-809 if(
-lk
- !&
-±abÀ
-.
-lock
-){
-
-810 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-811 
-	`acquúe
-(
-lk
-);
-
-813 
-	}
-}
-
-819 
-	$wakeup1
-(*
-ch™
-)
-
-821 
-¥oc
- *
-p
-;
-
-822 
-queue_¥oc
- *
-q
- = 
-pqueue
-.
-now_q
-;
-
-823 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-824 if(
-p
-->
-°©e
- =
-SLEEPING
- &&Ö->
-ch™
- == chan){
-
-825 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-826 #ifde‡
-MLFQ_SCHED
-
-
-827 
-q
- = 
-	`föd_q
-(3 - 
-p
-->
-Àvñ
-);
-
-829 
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-);
-
-831 
-q
-->
-num_ru¬abÀ
-++;
-
-832 
-q
-->
-°©e
- = 
-RUNNABLE_Q
-;
-
-835 
-	}
-}
-
-839 
-	$wakeup
-(*
-ch™
-)
-
-841 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-842 
-	`wakeup1
-(
-ch™
-);
-
-843 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-844 
-	}
-}
-
-850 
-	$kûl
-(
-pid
-)
-
-852 
-¥oc
- *
-p
-;
-
-854 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-855 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-856 if(
-p
-->
-pid
- ==Öid){
-
-857 
-p
-->
-kûÀd
- = 1;
-
-859 if(
-p
-->
-°©e
- =
-SLEEPING
-) {
-
-860 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-861 #ifde‡
-MLFQ_SCHED
-
-
-862 
-queue_¥oc
- * 
-q
- = 
-	`föd_q
-(3 - 
-p
-->
-Àvñ
-);
-
-864 
-queue_¥oc
- * 
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-);
-
-866 
-q
-->
-num_ru¬abÀ
-++;
-
-867 
-q
-->
-°©e
- = 
-RUNNABLE_Q
-;
-
-869 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-873 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-875 
-	}
-}
-
-882 
-	$¥ocdump
-()
-
-884 *
-°©es
-[] = {
-
-885 [
-UNUSED
-] "unused",
-
-886 [
-EMBRYO
-] "embryo",
-
-887 [
-SLEEPING
-] "sleep ",
-
-888 [
-RUNNABLE
-] "runble",
-
-889 [
-RUNNING
-] "run ",
-
-890 [
-ZOMBIE
-] "zombie"
-
-892 
-i
-;
-
-893 
-¥oc
- *
-p
-;
-
-894 *
-°©e
-;
-
-895 
-uöt
- 
-pc
-[10];
-
-897 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-898 if(
-p
-->
-°©e
- =
-UNUSED
-)
-
-900 if(
-p
-->
-°©e
- >0 &&Ö->°©ê< 
-	`NELEM
-(
-°©es
-) && states[p->state])
-
-901 
-°©e
- = 
-°©es
-[
-p
-->state];
-
-903 
-°©e
- = "???";
-
-904 
-	`˝rötf
-("%d %†%s", 
-p
-->
-pid
-, 
-°©e
-,Ö->
-«me
-);
-
-905 if(
-p
-->
-°©e
- =
-SLEEPING
-){
-
-906 
-	`gëˇŒîpcs
-((
-uöt
-*)
-p
-->
-c⁄ãxt
-->
-ebp
-+2, 
-pc
-);
-
-907 
-i
-=0; i<10 && 
-pc
-[i] != 0; i++)
-
-908 
-	`˝rötf
-(" %p", 
-pc
-[
-i
-]);
-
-910 
-	`˝rötf
-("\n");
-
-912 
-	}
-}
 
 	@bio.c
 
@@ -9257,195 +3647,201 @@ n‹ëu∫
 	`boo°
 ();
 
-131 
+129 
+	`Àvñup
+(
+¥oc
+*);
+
+132 
 	`swtch
 (
 c⁄ãxt
 **, context*);
 
-134 
+135 
 	`acquúe
 (
 •ölock
 *);
 
-135 
+136 
 	`gëˇŒîpcs
 (*, 
 uöt
 *);
 
-136 
+137 
 	`hﬁdög
 (
 •ölock
 *);
 
-137 
+138 
 	`öôlock
 (
 •ölock
 *, *);
 
-138 
+139 
 	`ªÀa£
 (
 •ölock
 *);
 
-139 
+140 
 	`push˛i
 ();
 
-140 
+141 
 	`p›˛i
 ();
 
-143 
+144 
 	`acquúe¶ìp
 (
 ¶ì∂ock
 *);
 
-144 
+145 
 	`ªÀa£¶ìp
 (
 ¶ì∂ock
 *);
 
-145 
+146 
 	`hﬁdög¶ìp
 (
 ¶ì∂ock
 *);
 
-146 
+147 
 	`öô¶ì∂ock
 (
 ¶ì∂ock
 *, *);
 
-149 
+150 
 	`memcmp
 (c⁄° *, c⁄° *, 
 uöt
 );
 
-150 * 
+151 * 
 	`memmove
 (*, c⁄° *, 
 uöt
 );
 
-151 * 
+152 * 
 	`mem£t
 (*, , 
 uöt
 );
 
-152 * 
+153 * 
 	`ß„°r˝y
 (*, const *, );
 
-153 
+154 
 	`°æí
 (const *);
 
-154 
+155 
 	`°∫cmp
 (c⁄° *, c⁄° *, 
 uöt
 );
 
-155 * 
+156 * 
 	`°∫˝y
 (*, const *, );
 
-158 
+159 
 	`¨göt
 (, *);
 
-159 
+160 
 	`¨g±r
 (, **, );
 
-160 
+161 
 	`¨g°r
 (, **);
 
-161 
+162 
 	`„tchöt
 (
 uöt
 , *);
 
-162 
+163 
 	`„tch°r
 (
 uöt
 , **);
 
-163 
+164 
 	`sysˇŒ
 ();
 
-166 
+167 
 	`timîöô
 ();
 
-169 
+170 
 	`idtöô
 ();
 
-170 
+171 
 uöt
  
 ticks
 ;
 
-171 
+172 
 	`tvöô
 ();
 
-172 
+173 
 •ölock
  
 tick¶ock
 ;
 
-175 
+176 
 	`u¨töô
 ();
 
-176 
+177 
 	`u¨töå
 ();
 
-177 
+178 
 	`u¨çutc
 ();
 
-180 
+181 
 	`£göô
 ();
 
-181 
+182 
 	`kvmÆloc
 ();
 
-182 
+183 
 pde_t
 * 
 	`£tupkvm
 ();
 
-183 * 
+184 * 
 	`uva2ka
 (
 pde_t
 *, *);
 
-184 
+185 
 	`Ælocuvm
 (
 pde_t
@@ -9453,7 +3849,7 @@ pde_t
 uöt
 , uint);
 
-185 
+186 
 	`dóŒocuvm
 (
 pde_t
@@ -9461,13 +3857,13 @@ pde_t
 uöt
 , uint);
 
-186 
+187 
 	`‰ìvm
 (
 pde_t
 *);
 
-187 
+188 
 	`öôuvm
 (
 pde_t
@@ -9475,7 +3871,7 @@ pde_t
 uöt
 );
 
-188 
+189 
 	`lﬂduvm
 (
 pde_t
@@ -9485,7 +3881,7 @@ pde_t
 uöt
 , uint);
 
-189 
+190 
 pde_t
 * 
 	`c›yuvm
@@ -9493,17 +3889,17 @@ pde_t
 uöt
 );
 
-190 
+191 
 	`swôchuvm
 (
 ¥oc
 *);
 
-191 
+192 
 	`swôchkvm
 ();
 
-192 
+193 
 	`c›yout
 (
 pde_t
@@ -9511,7 +3907,7 @@ pde_t
 uöt
 , *, uint);
 
-193 
+194 
 	`˛óΩãu
 (
 pde_t
@@ -9521,11 +3917,11 @@ pgdú
 uva
 );
 
-197 
+198 
 	`myfun˘i⁄
 (*);
 
-201 
+202 
 	#NELEM
 (
 x
@@ -26178,27 +20574,27 @@ wakeup1
 ch™
 );
 
-36 
+38 
 queue_¥oc
  *
 
-37 
+39 
 	$q_öô
 (
 ¥i‹ôy
-) {
+)
 
-38 
+41 
 queue_¥oc
  * 
 q
 ;
 
-39 #ifde‡
+42 #ifde‡
 PRIORITY_SCHED
 
 
-40 
+43 
 q
  = 
 pqueue
@@ -26208,7 +20604,7 @@ queue_¨r
 NPROC
 ]; q++)
 
-42 
+45 
 q
  = 
 pqueue
@@ -26216,7 +20612,7 @@ pqueue
 queue_¨r
 ; q < &pqueue.queue_arr[3]; q++)
 
-44 if(
+47 if(
 q
 ->
 °©e
@@ -26224,7 +20620,7 @@ q
 UNUSED_Q
 ) {
 
-45 
+48 
 q
 ->
 °©e
@@ -26232,7 +20628,7 @@ q
 DELETABLE
 ;
 
-46 
+49 
 q
 ->
 √xt
@@ -26248,41 +20644,41 @@ num_¥oc
 num_ru¬abÀ
  = 0;
 
-47 
+50 
 q
 ->
 ¥i‹ôy
  =Öriority;
 
-48 
+51 
 pqueue
 .
 num_q
 ++;
 
-49  
+52  
 q
 ;
 
-51 
+54 
 	`∑nic
 ("QUEUE is overállocated\n");
 
-53 
+56 
 	}
 }
 
-55 
+59 
 queue_¥oc
  *
 
-56 
+60 
 	$föd_q
 (
 ¥i‹ôy
-) {
+)
 
-57 
+62 
 queue_¥oc
  * 
 tmp
@@ -26292,29 +20688,29 @@ pqueue
 now_q
 ;
 
-58 
+63 
 i
  = 0;
 
-60 if(!
+65 if(!
 pqueue
 .
 num_q
 )
 
-63 
+68 
 tmp
 ->
 ¥i‹ôy
  !=Öriority) {
 
-64 
+69 
 tmp
  =Åmp->
 ¥ev
 ;
 
-65 if(
+70 if(
 i
 ++ =
 pqueue
@@ -26322,7 +20718,7 @@ pqueue
 num_q
 )
 
-68 if(
+73 if(
 tmp
 ->
 °©e
@@ -26330,37 +20726,37 @@ tmp
 UNUSED_Q
 )
 
-69  
+74  
 tmp
 ;
 
-72 
+77 
 	}
 }
 
-75 
+81 
 	$ö£π_queue
 (
 queue_¥oc
  * 
 queue
-) {
+)
 
-76 if(
+83 if(
 queue
  == 0)
 
-77 
+84 
 	`∑nic
 ("Unkown queue insertionÉrror\n");
 
-79 
+86 
 ¥i‹ôy
  = 
 queue
 ->priority;
 
-80 
+87 
 queue_¥oc
  * 
 À·
@@ -26370,7 +20766,7 @@ pqueue
 hód_q
 ;
 
-81 
+88 
 queue_¥oc
  * 
 right
@@ -26380,19 +20776,19 @@ right
 √xt
 ;
 
-82 
+89 
 l_¥i‹ôy
 , 
 r_¥i‹ôy
 ;
 
-83 if(
+90 if(
 pqueue
 .
 num_q
  == 1) {
 
-84 
+91 
 pqueue
 .
 now_q
@@ -26404,7 +20800,7 @@ hód_q
 queue
 ;
 
-85 
+92 
 queue
 ->
 √xt
@@ -26412,7 +20808,7 @@ queue
 ¥ev
  = queue;
 
-89 
+95 
 i
  = 0; i < 
 pqueue
@@ -26420,7 +20816,7 @@ pqueue
 num_q
 ; i++) {
 
-90 
+96 
 l_¥i‹ôy
  = 
 À·
@@ -26432,7 +20828,7 @@ r_¥i‹ôy
 right
 ->priority;
 
-91 if((
+97 if((
 r_¥i‹ôy
  =
 pqueue
@@ -26442,51 +20838,45 @@ hód_q
 ¥i‹ôy
 )) {
 
-92 if(
+98 if(
 r_¥i‹ôy
  < 
 ¥i‹ôy
 ) {
 
-93 
-À·
-->
-√xt
- = 
-queue
-;
-
-94 
-right
-->
-¥ev
- = 
-queue
-;
-
-95 
-queue
-->
-¥ev
- = 
-À·
-;
-
-96 
-queue
-->
-√xt
- = 
-right
-;
-
-97 
-pqueue
-.
-num_q
-++;
-
 99 
+À·
+->
+√xt
+ = 
+queue
+;
+
+100 
+right
+->
+¥ev
+ = 
+queue
+;
+
+101 
+queue
+->
+¥ev
+ = 
+À·
+;
+
+102 
+queue
+->
+√xt
+ = 
+right
+;
+
+104 
 pqueue
 .
 èû
@@ -26494,7 +20884,7 @@ pqueue
 queue
 ;
 
-101 
+107 
 À·
 ->
 ¥ev
@@ -26502,7 +20892,7 @@ queue
 queue
 ;
 
-102 
+108 
 right
 ->
 √xt
@@ -26510,7 +20900,7 @@ right
 queue
 ;
 
-103 
+109 
 queue
 ->
 ¥ev
@@ -26518,7 +20908,7 @@ queue
 right
 ;
 
-104 
+110 
 queue
 ->
 √xt
@@ -26526,13 +20916,7 @@ queue
 À·
 ;
 
-105 
-pqueue
-.
-num_q
-++;
-
-108 i‡((
+114 i‡((
 l_¥i‹ôy
  < 
 ¥i‹ôy
@@ -26540,15 +20924,15 @@ l_¥i‹ôy
 r_¥i‹ôy
 )) {
 
-109 
+115 
 À·
 ->
 √xt
-
+ = 
 queue
 ;
 
-110 
+116 
 right
 ->
 ¥ev
@@ -26556,7 +20940,7 @@ right
 queue
 ;
 
-112 
+118 
 queue
 ->
 ¥ev
@@ -26564,7 +20948,7 @@ queue
 À·
 ;
 
-113 
+119 
 queue
 ->
 √xt
@@ -26572,43 +20956,37 @@ queue
 right
 ;
 
-114 
-pqueue
-.
-num_q
-++;
-
-117 
+122 
 À·
  =Üe·->
 √xt
 ;
 
-118 
+123 
 right
  =Ñight->
 √xt
 ;
 
-120 
+125 
 	}
 }
 
-123 
+128 
 	$dñëe_queue
 (
 queue_¥oc
  * 
 queue
-) {
+)
 
-124 
+130 
 ¥i‹ôy
  = 
 queue
 ->priority;
 
-125 
+131 
 queue_¥oc
  *
 tmp
@@ -26618,7 +20996,7 @@ pqueue
 now_q
 ;
 
-127 
+133 
 i
  = 0; i < 
 pqueue
@@ -26626,31 +21004,31 @@ pqueue
 num_q
 ; i++) {
 
-128 if(
+134 if(
 tmp
 ->
 ¥i‹ôy
  ==Öriority)
 
-130 
+136 
 tmp
  =Åmp->
 ¥ev
 ;
 
-133 if(
+139 if(
 tmp
 ->
 num_¥oc
  > 0)
 
-136 if(
+142 if(
 pqueue
 .
 num_q
  > 1) {
 
-137 
+143 
 tmp
 ->
 ¥ev
@@ -26658,7 +21036,7 @@ tmp
 √xt
  =Åmp->next;
 
-138 
+144 
 tmp
 ->
 √xt
@@ -26666,7 +21044,7 @@ tmp
 ¥ev
  =Åmp->prev;
 
-140 if(
+146 if(
 tmp
 ->
 ¥i‹ôy
@@ -26676,7 +21054,7 @@ pqueue
 èû
 ->priority)
 
-141 
+147 
 pqueue
 .
 èû
@@ -26686,7 +21064,7 @@ tmp
 ¥ev
 ;
 
-143 if(
+149 if(
 tmp
 ->
 ¥i‹ôy
@@ -26696,7 +21074,7 @@ pqueue
 hód_q
 ->priority)
 
-144 
+150 
 pqueue
 .
 hód_q
@@ -26706,7 +21084,7 @@ tmp
 √xt
 ;
 
-147 
+153 
 pqueue
 .
 èû
@@ -26716,7 +21094,7 @@ hód_q
 now_q
  = 0;
 
-149 
+155 
 tmp
 ->
 °©e
@@ -26724,27 +21102,27 @@ tmp
 UNUSED_Q
 ;
 
-150 
+156 
 pqueue
 .
 num_q
 --;
 
-151 if(
+157 if(
 pqueue
 .
 num_q
  < 0)
 
-152 
+158 
 	`∑nic
 ("QUEUE deleteÉrror\n");
 
-154 
+160 
 	}
 }
 
-157 
+163 
 	$ö£π_¥oc
 (
 queue_¥oc
@@ -26754,25 +21132,25 @@ queue
 ¥oc
  * 
 p
-) {
+)
 
-158 if(
+165 if(
 queue
  =0 || 
 p
  == 0)
 
-159 
+166 
 	`∑nic
 ("Proc insertÉrror\n");
 
-161 if(!
+168 if(!
 queue
 ->
 num_¥oc
 ) {
 
-162 
+169 
 queue
 ->
 hód
@@ -26782,19 +21160,15 @@ hód
 p
 ;
 
-163 
+170 
 p
 ->
 √xt
+ =Ö->
+¥ev
  =Ö;
 
-164 
-queue
-->
-num_¥oc
-++;
-
-167 
+173 
 p
 ->
 √xt
@@ -26804,9 +21178,13 @@ queue
 hód
 ;
 
-168 
+174 
 queue
 ->
+hód
+->
+¥ev
+ = queue->
 èû
 ->
 √xt
@@ -26814,7 +21192,17 @@ queue
 p
 ;
 
-169 
+175 
+p
+->
+¥ev
+ = 
+queue
+->
+èû
+;
+
+176 
 queue
 ->
 èû
@@ -26822,13 +21210,13 @@ queue
 p
 ;
 
-170 
+178 
 queue
 ->
 num_¥oc
 ++;
 
-173 if(
+180 if(
 p
 ->
 °©e
@@ -26838,19 +21226,19 @@ RUNNABLE
 RUNNING
 )
 
-174 
+181 
 queue
 ->
 num_ru¬abÀ
 ++;
 
-175 if(
+182 if(
 queue
 ->
 num_ru¬abÀ
 )
 
-176 
+183 
 queue
 ->
 °©e
@@ -26858,11 +21246,11 @@ queue
 RUNNABLE_Q
 ;
 
-177 
+184 
 	}
 }
 
-180 
+187 
 	$dñëe_¥oc
 (
 queue_¥oc
@@ -26872,81 +21260,29 @@ queue
 ¥oc
  * 
 p
-) {
+)
 
-181 if(
+189 if(
 queue
  =0 || 
 p
  == 0)
 
-182 
+190 
 	`∑nic
 ("Proc deleteÉrror\n");
 
-184 
-¥oc
- * 
-tmp
- = 
-queue
-->
-hód
-;
-
-185 
-¥oc
- * 
-âmp
-;
-
-186 
-i
-;
-
-187 if(
+192 if(
 queue
 ->
 hód
  == 0)
 
-189 if(
-tmp
-->
-pid
- =
-p
-->pid) {
-
-190 
-âmp
- = 
-tmp
-;
-
-191 if(
+195 if(
 queue
 ->
 num_¥oc
- > 1) {
-
-192 
-queue
-->
-hód
- = queue->hód->
-√xt
-;
-
-193 
-queue
-->
-èû
-->
-√xt
- = queue->
-hód
-;
+ == 1)
 
 196 
 queue
@@ -26956,99 +21292,91 @@ hód
 èû
  = 0;
 
-201 
-i
- = 0; i < 
-queue
+198 
+p
 ->
-num_¥oc
--1; i++) {
-
-202 if(
-tmp
+¥ev
 ->
 √xt
+ =Ö->next;
+
+199 
+p
+->
+√xt
+->
+¥ev
+ =Ö->prev;
+
+200 if(
+p
 ->
 pid
  =
-p
+queue
+->
+hód
 ->pid)
 
-204 
-tmp
- =Åmp->
+201 
+queue
+->
+hód
+ = 
+p
+->
 √xt
+;
+
+202 if(
+p
+->
+pid
+ =
+queue
+->
+èû
+->pid)
+
+203 
+queue
+->
+èû
+ = 
+p
+->
+¥ev
 ;
 
 206 if(
-i
- =(
-queue
-->
-num_¥oc
--1))
-
-208 
-âmp
- = 
-tmp
-->
-√xt
-;
-
-209 
-tmp
-->
-√xt
- =Åmp->next->next;
-
-210 if(
-âmp
-->
-pid
- =
-queue
-->
-èû
-->pid)
-
-211 
-queue
-->
-èû
- = 
-tmp
-;
-
-214 if(
-âmp
+p
 ->
 °©e
  =
 RUNNABLE
- ||Åtmp->°©ê=
+ ||Ö->°©ê=
 RUNNING
 )
 
-215 
+207 
 queue
 ->
 num_ru¬abÀ
 --;
 
-217 
+209 
 queue
 ->
 num_¥oc
 --;
 
-219 if(!
+211 if(!
 queue
 ->
 num_¥oc
 )
 
-220 
+212 
 queue
 ->
 °©e
@@ -27056,13 +21384,13 @@ queue
 DELETABLE
 ;
 
-222 if(!
+214 if(!
 queue
 ->
 num_ru¬abÀ
 )
 
-223 
+215 
 queue
 ->
 °©e
@@ -27070,33 +21398,33 @@ queue
 ALL_SLEEPING
 ;
 
-224 
+216 
 	}
 }
 
-227 
+219 
 	$ö£π
 (
 ¥oc
  * 
 p
-) {
+)
 
-228 #ifde‡
+221 #ifde‡
 MLFQ_SCHED
 
 
-229 if(
+222 if(
 p
 ->
 Àvñ
  > 2 ||Ö->level < 0)
 
-230 
+223 
 	`∑nic
 ("MLFQ Unknown queueÜevel\n");
 
-232 
+225 
 	`ö£π_¥oc
 (&
 pqueue
@@ -27108,13 +21436,25 @@ p
 Àvñ
 ],Ö);
 
-235 
+226 
+p
+->
+now
+ = &
+pqueue
+.
+queue_¨r
+[p->
+Àvñ
+];
+
+230 
 queue_¥oc
  *
 q
 ;
 
-236 if(!(
+231 if(!(
 q
  = 
 	`föd_q
@@ -27124,7 +21464,7 @@ p
 ¥i‹ôy
 ))) {
 
-237 
+232 
 q
  = 
 	`q_öô
@@ -27134,13 +21474,13 @@ p
 ¥i‹ôy
 );
 
-238 
+233 
 	`ö£π_queue
 (
 q
 );
 
-240 
+235 
 	`ö£π_¥oc
 (
 q
@@ -27148,33 +21488,41 @@ q
 p
 );
 
-243 
+236 
+p
+->
+now
+ = 
+q
+;
+
+239 
 	}
 }
 
-246 
+242 
 	$dñëe
 (
 ¥oc
  * 
 p
-) {
+)
 
-247 #ifde‡
+244 #ifde‡
 MLFQ_SCHED
 
 
-248 if(
+245 if(
 p
 ->
 Àvñ
  > 2 ||Ö->level < 0)
 
-249 
+246 
 	`∑nic
 ("MLFQ Unkown queueÜevel\n");
 
-251 
+248 
 	`dñëe_¥oc
 (&
 pqueue
@@ -27186,23 +21534,23 @@ p
 Àvñ
 ],Ö);
 
-254 
+249 
+p
+->
+now
+ = 0;
+
+252 
 queue_¥oc
  *
 q
-;
-
-255 if(!(
-q
  = 
-	`föd_q
-(
 p
 ->
-¥i‹ôy
-))) {
+now
+;
 
-258 
+253 
 	`dñëe_¥oc
 (
 q
@@ -27210,7 +21558,13 @@ q
 p
 );
 
-259 if(
+254 
+p
+->
+now
+ = 0;
+
+255 if(
 q
 ->
 °©e
@@ -27218,41 +21572,99 @@ q
 DELETABLE
 ) {
 
-260 
+256 
 	`dñëe_queue
 (
 q
 );
 
-264 
+260 
 	}
 }
 
-267 
+263 
 	$gëÀv
-() {
+()
 
-268  
+265  
 	`my¥oc
 ()->
 Àvñ
 ;
 
-269 
+266 
 	}
 }
 
-272 
-	$boo°
-() {
+269 
+	$Àvñup
+(
+¥oc
+ * 
+p
+)
 
-273 
+271 if(
+p
+->
+Àvñ
+ > 1)
+
+274 
+	`acquúe
+(&
+±abÀ
+.
+lock
+);
+
+275 
+	`dñëe
+(
+p
+);
+
+276 
+p
+->
+Àvñ
+++;
+
+277 
+	`ö£π
+(
+p
+);
+
+278 
+	`ªÀa£
+(&
+±abÀ
+.
+lock
+);
+
+279  
+p
+->
+Àvñ
+;
+
+280 
+	}
+}
+
+283 
+	$boo°
+()
+
+285 
 ¥oc
  * 
 p
 ;
 
-274 
+286 
 p
  = 
 ±abÀ
@@ -27262,13 +21674,13 @@ p
 NPROC
 ];Ö++) {
 
-275 
+287 
 p
 ->
 °©e
 ) {
 
-276 
+288 
 UNUSED
 : 
 EMBRYO
@@ -27276,7 +21688,7 @@ EMBRYO
 ZOMBIE
 :
 
-278 
+290 
 SLEEPING
 : 
 RUNNABLE
@@ -27284,53 +21696,69 @@ RUNNABLE
 RUNNING
 :
 
-279 
+291 
+	`acquúe
+(&
+±abÀ
+.
+lock
+);
+
+292 
 	`dñëe
 (
 p
 );
 
-280 
+293 
 p
 ->
 Àvñ
  = 0;
 
-281 
+294 
 p
 ->
 ticks
  = 0;
 
-282 
+295 
 	`ö£π
 (
 p
 );
 
-288 
+296 
+	`ªÀa£
+(&
+±abÀ
+.
+lock
+);
+
+302 
 	}
 }
 
-291 
+305 
 	$£çri‹ôy
 (
 pid
 , 
 n
-) {
+)
 
-292 #ifde‡
+307 #ifde‡
 PRIORITY_SCHED
 
 
-293 
+308 
 ¥oc
  * 
 p
 ;
 
-294 
+309 
 p
  = 
 ±abÀ
@@ -27340,19 +21768,27 @@ p
 NPROC
 ];Ö++)
 
-295 if(
+310 if(
 p
 ->
 pid
  ==Öid)
 
-298 
+313 
+	`acquúe
+(&
+±abÀ
+.
+lock
+);
+
+314 
 	`dñëe
 (
 p
 );
 
-299 
+315 
 p
 ->
 ¥i‹ôy
@@ -27360,27 +21796,35 @@ p
 n
 ;
 
-300 
+316 
 	`ö£π
 (
 p
 );
 
-301  
+317 
+	`ªÀa£
+(&
+±abÀ
+.
+lock
+);
+
+318  
 p
 ->
 ¥i‹ôy
 ;
 
-305 
+321 
 	}
 }
 
-308 
+324 
 	$pick_now
 () {
 
-309 
+325 
 queue_¥oc
  *
 q
@@ -27390,13 +21834,13 @@ pqueue
 èû
 ;
 
-310 if(!
+326 if(!
 pqueue
 .
 now_q
 ) {
 
-311 
+327 
 pqueue
 .
 now_q
@@ -27404,7 +21848,7 @@ now_q
 q
 ;
 
-314 
+330 
 i
  = 0; i < 
 pqueue
@@ -27412,19 +21856,19 @@ pqueue
 num_q
 ; i++) {
 
-315 if(!
+331 if(!
 q
 ->
 num_ru¬abÀ
 ) {
 
-316 
+332 
 q
  = q->
 ¥ev
 ;
 
-319 if(
+335 if(
 q
 ->
 ¥i‹ôy
@@ -27432,9 +21876,9 @@ q
 pqueue
 .
 now_q
-->priority) {
+->priority)
 
-323 
+338 
 pqueue
 .
 now_q
@@ -27442,15 +21886,15 @@ now_q
 q
 ;
 
-328 
+343 
 	}
 }
 
-331 
+346 
 	$pöô
 ()
 
-333 
+348 
 	`öôlock
 (&
 ±abÀ
@@ -27458,31 +21902,31 @@ q
 lock
 , "ptable");
 
-334 
+349 
 pqueue
 .
 num_q
  = 0;
 
-335 #ifde‡
+350 #ifde‡
 MLFQ_SCHED
 
 
-336 
+351 
 i
 ;
 
-337 
+352 
 i
  = 0; i < 3; i++) {
 
-338 
+353 
 	`q_öô
 (3 - 
 i
 );
 
-339 
+354 
 	`ö£π_queue
 (&
 pqueue
@@ -27492,61 +21936,85 @@ queue_¨r
 i
 ]);
 
-342 
+356 
+	`˝rötf
+("MLFQ_SCHED!\n");
+
+357 #ñi‡
+FCFS_SCHED
+
+
+358 
+	`˝rötf
+("FCFS_SCHED!\n");
+
+359 #ñi‡
+PRIORITY_SCHED
+
+
+360 
+	`˝rötf
+("PRIORITY_SCHED!\n");
+
+362 
+	`˝rötf
+("RR_SCHED\n");
+
+364 
 	}
 }
 
-346 
+368 
 	$˝uid
 () {
 
-347  
+369  
 	`my˝u
 ()-
 ˝us
 ;
 
-348 
+370 
 	}
 }
 
-352 
+374 
 ˝u
 *
 
-353 
+375 
 	$my˝u
 ()
 
-355 
+377 
 ≠icid
 , 
 i
 ;
 
-357 if(
+379 if(
 	`ªadeÊags
 ()&
 FL_IF
 )
 
-358 
+380 
 	`∑nic
 ("mycpu called with interruptsÉnabled\n");
 
-360 
+382 
 ≠icid
  = 
 	`œpicid
 ();
 
-363 
+385 
 i
  = 0; i < 
 n˝u
 ; ++i) {
 
-364 i‡(
+386 i‡(
 ˝us
 [
 i
@@ -27554,51 +22022,51 @@ i
 ≠icid
  ==ápicid)
 
-365  &
+387  &
 ˝us
 [
 i
 ];
 
-367 
+389 
 	`∑nic
 ("unknownápicid\n");
 
-368 
+390 
 	}
 }
 
-372 
+394 
 ¥oc
 *
 
-373 
+395 
 	$my¥oc
 () {
 
-374 
+396 
 ˝u
  *
 c
 ;
 
-375 
+397 
 ¥oc
  *
 p
 ;
 
-376 
+398 
 	`push˛i
 ();
 
-377 
+399 
 c
  = 
 	`my˝u
 ();
 
-378 
+400 
 p
  = 
 c
@@ -27606,37 +22074,37 @@ c
 ¥oc
 ;
 
-379 
+401 
 	`p›˛i
 ();
 
-380  
+402  
 p
 ;
 
-381 
+403 
 	}
 }
 
-388 
+410 
 ¥oc
 *
 
-389 
+411 
 	$Ælo˝roc
 ()
 
-391 
+413 
 ¥oc
  *
 p
 ;
 
-392 *
+414 *
 •
 ;
 
-394 
+416 
 	`acquúe
 (&
 ±abÀ
@@ -27644,7 +22112,7 @@ p
 lock
 );
 
-396 
+418 
 p
  = 
 ±abÀ
@@ -27654,7 +22122,7 @@ p
 NPROC
 ];Ö++)
 
-397 if(
+419 if(
 p
 ->
 °©e
@@ -27662,11 +22130,11 @@ p
 UNUSED
 )
 
-398 
+420 
 found
 ;
 
-400 
+422 
 	`ªÀa£
 (&
 ±abÀ
@@ -27674,11 +22142,11 @@ found
 lock
 );
 
-403 
+425 
 found
 :
 
-404 
+426 
 p
 ->
 °©e
@@ -27686,7 +22154,7 @@ p
 EMBRYO
 ;
 
-405 
+427 
 p
 ->
 pid
@@ -27694,7 +22162,7 @@ pid
 √xçid
 ++;
 
-407 
+429 
 	`ªÀa£
 (&
 ±abÀ
@@ -27702,7 +22170,7 @@ pid
 lock
 );
 
-410 if((
+432 if((
 p
 ->
 k°ack
@@ -27710,7 +22178,7 @@ k°ack
 	`kÆloc
 ()) == 0){
 
-411 
+433 
 p
 ->
 °©e
@@ -27718,7 +22186,7 @@ p
 UNUSED
 ;
 
-414 
+436 
 •
  = 
 p
@@ -27728,7 +22196,7 @@ k°ack
 KSTACKSIZE
 ;
 
-417 
+439 
 •
  - *
 p
@@ -27736,7 +22204,7 @@ p
 tf
 ;
 
-418 
+440 
 p
 ->
 tf
@@ -27746,11 +22214,11 @@ tf
 •
 ;
 
-422 
+444 
 •
  -= 4;
 
-423 *(
+445 *(
 uöt
 *)
 •
@@ -27758,7 +22226,7 @@ uöt
 å≠ªt
 ;
 
-425 
+447 
 •
  - *
 p
@@ -27766,7 +22234,7 @@ p
 c⁄ãxt
 ;
 
-426 
+448 
 p
 ->
 c⁄ãxt
@@ -27774,7 +22242,7 @@ c⁄ãxt
 •
 ;
 
-427 
+449 
 	`mem£t
 (
 p
@@ -27782,7 +22250,7 @@ p
 c⁄ãxt
 , 0,  *p->context);
 
-428 
+450 
 p
 ->
 c⁄ãxt
@@ -27794,43 +22262,43 @@ uöt
 f‹kªt
 ;
 
-430  
+452  
 p
 ;
 
-431 
+453 
 	}
 }
 
-436 
+458 
 	$u£röô
 ()
 
-438 
+460 
 ¥oc
  *
 p
 ;
 
-439 
+461 
 _bö¨y_öôcode_°¨t
 [], 
 _bö¨y_öôcode_size
 [];
 
-441 
+463 
 p
  = 
 	`Ælo˝roc
 ();
 
-443 
+465 
 öô¥oc
  = 
 p
 ;
 
-444 if((
+466 if((
 p
 ->
 pgdú
@@ -27838,11 +22306,11 @@ pgdú
 	`£tupkvm
 ()) == 0)
 
-445 
+467 
 	`∑nic
 ("userinit: out of memory?");
 
-446 
+468 
 	`öôuvm
 (
 p
@@ -27854,7 +22322,7 @@ _bö¨y_öôcode_°¨t
 _bö¨y_öôcode_size
 );
 
-447 
+469 
 p
 ->
 sz
@@ -27862,7 +22330,7 @@ sz
 PGSIZE
 ;
 
-448 
+470 
 	`mem£t
 (
 p
@@ -27870,7 +22338,7 @@ p
 tf
 , 0, (*p->tf));
 
-449 
+471 
 p
 ->
 tf
@@ -27882,7 +22350,7 @@ SEG_UCODE
 DPL_USER
 ;
 
-450 
+472 
 p
 ->
 tf
@@ -27894,7 +22362,7 @@ SEG_UDATA
 DPL_USER
 ;
 
-451 
+473 
 p
 ->
 tf
@@ -27904,7 +22372,7 @@ es
 ds
 ;
 
-452 
+474 
 p
 ->
 tf
@@ -27914,7 +22382,7 @@ ss
 ds
 ;
 
-453 
+475 
 p
 ->
 tf
@@ -27924,7 +22392,7 @@ eÊags
 FL_IF
 ;
 
-454 
+476 
 p
 ->
 tf
@@ -27934,7 +22402,7 @@ e•
 PGSIZE
 ;
 
-455 
+477 
 p
 ->
 tf
@@ -27942,7 +22410,7 @@ tf
 eù
  = 0;
 
-457 
+479 
 	`ß„°r˝y
 (
 p
@@ -27950,7 +22418,7 @@ p
 «me
 , "initcode", (p->name));
 
-458 
+480 
 p
 ->
 cwd
@@ -27958,25 +22426,25 @@ cwd
 	`«mei
 ("/");
 
-459 
+481 
 p
 ->
 ¥i‹ôy
  = 0;
 
-460 
+482 
 p
 ->
 Àvñ
  = 0;
 
-461 
+483 
 p
 ->
 ticks
  = 0;
 
-467 
+489 
 	`acquúe
 (&
 ±abÀ
@@ -27984,7 +22452,7 @@ ticks
 lock
 );
 
-468 
+490 
 p
 ->
 °©e
@@ -27992,13 +22460,13 @@ p
 RUNNABLE
 ;
 
-469 
+491 
 	`ö£π
 (
 p
 );
 
-470 
+492 
 	`ªÀa£
 (&
 ±abÀ
@@ -28006,23 +22474,23 @@ p
 lock
 );
 
-471 
+493 
 	}
 }
 
-476 
+498 
 	$grow¥oc
 (
 n
 )
 
-478 
+500 
 uöt
  
 sz
 ;
 
-479 
+501 
 ¥oc
  *
 cuΩroc
@@ -28030,17 +22498,17 @@ cuΩroc
 	`my¥oc
 ();
 
-481 
+503 
 sz
  = 
 cuΩroc
 ->sz;
 
-482 if(
+504 if(
 n
  > 0){
 
-483 if((
+505 if((
 sz
  = 
 	`Ælocuvm
@@ -28052,11 +22520,11 @@ pgdú
 n
 )) == 0)
 
-485 } if(
+507 } if(
 n
  < 0){
 
-486 if((
+508 if((
 sz
  = 
 	`dóŒocuvm
@@ -28068,39 +22536,39 @@ pgdú
 n
 )) == 0)
 
-489 
+511 
 cuΩroc
 ->
 sz
  = sz;
 
-490 
+512 
 	`swôchuvm
 (
 cuΩroc
 );
 
-492 
+514 
 	}
 }
 
-498 
+521 
 	$f‹k
 ()
 
-500 
+523 
 i
 , 
 pid
 ;
 
-501 
+524 
 ¥oc
  *
 ≈
 ;
 
-502 
+525 
 ¥oc
  *
 cuΩroc
@@ -28108,13 +22576,13 @@ cuΩroc
 	`my¥oc
 ();
 
-505 if((
+528 if((
 ≈
  = 
 	`Ælo˝roc
 ()) == 0){
 
-510 if((
+533 if((
 ≈
 ->
 pgdú
@@ -28126,7 +22594,7 @@ cuΩroc
 sz
 )) == 0){
 
-511 
+534 
 	`k‰ì
 (
 ≈
@@ -28134,13 +22602,13 @@ sz
 k°ack
 );
 
-512 
+535 
 ≈
 ->
 k°ack
  = 0;
 
-513 
+536 
 ≈
 ->
 °©e
@@ -28148,7 +22616,7 @@ k°ack
 UNUSED
 ;
 
-516 
+539 
 ≈
 ->
 sz
@@ -28156,7 +22624,7 @@ sz
 cuΩroc
 ->sz;
 
-517 
+540 
 ≈
 ->
 ∑ª¡
@@ -28164,7 +22632,7 @@ cuΩroc
 cuΩroc
 ;
 
-518 *
+541 *
 ≈
 ->
 tf
@@ -28172,7 +22640,7 @@ tf
 cuΩroc
 ->tf;
 
-521 
+544 
 ≈
 ->
 tf
@@ -28180,13 +22648,13 @@ tf
 óx
  = 0;
 
-523 
+546 
 i
  = 0; i < 
 NOFILE
 ; i++)
 
-524 if(
+547 if(
 cuΩroc
 ->
 ofûe
@@ -28194,7 +22662,7 @@ ofûe
 i
 ])
 
-525 
+548 
 ≈
 ->
 ofûe
@@ -28206,7 +22674,7 @@ i
 cuΩroc
 ->ofile[i]);
 
-526 
+549 
 ≈
 ->
 cwd
@@ -28216,25 +22684,25 @@ cwd
 cuΩroc
 ->cwd);
 
-527 
+550 
 ≈
 ->
 ¥i‹ôy
  = 0;
 
-528 
+551 
 ≈
 ->
 Àvñ
  = 0;
 
-529 
+552 
 ≈
 ->
 ticks
  = 0;
 
-531 
+554 
 	`ß„°r˝y
 (
 ≈
@@ -28244,13 +22712,13 @@ ticks
 cuΩroc
 ->name, (curproc->name));
 
-533 
+556 
 pid
  = 
 ≈
 ->pid;
 
-535 
+558 
 	`acquúe
 (&
 ±abÀ
@@ -28258,7 +22726,7 @@ pid
 lock
 );
 
-537 
+560 
 ≈
 ->
 °©e
@@ -28266,13 +22734,13 @@ lock
 RUNNABLE
 ;
 
-538 
+561 
 	`ö£π
 (
 ≈
 );
 
-540 
+563 
 	`ªÀa£
 (&
 ±abÀ
@@ -28280,19 +22748,19 @@ RUNNABLE
 lock
 );
 
-541  
+564  
 pid
 ;
 
-542 
+565 
 	}
 }
 
-548 
+571 
 	$exô
 ()
 
-550 
+573 
 ¥oc
  *
 cuΩroc
@@ -28300,33 +22768,33 @@ cuΩroc
 	`my¥oc
 ();
 
-551 
+574 
 ¥oc
  *
 p
 ;
 
-552 
+575 
 fd
 ;
 
-554 if(
+577 if(
 cuΩroc
  =
 öô¥oc
 )
 
-555 
+578 
 	`∑nic
 ("initÉxiting");
 
-558 
+581 
 fd
  = 0; fd < 
 NOFILE
 ; fd++){
 
-559 if(
+582 if(
 cuΩroc
 ->
 ofûe
@@ -28334,7 +22802,7 @@ ofûe
 fd
 ]){
 
-560 
+583 
 	`fûe˛o£
 (
 cuΩroc
@@ -28344,7 +22812,7 @@ ofûe
 fd
 ]);
 
-561 
+584 
 cuΩroc
 ->
 ofûe
@@ -28352,11 +22820,11 @@ ofûe
 fd
 ] = 0;
 
-565 
+588 
 	`begö_›
 ();
 
-566 
+589 
 	`ùut
 (
 cuΩroc
@@ -28364,17 +22832,17 @@ cuΩroc
 cwd
 );
 
-567 
+590 
 	`íd_›
 ();
 
-568 
+591 
 cuΩroc
 ->
 cwd
  = 0;
 
-569 
+592 
 	`acquúe
 (&
 ±abÀ
@@ -28382,7 +22850,7 @@ cwd
 lock
 );
 
-572 
+595 
 	`wakeup1
 (
 cuΩroc
@@ -28390,7 +22858,7 @@ cuΩroc
 ∑ª¡
 );
 
-575 
+598 
 p
  = 
 ±abÀ
@@ -28400,7 +22868,7 @@ p
 NPROC
 ];Ö++){
 
-576 if(
+599 if(
 p
 ->
 ∑ª¡
@@ -28408,7 +22876,7 @@ p
 cuΩroc
 ){
 
-577 
+600 
 p
 ->
 ∑ª¡
@@ -28416,7 +22884,7 @@ p
 öô¥oc
 ;
 
-578 if(
+601 if(
 p
 ->
 °©e
@@ -28424,19 +22892,19 @@ p
 ZOMBIE
 )
 
-579 
+602 
 	`wakeup1
 (
 öô¥oc
 );
 
-584 
+607 
 	`dñëe
 (
 cuΩroc
 );
 
-586 
+609 
 cuΩroc
 ->
 °©e
@@ -28444,35 +22912,35 @@ cuΩroc
 ZOMBIE
 ;
 
-587 
+610 
 	`sched
 ();
 
-588 
+611 
 	`∑nic
 ("zombieÉxit");
 
-589 
+612 
 	}
 }
 
-594 
+617 
 	$waô
 ()
 
-596 
+619 
 ¥oc
  *
 p
 ;
 
-597 
+620 
 havekids
 , 
 pid
 ;
 
-598 
+621 
 ¥oc
  *
 cuΩroc
@@ -28480,7 +22948,7 @@ cuΩroc
 	`my¥oc
 ();
 
-600 
+623 
 	`acquúe
 (&
 ±abÀ
@@ -28488,11 +22956,11 @@ cuΩroc
 lock
 );
 
-603 
+626 
 havekids
  = 0;
 
-604 
+627 
 p
  = 
 ±abÀ
@@ -28502,7 +22970,7 @@ p
 NPROC
 ];Ö++){
 
-605 if(
+628 if(
 p
 ->
 ∑ª¡
@@ -28510,11 +22978,11 @@ p
 cuΩroc
 )
 
-607 
+630 
 havekids
  = 1;
 
-608 if(
+631 if(
 p
 ->
 °©e
@@ -28522,13 +22990,13 @@ p
 ZOMBIE
 ){
 
-610 
+633 
 pid
  = 
 p
 ->pid;
 
-611 
+634 
 	`k‰ì
 (
 p
@@ -28536,13 +23004,13 @@ p
 k°ack
 );
 
-612 
+635 
 p
 ->
 k°ack
  = 0;
 
-613 
+636 
 	`‰ìvm
 (
 p
@@ -28550,31 +23018,31 @@ p
 pgdú
 );
 
-614 
+637 
 p
 ->
 pid
  = 0;
 
-615 
+638 
 p
 ->
 ∑ª¡
  = 0;
 
-616 
+639 
 p
 ->
 «me
 [0] = 0;
 
-617 
+640 
 p
 ->
 kûÀd
  = 0;
 
-618 
+641 
 p
 ->
 °©e
@@ -28582,7 +23050,7 @@ p
 UNUSED
 ;
 
-619 
+642 
 	`ªÀa£
 (&
 ±abÀ
@@ -28590,11 +23058,11 @@ UNUSED
 lock
 );
 
-620  
+643  
 pid
 ;
 
-625 if(!
+648 if(!
 havekids
  || 
 cuΩroc
@@ -28602,7 +23070,7 @@ cuΩroc
 kûÀd
 ){
 
-626 
+649 
 	`ªÀa£
 (&
 ±abÀ
@@ -28610,7 +23078,7 @@ kûÀd
 lock
 );
 
-631 
+654 
 	`¶ìp
 (
 cuΩroc
@@ -28620,31 +23088,31 @@ cuΩroc
 lock
 );
 
-633 
+656 
 	}
 }
 
-644 
+667 
 	$scheduÀr
 ()
 
-646 
+669 
 ¥oc
  *
 p
 ;
 
-648 #ifde‡
+671 #ifde‡
 MLFQ_SCHED
 
 
-649 
+672 
 ¥oc
 * 
 tmp
 ;
 
-652 
+675 
 ˝u
  *
 c
@@ -28652,41 +23120,41 @@ c
 	`my˝u
 ();
 
-653 
+676 
 c
 ->
 ¥oc
  = 0;
 
-654 #ifde‡
+677 #ifde‡
 PRIORITY_SCHED
 
 
-655 
+678 
 	`pick_now
 ();
 
-656 #ñi‡
+679 #ñi‡
 MLFQ_SCHED
 
 
-657 
+680 
 	`pick_now
 ();
 
-658 #ñi‡
+681 #ñi‡
 FCFS_SCHED
 
 
-659 
+682 
 	`pick_now
 ();
 
-665 
+688 
 	`°i
 ();
 
-667 
+690 
 	`acquúe
 (&
 ±abÀ
@@ -28694,7 +23162,7 @@ FCFS_SCHED
 lock
 );
 
-669 
+692 
 p
  = 
 pqueue
@@ -28704,15 +23172,15 @@ now_q
 hód
 ;
 
-670 #ifde‡
+693 #ifde‡
 PRIORITY_SCHED
 
 
-672 if(
+695 if(
 	`pick_now
 ()) {
 
-675 if(
+698 if(
 p
 ->
 ¥i‹ôy
@@ -28722,7 +23190,7 @@ pqueue
 now_q
 ->priority)
 
-677 if(
+700 if(
 p
 ->
 °©e
@@ -28730,21 +23198,21 @@ p
 RUNNABLE
 ){
 
-678 
+701 
 p
  =Ö->
 √xt
 ;
 
-681 #ñi‡
+704 #ñi‡
 MLFQ_SCHED
 
 
-683 if(
+706 if(
 	`pick_now
 ()) {
 
-686 if(3 - 
+709 if(3 - 
 p
 ->
 Àvñ
@@ -28756,7 +23224,7 @@ now_q
 ¥i‹ôy
 ) {
 
-689 if(
+712 if(
 p
 ->
 °©e
@@ -28764,17 +23232,17 @@ p
 RUNNABLE
 ) {
 
-690 
+713 
 p
  =Ö->
 √xt
 ;
 
-693 #ñi‡
+716 #ñi‡
 FCFS_SCHED
 
 
-696 if(!
+719 if(!
 pqueue
 .
 now_q
@@ -28782,7 +23250,7 @@ now_q
 num_ru¬abÀ
 ) {
 
-699 if(
+722 if(
 p
 ->
 °©e
@@ -28790,13 +23258,13 @@ p
 RUNNABLE
 ) {
 
-700 
+723 
 p
  =Ö->
 √xt
 ;
 
-706 
+729 
 p
  = 
 ±abÀ
@@ -28806,7 +23274,7 @@ p
 NPROC
 ];Ö++) {
 
-707 if(
+730 if(
 p
 ->
 °©e
@@ -28814,7 +23282,7 @@ p
 RUNNABLE
 ) {
 
-711 
+734 
 c
 ->
 ¥oc
@@ -28822,13 +23290,13 @@ c
 p
 ;
 
-712 
+735 
 	`swôchuvm
 (
 p
 );
 
-713 
+736 
 p
 ->
 °©e
@@ -28836,7 +23304,7 @@ p
 RUNNING
 ;
 
-715 
+738 
 	`swtch
 (&(
 c
@@ -28848,31 +23316,31 @@ p
 c⁄ãxt
 );
 
-716 
+739 
 	`swôchkvm
 ();
 
-718 
+741 
 c
 ->
 ¥oc
  = 0;
 
-719 #ifde‡
+743 #ifde‡
 PRIORITY_SCHED
 
 
-720 
+744 
 p
  =Ö->
 √xt
 ;
 
-721 #ñi‡
+746 #ñi‡
 FCFS_SCHED
 
 
-722 
+747 
 p
  = 
 pqueue
@@ -28882,29 +23350,29 @@ now_q
 hód
 ;
 
-723 #ñi‡
+749 #ñi‡
 MLFQ_SCHED
 
 
-757 
+750 
 tmp
  = 
 p
 ;
 
-758 
+751 
 p
  =Ö->
 √xt
 ;
 
-759 
+752 
 tmp
 ->
 ticks
  = 0;
 
-773 
+756 
 	`ªÀa£
 (&
 ±abÀ
@@ -28912,19 +23380,19 @@ ticks
 lock
 );
 
-776 
+759 
 	}
 }
 
-780 
+763 
 	$sched
 ()
 
-782 
+765 
 öã«
 ;
 
-783 
+766 
 ¥oc
  *
 p
@@ -28932,7 +23400,7 @@ p
 	`my¥oc
 ();
 
-785 if(!
+768 if(!
 	`hﬁdög
 (&
 ±abÀ
@@ -28940,21 +23408,21 @@ p
 lock
 ))
 
-786 
+769 
 	`∑nic
 ("schedÖtable.lock");
 
-787 if(
+770 if(
 	`my˝u
 ()->
 n˛i
  != 1)
 
-788 
+771 
 	`∑nic
 ("schedÜocks");
 
-789 if(
+772 if(
 p
 ->
 °©e
@@ -28962,27 +23430,27 @@ p
 RUNNING
 )
 
-790 
+773 
 	`∑nic
 ("schedÑunning");
 
-791 if(
+774 if(
 	`ªadeÊags
 ()&
 FL_IF
 )
 
-792 
+775 
 	`∑nic
 ("sched interruptible");
 
-793 
+776 
 öã«
  = 
 	`my˝u
 ()->intena;
 
-794 
+777 
 	`swtch
 (&
 p
@@ -28994,21 +23462,21 @@ c⁄ãxt
 scheduÀr
 );
 
-795 
+778 
 	`my˝u
 ()->
 öã«
  = intena;
 
-796 
+779 
 	}
 }
 
-800 
+783 
 	$yõld
 ()
 
-802 
+785 
 	`acquúe
 (&
 ±abÀ
@@ -29016,7 +23484,7 @@ scheduÀr
 lock
 );
 
-803 
+786 
 	`my¥oc
 ()->
 °©e
@@ -29024,11 +23492,11 @@ lock
 RUNNABLE
 ;
 
-804 
+787 
 	`sched
 ();
 
-805 
+788 
 	`ªÀa£
 (&
 ±abÀ
@@ -29036,19 +23504,19 @@ RUNNABLE
 lock
 );
 
-806 
+789 
 	}
 }
 
-811 
+794 
 	$f‹kªt
 ()
 
-813 
+796 
 fú°
  = 1;
 
-815 
+798 
 	`ªÀa£
 (&
 ±abÀ
@@ -29056,31 +23524,31 @@ fú°
 lock
 );
 
-817 i‡(
+800 i‡(
 fú°
 ) {
 
-821 
+804 
 fú°
  = 0;
 
-822 
+805 
 	`iöô
 (
 ROOTDEV
 );
 
-823 
+806 
 	`öôlog
 (
 ROOTDEV
 );
 
-827 
+810 
 	}
 }
 
-830 
+813 
 	$¶ìp
 (* 
 ch™
@@ -29090,7 +23558,7 @@ ch™
 lk
 )
 
-832 
+815 
 ¥oc
  *
 p
@@ -29098,29 +23566,29 @@ p
 	`my¥oc
 ();
 
-833 
+816 
 queue_¥oc
  *
 q
 ;
 
-835 if(
+818 if(
 p
  == 0)
 
-836 
+819 
 	`∑nic
 ("sleep");
 
-837 if(
+820 if(
 lk
  == 0)
 
-838 
+821 
 	`∑nic
 ("sleep withoutÜk");
 
-840 if(
+823 if(
 lk
  !&
 ±abÀ
@@ -29128,7 +23596,7 @@ lk
 lock
 ) {
 
-841 
+824 
 	`acquúe
 (&
 ±abÀ
@@ -29136,19 +23604,19 @@ lock
 lock
 );
 
-842 
+825 
 	`ªÀa£
 (
 lk
 );
 
-845 
+828 
 p
 ->
 ch™
  = chan;
 
-846 
+829 
 p
 ->
 °©e
@@ -29156,43 +23624,27 @@ p
 SLEEPING
 ;
 
-847 #ifde‡
-MLFQ_SCHED
-
-
-848 
+830 
 q
  = 
-	`föd_q
-(3 - 
 p
 ->
-Àvñ
-);
+now
+;
 
-850 
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-);
-
-852 
+831 
 q
 ->
 num_ru¬abÀ
 --;
 
-853 if(!
+832 if(!
 q
 ->
 num_ru¬abÀ
 )
 
-854 
+833 
 q
 ->
 °©e
@@ -29200,17 +23652,17 @@ q
 ALL_SLEEPING
 ;
 
-856 
+835 
 	`sched
 ();
 
-859 
+838 
 p
 ->
 ch™
  = 0;
 
-862 if(
+841 if(
 lk
  !&
 ±abÀ
@@ -29218,7 +23670,7 @@ lk
 lock
 ){
 
-863 
+842 
 	`ªÀa£
 (&
 ±abÀ
@@ -29226,29 +23678,29 @@ lock
 lock
 );
 
-864 
+843 
 	`acquúe
 (
 lk
 );
 
-866 
+845 
 	}
 }
 
-872 
+851 
 	$wakeup1
 (*
 ch™
 )
 
-874 
+853 
 ¥oc
  *
 p
 ;
 
-875 
+854 
 queue_¥oc
  *
 q
@@ -29258,7 +23710,7 @@ pqueue
 now_q
 ;
 
-876 
+855 
 p
  = 
 ±abÀ
@@ -29268,7 +23720,7 @@ p
 NPROC
 ];Ö++){
 
-877 if(
+856 if(
 p
 ->
 °©e
@@ -29278,7 +23730,7 @@ SLEEPING
 ch™
  == chan){
 
-878 
+857 
 p
 ->
 °©e
@@ -29286,37 +23738,21 @@ p
 RUNNABLE
 ;
 
-879 #ifde‡
-MLFQ_SCHED
-
-
-880 
+858 
 q
  = 
-	`föd_q
-(3 - 
 p
 ->
-Àvñ
-);
+now
+;
 
-882 
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-);
-
-884 
+859 
 q
 ->
 num_ru¬abÀ
 ++;
 
-885 
+860 
 q
 ->
 °©e
@@ -29324,17 +23760,17 @@ q
 RUNNABLE_Q
 ;
 
-888 
+863 
 	}
 }
 
-892 
+867 
 	$wakeup
 (*
 ch™
 )
 
-894 
+869 
 	`acquúe
 (&
 ±abÀ
@@ -29342,13 +23778,107 @@ ch™
 lock
 );
 
-895 
+870 
 	`wakeup1
 (
 ch™
 );
 
-896 
+871 
+	`ªÀa£
+(&
+±abÀ
+.
+lock
+);
+
+872 
+	}
+}
+
+878 
+	$kûl
+(
+pid
+)
+
+880 
+¥oc
+ *
+p
+;
+
+882 
+	`acquúe
+(&
+±abÀ
+.
+lock
+);
+
+883 
+p
+ = 
+±abÀ
+.
+¥oc
+;Ö < &±abÀ.¥oc[
+NPROC
+];Ö++){
+
+884 if(
+p
+->
+pid
+ ==Öid){
+
+885 
+p
+->
+kûÀd
+ = 1;
+
+887 if(
+p
+->
+°©e
+ =
+SLEEPING
+) {
+
+888 
+p
+->
+°©e
+ = 
+RUNNABLE
+;
+
+889 
+queue_¥oc
+ * 
+q
+ = 
+p
+->
+now
+;
+
+890 
+q
+->
+num_ru¬abÀ
+++;
+
+891 
+q
+->
+°©e
+ = 
+RUNNABLE_Q
+;
+
+893 
 	`ªÀa£
 (&
 ±abÀ
@@ -29357,110 +23887,6 @@ lock
 );
 
 897 
-	}
-}
-
-903 
-	$kûl
-(
-pid
-)
-
-905 
-¥oc
- *
-p
-;
-
-907 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-908 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-909 if(
-p
-->
-pid
- ==Öid){
-
-910 
-p
-->
-kûÀd
- = 1;
-
-912 if(
-p
-->
-°©e
- =
-SLEEPING
-) {
-
-913 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-914 #ifde‡
-MLFQ_SCHED
-
-
-915 
-queue_¥oc
- * 
-q
- = 
-	`föd_q
-(3 - 
-p
-->
-Àvñ
-);
-
-917 
-queue_¥oc
- * 
-q
- = 
-	`föd_q
-(
-p
-->
-¥i‹ôy
-);
-
-919 
-q
-->
-num_ru¬abÀ
-++;
-
-920 
-q
-->
-°©e
- = 
-RUNNABLE_Q
-;
-
-922 
 	`ªÀa£
 (&
 ±abÀ
@@ -29468,71 +23894,63 @@ RUNNABLE_Q
 lock
 );
 
-926 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-928 
+899 
 	}
 }
 
-935 
+906 
 	$¥ocdump
 ()
 
-937 *
+908 *
 °©es
 [] = {
 
-938 [
+909 [
 UNUSED
 ] "unused",
 
-939 [
+910 [
 EMBRYO
 ] "embryo",
 
-940 [
+911 [
 SLEEPING
 ] "sleep ",
 
-941 [
+912 [
 RUNNABLE
 ] "runble",
 
-942 [
+913 [
 RUNNING
 ] "run ",
 
-943 [
+914 [
 ZOMBIE
 ] "zombie"
 
-945 
+916 
 i
 ;
 
-946 
+917 
 ¥oc
  *
 p
 ;
 
-947 *
+918 *
 °©e
 ;
 
-948 
+919 
 uöt
  
 pc
 [10];
 
-950 
+921 
 p
  = 
 ±abÀ
@@ -29542,7 +23960,7 @@ p
 NPROC
 ];Ö++){
 
-951 if(
+922 if(
 p
 ->
 °©e
@@ -29550,7 +23968,7 @@ p
 UNUSED
 )
 
-953 if(
+924 if(
 p
 ->
 °©e
@@ -29560,7 +23978,7 @@ p
 °©es
 ) && states[p->state])
 
-954 
+925 
 °©e
  = 
 °©es
@@ -29568,11 +23986,11 @@ p
 p
 ->state];
 
-956 
+927 
 °©e
  = "???";
 
-957 
+928 
 	`˝rötf
 ("%d %†%s", 
 p
@@ -29584,7 +24002,7 @@ pid
 «me
 );
 
-958 if(
+929 if(
 p
 ->
 °©e
@@ -29592,7 +24010,7 @@ p
 SLEEPING
 ){
 
-959 
+930 
 	`gëˇŒîpcs
 ((
 uöt
@@ -29606,13 +24024,13 @@ ebp
 pc
 );
 
-960 
+931 
 i
 =0; i<10 && 
 pc
 [i] != 0; i++)
 
-961 
+932 
 	`˝rötf
 (" %p", 
 pc
@@ -29620,11 +24038,11 @@ pc
 i
 ]);
 
-963 
+934 
 	`˝rötf
 ("\n");
 
-965 
+936 
 	}
 }
 
@@ -29752,71 +24170,83 @@ uöt
 	m√xt
 ;
 
-42 
-	m¥i‹ôy
+41 
+¥oc
+ *
+	m¥ev
+;
+
+42 
+queue_¥oc
+ *
+	mnow
 ;
 
 44 
+	m¥i‹ôy
+;
+
+46 
 	mÀvñ
 ;
 
-45 
+47 
 	mticks
 ;
 
-47 
+49 
 uöt
  
 	msz
 ;
 
-48 
+50 
 pde_t
 * 
 	mpgdú
 ;
 
-49 *
+51 *
 	mk°ack
 ;
 
-50 
+52 
 ¥oc°©e
  
 	m°©e
 ;
 
-51 
+53 
 	mpid
 ;
 
-52 
+54 
 ¥oc
  *
 	m∑ª¡
 ;
 
-53 
+55 
 å≠‰ame
  *
 	mtf
 ;
 
-54 
+56 
 c⁄ãxt
  *
 	mc⁄ãxt
 ;
 
-55 *
+57 *
 	mch™
 ;
 
-56 
+58 
 	mkûÀd
 ;
 
-57 
+59 
 fûe
  *
 	mofûe
@@ -29824,17 +24254,17 @@ fûe
 NOFILE
 ];
 
-58 
+60 
 öode
  *
 	mcwd
 ;
 
-59 
+61 
 	m«me
 [16];
 
-62 
+64 
 	equeue°©e
  { 
 	mUNUSED_Q
@@ -29846,2433 +24276,51 @@ NOFILE
 	mRUNNABLE_Q
  };
 
-64 
+66 
 	squeue_¥oc
  {
 
-65 
+67 
 queue_¥oc
  * 
 	m√xt
 ;
 
-66 
+68 
 queue_¥oc
  * 
 	m¥ev
 ;
 
-67 
+69 
 ¥oc
  * 
 	mhód
 ;
 
-68 
+70 
 ¥oc
  * 
 	mèû
 ;
 
-69 
+71 
 queue°©e
  
 	m°©e
 ;
 
-70 
+72 
 	mnum_¥oc
 ;
 
-71 
+73 
 	mnum_ru¬abÀ
 ;
 
-72 
+74 
 	m¥i‹ôy
 ;
-
-75 
-	#L0_TQ
- 2
-
-	)
-
-76 
-	#L1_TQ
- 4
-
-	)
-
-77 
-	#L2_TQ
- 8
-
-	)
-
-	@proc_FCFS.c
-
-1 
-	~"ty≥s.h
-"
-
-2 
-	~"defs.h
-"
-
-3 
-	~"∑øm.h
-"
-
-4 
-	~"memœyout.h
-"
-
-5 
-	~"mmu.h
-"
-
-6 
-	~"x86.h
-"
-
-7 
-	~"¥oc.h
-"
-
-8 
-	~"•ölock.h
-"
-
-11 
-•ölock
- 
-	mlock
-;
-
-12 
-¥oc
- 
-	m¥oc
-[
-NPROC
-];
-
-14 } 
-	g±abÀ
-;
-
-17 
-¥oc
- *
-	mhód
-;
-
-18 
-¥oc
- *
-	mèû
-;
-
-19 
-	mnum_¥oc
-;
-
-20 } 
-	g¥oc_li°
-;
-
-22 
-¥oc
- *
-	göô¥oc
-;
-
-24 
-	g√xçid
- = 1;
-
-25 
-f‹kªt
-();
-
-26 
-å≠ªt
-();
-
-27 
-wakeup1
-(*
-ch™
-);
-
-29 
-	$£çri‹ôy
-(
-n
-)
-
-31 
-¥oc
- * 
-cuΩroc
- = 
-	`my¥oc
-();
-
-32 
-cuΩroc
-->
-¥i‹ôy
- = 
-n
-;
-
-33  
-cuΩroc
-->
-¥i‹ôy
-;
-
-34 
-	}
-}
-
-37 
-	$pöô
-()
-
-39 
-¥oc_li°
-.
-hód
- = 0;
-
-40 
-¥oc_li°
-.
-èû
- = 0;
-
-41 
-¥oc_li°
-.
-num_¥oc
- = 0;
-
-43 
-	`öôlock
-(&
-±abÀ
-.
-lock
-, "ptable");
-
-44 
-	}
-}
-
-47 
-	$ö£π_¥oc
-(
-¥oc
- * 
-p
-) {
-
-48 if(
-¥oc_li°
-.
-num_¥oc
- == 0)
-
-49 
-¥oc_li°
-.
-hód
- =Öroc_li°.
-èû
- = 
-p
-;
-
-51 
-¥oc_li°
-.
-èû
-->
-√xt
- = 
-p
-;
-
-52 
-¥oc_li°
-.
-èû
- = 
-p
-;
-
-53 } ++
-¥oc_li°
-.
-num_¥oc
-;
-
-54 
-	}
-}
-
-57 
-	$dñëe_¥oc
-(
-¥oc
- * 
-p
-) {
-
-58 if(
-¥oc_li°
-.
-num_¥oc
- == 0)
-
-61 
-¥oc
- * 
-tmp
- = 
-¥oc_li°
-.
-hód
-;
-
-62 if(
-p
-->
-pid
- =
-tmp
-->pid) {
-
-63 
-¥oc_li°
-.
-hód
- =Öroc_li°.hód->
-√xt
-;
-
-64 
-¥oc_li°
-.
-num_¥oc
---;
-
-67 
-tmp
-->
-√xt
- !0 &&—mp->√xt->
-pid
- !
-p
-->pid))
-
-68 
-tmp
- =Åmp->
-√xt
-;
-
-69 if(
-tmp
-->
-√xt
- == 0)
-
-71 if(
-tmp
-->
-√xt
-->
-pid
- =
-¥oc_li°
-.
-èû
-->pid) {
-
-72 
-¥oc_li°
-.
-èû
- = 
-tmp
-;
-
-74 
-tmp
-->
-√xt
- =Åmp->next->next;
-
-75 
-¥oc_li°
-.
-num_¥oc
---;
-
-78 
-	}
-}
-
-82 
-	$˝uid
-() {
-
-83  
-	`my˝u
-()-
-˝us
-;
-
-84 
-	}
-}
-
-88 
-˝u
-*
-
-89 
-	$my˝u
-()
-
-91 
-≠icid
-, 
-i
-;
-
-93 if(
-	`ªadeÊags
-()&
-FL_IF
-)
-
-94 
-	`∑nic
-("mycpu called with interruptsÉnabled\n");
-
-96 
-≠icid
- = 
-	`œpicid
-();
-
-99 
-i
- = 0; i < 
-n˝u
-; ++i) {
-
-100 i‡(
-˝us
-[
-i
-].
-≠icid
- ==ápicid)
-
-101  &
-˝us
-[
-i
-];
-
-103 
-	`∑nic
-("unknownápicid\n");
-
-104 
-	}
-}
-
-108 
-¥oc
-*
-
-109 
-	$my¥oc
-() {
-
-110 
-˝u
- *
-c
-;
-
-111 
-¥oc
- *
-p
-;
-
-112 
-	`push˛i
-();
-
-113 
-c
- = 
-	`my˝u
-();
-
-114 
-p
- = 
-c
-->
-¥oc
-;
-
-115 
-	`p›˛i
-();
-
-116  
-p
-;
-
-117 
-	}
-}
-
-124 
-¥oc
-*
-
-125 
-	$Ælo˝roc
-()
-
-127 
-¥oc
- *
-p
-;
-
-128 *
-•
-;
-
-130 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-132 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++)
-
-133 if(
-p
-->
-°©e
- =
-UNUSED
-)
-
-134 
-found
-;
-
-136 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-139 
-found
-:
-
-140 
-p
-->
-°©e
- = 
-EMBRYO
-;
-
-141 
-p
-->
-pid
- = 
-√xçid
-++;
-
-143 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-146 if((
-p
-->
-k°ack
- = 
-	`kÆloc
-()) == 0){
-
-147 
-p
-->
-°©e
- = 
-UNUSED
-;
-
-150 
-•
- = 
-p
-->
-k°ack
- + 
-KSTACKSIZE
-;
-
-153 
-•
- - *
-p
-->
-tf
-;
-
-154 
-p
-->
-tf
- = (
-å≠‰ame
-*)
-•
-;
-
-158 
-•
- -= 4;
-
-159 *(
-uöt
-*)
-•
- = (uöt)
-å≠ªt
-;
-
-161 
-•
- - *
-p
-->
-c⁄ãxt
-;
-
-162 
-p
-->
-c⁄ãxt
- = (c⁄ãxt*)
-•
-;
-
-163 
-	`mem£t
-(
-p
-->
-c⁄ãxt
-, 0,  *p->context);
-
-164 
-p
-->
-c⁄ãxt
-->
-eù
- = (
-uöt
-)
-f‹kªt
-;
-
-166  
-p
-;
-
-167 
-	}
-}
-
-172 
-	$u£röô
-()
-
-174 
-¥oc
- *
-p
-;
-
-175 
-_bö¨y_öôcode_°¨t
-[], 
-_bö¨y_öôcode_size
-[];
-
-177 
-p
- = 
-	`Ælo˝roc
-();
-
-179 
-öô¥oc
- = 
-p
-;
-
-180 if((
-p
-->
-pgdú
- = 
-	`£tupkvm
-()) == 0)
-
-181 
-	`∑nic
-("userinit: out of memory?");
-
-182 
-	`öôuvm
-(
-p
-->
-pgdú
-, 
-_bö¨y_öôcode_°¨t
-, ()
-_bö¨y_öôcode_size
-);
-
-183 
-p
-->
-sz
- = 
-PGSIZE
-;
-
-184 
-	`mem£t
-(
-p
-->
-tf
-, 0, (*p->tf));
-
-185 
-p
-->
-tf
-->
-cs
- = (
-SEG_UCODE
- << 3Ë| 
-DPL_USER
-;
-
-186 
-p
-->
-tf
-->
-ds
- = (
-SEG_UDATA
- << 3Ë| 
-DPL_USER
-;
-
-187 
-p
-->
-tf
-->
-es
- =Ö->tf->
-ds
-;
-
-188 
-p
-->
-tf
-->
-ss
- =Ö->tf->
-ds
-;
-
-189 
-p
-->
-tf
-->
-eÊags
- = 
-FL_IF
-;
-
-190 
-p
-->
-tf
-->
-e•
- = 
-PGSIZE
-;
-
-191 
-p
-->
-tf
-->
-eù
- = 0;
-
-193 
-	`ß„°r˝y
-(
-p
-->
-«me
-, "initcode", (p->name));
-
-194 
-p
-->
-cwd
- = 
-	`«mei
-("/");
-
-200 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-202 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-204 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-205 
-	}
-}
-
-210 
-	$grow¥oc
-(
-n
-)
-
-212 
-uöt
- 
-sz
-;
-
-213 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-215 
-sz
- = 
-cuΩroc
-->sz;
-
-216 if(
-n
- > 0){
-
-217 if((
-sz
- = 
-	`Ælocuvm
-(
-cuΩroc
-->
-pgdú
-, sz, sz + 
-n
-)) == 0)
-
-219 } if(
-n
- < 0){
-
-220 if((
-sz
- = 
-	`dóŒocuvm
-(
-cuΩroc
-->
-pgdú
-, sz, sz + 
-n
-)) == 0)
-
-223 
-cuΩroc
-->
-sz
- = sz;
-
-224 
-	`swôchuvm
-(
-cuΩroc
-);
-
-226 
-	}
-}
-
-232 
-	$f‹k
-()
-
-234 
-i
-, 
-pid
-;
-
-235 
-¥oc
- *
-≈
-;
-
-236 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-239 if((
-≈
- = 
-	`Ælo˝roc
-()) == 0){
-
-244 if((
-≈
-->
-pgdú
- = 
-	`c›yuvm
-(
-cuΩroc
-->pgdú, cuΩroc->
-sz
-)) == 0){
-
-245 
-	`k‰ì
-(
-≈
-->
-k°ack
-);
-
-246 
-≈
-->
-k°ack
- = 0;
-
-247 
-≈
-->
-°©e
- = 
-UNUSED
-;
-
-250 
-≈
-->
-sz
- = 
-cuΩroc
-->sz;
-
-251 
-≈
-->
-∑ª¡
- = 
-cuΩroc
-;
-
-252 *
-≈
-->
-tf
- = *
-cuΩroc
-->tf;
-
-255 
-≈
-->
-tf
-->
-óx
- = 0;
-
-257 
-i
- = 0; i < 
-NOFILE
-; i++)
-
-258 if(
-cuΩroc
-->
-ofûe
-[
-i
-])
-
-259 
-≈
-->
-ofûe
-[
-i
-] = 
-	`fûedup
-(
-cuΩroc
-->ofile[i]);
-
-260 
-≈
-->
-cwd
- = 
-	`idup
-(
-cuΩroc
-->cwd);
-
-262 
-	`ß„°r˝y
-(
-≈
-->
-«me
-, 
-cuΩroc
-->name, (curproc->name));
-
-264 
-pid
- = 
-≈
-->pid;
-
-265 
-≈
-->
-√xt
- = 0;
-
-267 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-270 
-	`ö£π_¥oc
-(
-≈
-);
-
-271 
-≈
-->
-°©e
- = 
-RUNNABLE
-;
-
-273 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-275  
-pid
-;
-
-276 
-	}
-}
-
-282 
-	$exô
-()
-
-284 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-285 
-¥oc
- *
-p
-;
-
-286 
-fd
-;
-
-288 if(
-cuΩroc
- =
-öô¥oc
-)
-
-289 
-	`∑nic
-("initÉxiting");
-
-292 
-fd
- = 0; fd < 
-NOFILE
-; fd++){
-
-293 if(
-cuΩroc
-->
-ofûe
-[
-fd
-]){
-
-294 
-	`fûe˛o£
-(
-cuΩroc
-->
-ofûe
-[
-fd
-]);
-
-295 
-cuΩroc
-->
-ofûe
-[
-fd
-] = 0;
-
-299 
-	`begö_›
-();
-
-300 
-	`ùut
-(
-cuΩroc
-->
-cwd
-);
-
-301 
-	`íd_›
-();
-
-302 
-cuΩroc
-->
-cwd
- = 0;
-
-304 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-307 
-	`wakeup1
-(
-cuΩroc
-->
-∑ª¡
-);
-
-310 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-311 if(
-p
-->
-∑ª¡
- =
-cuΩroc
-){
-
-312 
-p
-->
-∑ª¡
- = 
-öô¥oc
-;
-
-313 if(
-p
-->
-°©e
- =
-ZOMBIE
-)
-
-314 
-	`wakeup1
-(
-öô¥oc
-);
-
-319 
-	`dñëe_¥oc
-(
-cuΩroc
-);
-
-323 
-cuΩroc
-->
-°©e
- = 
-ZOMBIE
-;
-
-324 
-	`sched
-();
-
-325 
-	`∑nic
-("zombieÉxit");
-
-326 
-	}
-}
-
-331 
-	$waô
-()
-
-333 
-¥oc
- *
-p
-;
-
-334 
-havekids
-, 
-pid
-;
-
-335 
-¥oc
- *
-cuΩroc
- = 
-	`my¥oc
-();
-
-337 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-340 
-havekids
- = 0;
-
-341 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-342 if(
-p
-->
-∑ª¡
- !
-cuΩroc
-)
-
-344 
-havekids
- = 1;
-
-345 if(
-p
-->
-°©e
- =
-ZOMBIE
-){
-
-347 
-pid
- = 
-p
-->pid;
-
-348 
-	`k‰ì
-(
-p
-->
-k°ack
-);
-
-349 
-p
-->
-k°ack
- = 0;
-
-350 
-	`‰ìvm
-(
-p
-->
-pgdú
-);
-
-351 
-p
-->
-pid
- = 0;
-
-352 
-p
-->
-∑ª¡
- = 0;
-
-353 
-p
-->
-«me
-[0] = 0;
-
-354 
-p
-->
-kûÀd
- = 0;
-
-355 
-p
-->
-°©e
- = 
-UNUSED
-;
-
-356 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-357  
-pid
-;
-
-362 if(!
-havekids
- || 
-cuΩroc
-->
-kûÀd
-){
-
-363 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-368 
-	`¶ìp
-(
-cuΩroc
-, &
-±abÀ
-.
-lock
-);
-
-370 
-	}
-}
-
-381 
-	$scheduÀr
-()
-
-383 
-¥oc
- *
-p
-;
-
-384 
-˝u
- *
-c
- = 
-	`my˝u
-();
-
-385 
-c
-->
-¥oc
- = 0;
-
-389 
-	`°i
-();
-
-391 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-393 if(
-¥oc_li°
-.
-num_¥oc
-) {
-
-394 
-p
- = 
-¥oc_li°
-.
-hód
-;
-
-395 
-p
- != 0){
-
-396 if(
-p
-->
-°©e
- !
-RUNNABLE
-) {
-
-397 
-p
- =Ö->
-√xt
-;
-
-400 
-c
-->
-¥oc
- = 
-p
-;
-
-401 
-	`swôchuvm
-(
-p
-);
-
-402 
-p
-->
-°©e
- = 
-RUNNING
-;
-
-404 
-	`swtch
-(&(
-c
-->
-scheduÀr
-), 
-p
-->
-c⁄ãxt
-);
-
-405 
-	`swôchkvm
-();
-
-407 
-p
- = 
-¥oc_li°
-.
-hód
-;
-
-408 
-c
-->
-¥oc
- = 0;
-
-411 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-412 if(
-p
-->
-°©e
- !
-RUNNABLE
-)
-
-414 
-c
-->
-¥oc
- = 
-p
-;
-
-415 
-	`swôchuvm
-(
-p
-);
-
-416 
-p
-->
-°©e
- = 
-RUNNING
-;
-
-418 
-	`swtch
-(&(
-c
-->
-scheduÀr
-), 
-p
-->
-c⁄ãxt
-);
-
-419 
-	`swôchkvm
-();
-
-420 
-c
-->
-¥oc
- = 0;
-
-423 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-426 
-	}
-}
-
-436 
-	$sched
-()
-
-438 
-öã«
-;
-
-439 
-¥oc
- *
-p
- = 
-	`my¥oc
-();
-
-441 if(!
-	`hﬁdög
-(&
-±abÀ
-.
-lock
-))
-
-442 
-	`∑nic
-("schedÖtable.lock");
-
-443 if(
-	`my˝u
-()->
-n˛i
- != 1)
-
-444 
-	`∑nic
-("schedÜocks");
-
-445 if(
-p
-->
-°©e
- =
-RUNNING
-)
-
-446 
-	`∑nic
-("schedÑunning");
-
-447 if(
-	`ªadeÊags
-()&
-FL_IF
-)
-
-448 
-	`∑nic
-("sched interruptible");
-
-449 
-öã«
- = 
-	`my˝u
-()->intena;
-
-450 
-	`swtch
-(&
-p
-->
-c⁄ãxt
-, 
-	`my˝u
-()->
-scheduÀr
-);
-
-451 
-	`my˝u
-()->
-öã«
- = intena;
-
-452 
-	}
-}
-
-456 
-	$yõld
-()
-
-458 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-459 
-	`my¥oc
-()->
-°©e
- = 
-RUNNABLE
-;
-
-460 
-	`sched
-();
-
-461 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-462 
-	}
-}
-
-467 
-	$f‹kªt
-()
-
-469 
-fú°
- = 1;
-
-471 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-473 i‡(
-fú°
-) {
-
-477 
-fú°
- = 0;
-
-478 
-	`iöô
-(
-ROOTDEV
-);
-
-479 
-	`öôlog
-(
-ROOTDEV
-);
-
-483 
-	}
-}
-
-488 
-	$¶ìp
-(*
-ch™
-, 
-•ölock
- *
-lk
-)
-
-490 
-¥oc
- *
-p
- = 
-	`my¥oc
-();
-
-492 if(
-p
- == 0)
-
-493 
-	`∑nic
-("sleep");
-
-495 if(
-lk
- == 0)
-
-496 
-	`∑nic
-("sleep withoutÜk");
-
-504 if(
-lk
- !&
-±abÀ
-.
-lock
-){
-
-505 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-506 
-	`ªÀa£
-(
-lk
-);
-
-509 
-p
-->
-ch™
- = chan;
-
-510 
-p
-->
-°©e
- = 
-SLEEPING
-;
-
-512 
-	`sched
-();
-
-515 
-p
-->
-ch™
- = 0;
-
-518 if(
-lk
- !&
-±abÀ
-.
-lock
-){
-
-519 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-520 
-	`acquúe
-(
-lk
-);
-
-522 
-	}
-}
-
-528 
-	$wakeup1
-(*
-ch™
-)
-
-530 
-¥oc
- *
-p
-;
-
-532 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++)
-
-533 if(
-p
-->
-°©e
- =
-SLEEPING
- &&Ö->
-ch™
- == chan)
-
-534 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-535 
-	}
-}
-
-539 
-	$wakeup
-(*
-ch™
-)
-
-541 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-542 
-	`wakeup1
-(
-ch™
-);
-
-543 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-544 
-	}
-}
-
-550 
-	$kûl
-(
-pid
-)
-
-552 
-¥oc
- *
-p
-;
-
-554 
-	`acquúe
-(&
-±abÀ
-.
-lock
-);
-
-555 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-556 if(
-p
-->
-pid
- ==Öid){
-
-557 
-p
-->
-kûÀd
- = 1;
-
-559 if(
-p
-->
-°©e
- =
-SLEEPING
-)
-
-560 
-p
-->
-°©e
- = 
-RUNNABLE
-;
-
-561 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-565 
-	`ªÀa£
-(&
-±abÀ
-.
-lock
-);
-
-567 
-	}
-}
-
-574 
-	$¥ocdump
-()
-
-576 *
-°©es
-[] = {
-
-577 [
-UNUSED
-] "unused",
-
-578 [
-EMBRYO
-] "embryo",
-
-579 [
-SLEEPING
-] "sleep ",
-
-580 [
-RUNNABLE
-] "runble",
-
-581 [
-RUNNING
-] "run ",
-
-582 [
-ZOMBIE
-] "zombie"
-
-584 
-i
-;
-
-585 
-¥oc
- *
-p
-;
-
-586 *
-°©e
-;
-
-587 
-uöt
- 
-pc
-[10];
-
-589 
-p
- = 
-±abÀ
-.
-¥oc
-;Ö < &±abÀ.¥oc[
-NPROC
-];Ö++){
-
-590 if(
-p
-->
-°©e
- =
-UNUSED
-)
-
-592 if(
-p
-->
-°©e
- >0 &&Ö->°©ê< 
-	`NELEM
-(
-°©es
-) && states[p->state])
-
-593 
-°©e
- = 
-°©es
-[
-p
-->state];
-
-595 
-°©e
- = "???";
-
-596 
-	`˝rötf
-("%d %†%s", 
-p
-->
-pid
-, 
-°©e
-,Ö->
-«me
-);
-
-597 if(
-p
-->
-°©e
- =
-SLEEPING
-){
-
-598 
-	`gëˇŒîpcs
-((
-uöt
-*)
-p
-->
-c⁄ãxt
-->
-ebp
-+2, 
-pc
-);
-
-599 
-i
-=0; i<10 && 
-pc
-[i] != 0; i++)
-
-600 
-	`˝rötf
-(" %p", 
-pc
-[
-i
-]);
-
-602 
-	`˝rötf
-("\n");
-
-604 
-	}
-}
-
-	@proc_Priority.h
-
-2 
-	s˝u
- {
-
-3 
-uch¨
- 
-	m≠icid
-;
-
-4 
-c⁄ãxt
- *
-	mscheduÀr
-;
-
-5 
-èsk°©e
- 
-	mts
-;
-
-6 
-£gdesc
- 
-	mgdt
-[
-NSEGS
-];
-
-7 vﬁ©ûê
-uöt
- 
-	m°¨ãd
-;
-
-8 
-	mn˛i
-;
-
-9 
-	möã«
-;
-
-10 
-¥oc
- *
-	m¥oc
-;
-
-13 
-˝u
- 
-˝us
-[
-NCPU
-];
-
-14 
-n˝u
-;
-
-27 
-	sc⁄ãxt
- {
-
-28 
-uöt
- 
-	medi
-;
-
-29 
-uöt
- 
-	mesi
-;
-
-30 
-uöt
- 
-	mebx
-;
-
-31 
-uöt
- 
-	mebp
-;
-
-32 
-uöt
- 
-	meù
-;
-
-35 
-	e¥oc°©e
- { 
-	mUNUSED
-, 
-	mEMBRYO
-, 
-	mSLEEPING
-, 
-	mRUNNABLE
-, 
-	mRUNNING
-, 
-	mZOMBIE
- };
-
-38 
-	s¥oc
- {
-
-39 
-uöt
- 
-	msz
-;
-
-40 
-pde_t
-* 
-	mpgdú
-;
-
-41 *
-	mk°ack
-;
-
-42 
-¥oc°©e
- 
-	m°©e
-;
-
-43 
-	mpid
-;
-
-44 
-¥oc
- *
-	m∑ª¡
-;
-
-45 
-å≠‰ame
- *
-	mtf
-;
-
-46 
-c⁄ãxt
- *
-	mc⁄ãxt
-;
-
-47 *
-	mch™
-;
-
-48 
-	mkûÀd
-;
-
-49 
-fûe
- *
-	mofûe
-[
-NOFILE
-];
-
-50 
-öode
- *
-	mcwd
-;
-
-51 
-	m«me
-[16];
 
 	@rm.c
 
@@ -38816,77 +30864,61 @@ ticks
 
 119 if(
 tmp
- == 1) {
+ >= 1) {
 
 120 
-	`dñëe
+	`Àvñup
 (
 	`my¥oc
 ());
 
 121 
-	`my¥oc
-()->
-Àvñ
-++;
-
-122 
-	`ö£π
-(
-	`my¥oc
-());
-
-123 
 	`yõld
 ();
 
-127 if(
+125 if(
 tmp
- == 3) {
+ >= 3) {
 
-128 
-	`dñëe
+126 
+	`Àvñup
 (
 	`my¥oc
 ());
 
-129 
-	`my¥oc
-()->
-Àvñ
-++;
-
-130 
-	`ö£π
-(
-	`my¥oc
-());
-
-131 
+127 
 	`yõld
 ();
 
-135 if(
+131 if(
 tmp
- == 7)
+ >= 7)
 
-136 
+132 
 	`yõld
 ();
 
-141 if(
+136 if(
 cuπicks
- == 100) {
+ >= 100) {
 
-142 
+137 
 cuπicks
  = 0;
 
-143 
+138 
 	`boo°
 ();
 
-150 if(
+139 if(
+	`my¥oc
+())
+
+140 
+	`yõld
+();
+
+146 if(
 	`my¥oc
 (Ë&& my¥oc()->
 °©e
@@ -38894,7 +30926,7 @@ cuπicks
 RUNNING
  &&
 
-151 
+147 
 tf
 ->
 å≠no
@@ -38904,11 +30936,11 @@ T_IRQ0
 IRQ_TIMER
 )
 
-152 
+148 
 	`yõld
 ();
 
-156 if(
+152 if(
 	`my¥oc
 (Ë&& my¥oc()->
 kûÀd
@@ -38920,11 +30952,11 @@ cs
 DPL_USER
 )
 
-157 
+153 
 	`exô
 ();
 
-158 
+154 
 	}
 }
 
@@ -40494,6 +32526,154 @@ uöt
 	`©oi
 (const *);
 
+	@user_mlfq.c
+
+1 
+	~"ty≥s.h
+"
+
+2 
+	~"°©.h
+"
+
+3 
+	~"u£r.h
+"
+
+5 
+	$maö
+(
+¨gc
+, * 
+¨gv
+[])
+
+7 
+pid
+ = 
+	`f‹k
+();
+
+8 if(
+pid
+ < 0) {
+
+9 
+	`¥ötf
+(1, "Processállocation failed..\n");
+
+10 
+	`exô
+();
+
+12 if(
+pid
+ > 0) {
+
+13 
+i
+ = 0; i < 300; i++) {
+
+14 
+	`¥ötf
+(1, "∑ª¡,Üev : %d\n", 
+	`gëÀv
+());
+
+15 
+	`yõld
+();
+
+17 
+	`waô
+();
+
+19 i‡(
+pid
+ == 0){
+
+21 
+˝id
+ = 
+	`f‹k
+();
+
+23 if(
+˝id
+ < 0) {
+
+24 
+	`¥ötf
+(1, "Processállocation failed..\n");
+
+25 
+	`exô
+();
+
+28 if(
+˝id
+ == 0) {
+
+29 
+	`£çri‹ôy
+(
+	`gëpid
+(), 100);
+
+30 
+i
+ = 0; i < 100; i++) {
+
+31 
+	`¥ötf
+(1, "Gøndchûd,Üev : %d\n", 
+	`gëÀv
+());
+
+32 
+	`yõld
+();
+
+34 }if(
+˝id
+ > 0) {
+
+35 
+i
+ = 0; i < 100; i++) {
+
+36 if(
+i
+ == 50)
+
+37 
+	`£çri‹ôy
+(
+	`gëpid
+(), 2);
+
+38 
+	`¥ötf
+(1, "chûd,Üev : %d\n", 
+	`gëÀv
+());
+
+39 
+	`yõld
+();
+
+41 
+	`waô
+();
+
+44 
+	`exô
+();
+
+45 
+	}
+}
+
 	@user_priority.c
 
 1 
@@ -40538,107 +32718,89 @@ pid
 pid
  > 0) {
 
-14 
+13 
 i
  = 0; i < 300; i++) {
 
-15 
+14 
 	`¥ötf
-(1, "∑ª¡,Üev : %d\n", 
-	`gëÀv
-());
+(1, "parent\n");
 
 16 
-	`yõld
-();
-
-18 
 	`waô
 ();
 
-20 i‡(
+18 i‡(
 pid
  == 0){
 
-23 
+20 
 ˝id
  = 
 	`f‹k
 ();
 
-25 if(
+22 if(
 ˝id
  < 0) {
 
-26 
+23 
 	`¥ötf
 (1, "Processállocation failed..\n");
 
-27 
+24 
 	`exô
 ();
 
-30 if(
+27 if(
 ˝id
  == 0) {
 
-31 
+28 
 	`£çri‹ôy
 (
 	`gëpid
 (), 100);
 
-32 
+29 
 i
  = 0; i < 100; i++) {
 
-33 
+30 
 	`¥ötf
-(1, "Gøndchûd,Üev : %d\n", 
-	`gëÀv
-());
+(1, "Grandchild\n");
 
-34 
-	`yõld
-();
-
-37 }if(
+32 }if(
 ˝id
  > 0) {
 
-39 
+33 
 i
  = 0; i < 100; i++) {
 
-40 if(
+34 if(
 i
  == 50)
 
-41 
+35 
 	`£çri‹ôy
 (
 	`gëpid
 (), 2);
 
-42 
+36 
 	`¥ötf
-(1, "chûd,Üev : %d\n", 
-	`gëÀv
-());
+(1, "child\n");
 
-43 
-	`yõld
-();
-
-45 
+38 
 	`waô
 ();
 
-49 
+41 
 	`exô
 ();
 
-50 
+42 
 	}
 }
 
@@ -40704,17 +32866,29 @@ pid
 ˝id
  == 0) {
 
+19 
+i
+ = 0; i < 10000; i++)
+
 20 
 	`¥ötf
 (1, "Gøndchûd,Üevñ : %d\n", 
 	`gëÀv
 ());
 
+23 
+i
+ = 0; i < 10000; i++)
+
 24 
 	`¥ötf
 (1, "Chûd,Üevñ : %d\n", 
 	`gëÀv
 ());
+
+26 
+i
+ = 0; i < 10000; i++)
 
 27 
 	`¥ötf
@@ -46976,8194 +39150,6 @@ yõld
 gëÀv
 )
 
-	@vectors.S
-
-1 #gíî©ed 
-by
- 
-ve˘‹s
-.
-∂
- - dÿ
-nŸ
- 
-edô
-
-
-3 .
-globl
- 
-	gÆ…øps
-
-
-4 .
-globl
- 
-ve˘‹0
-
-
-5 
-	gve˘‹0
-:
-
-6 
-pushl
- 
-$0
-
-
-7 
-pushl
- 
-$0
-
-
-8 
-jmp
- 
-Æ…øps
-
-
-9 .
-globl
- 
-ve˘‹1
-
-
-10 
-ve˘‹1
-:
-
-11 
-pushl
- 
-$0
-
-
-12 
-pushl
- 
-$1
-
-
-13 
-jmp
- 
-Æ…øps
-
-
-14 .
-globl
- 
-ve˘‹2
-
-
-15 
-ve˘‹2
-:
-
-16 
-pushl
- 
-$0
-
-
-17 
-pushl
- 
-$2
-
-
-18 
-jmp
- 
-Æ…øps
-
-
-19 .
-globl
- 
-ve˘‹3
-
-
-20 
-ve˘‹3
-:
-
-21 
-pushl
- 
-$0
-
-
-22 
-pushl
- 
-$3
-
-
-23 
-jmp
- 
-Æ…øps
-
-
-24 .
-globl
- 
-ve˘‹4
-
-
-25 
-ve˘‹4
-:
-
-26 
-pushl
- 
-$0
-
-
-27 
-pushl
- 
-$4
-
-
-28 
-jmp
- 
-Æ…øps
-
-
-29 .
-globl
- 
-ve˘‹5
-
-
-30 
-ve˘‹5
-:
-
-31 
-pushl
- 
-$0
-
-
-32 
-pushl
- 
-$5
-
-
-33 
-jmp
- 
-Æ…øps
-
-
-34 .
-globl
- 
-ve˘‹6
-
-
-35 
-ve˘‹6
-:
-
-36 
-pushl
- 
-$0
-
-
-37 
-pushl
- 
-$6
-
-
-38 
-jmp
- 
-Æ…øps
-
-
-39 .
-globl
- 
-ve˘‹7
-
-
-40 
-ve˘‹7
-:
-
-41 
-pushl
- 
-$0
-
-
-42 
-pushl
- 
-$7
-
-
-43 
-jmp
- 
-Æ…øps
-
-
-44 .
-globl
- 
-ve˘‹8
-
-
-45 
-ve˘‹8
-:
-
-46 
-pushl
- 
-$8
-
-
-47 
-jmp
- 
-Æ…øps
-
-
-48 .
-globl
- 
-ve˘‹9
-
-
-49 
-ve˘‹9
-:
-
-50 
-pushl
- 
-$0
-
-
-51 
-pushl
- 
-$9
-
-
-52 
-jmp
- 
-Æ…øps
-
-
-53 .
-globl
- 
-ve˘‹10
-
-
-54 
-ve˘‹10
-:
-
-55 
-pushl
- 
-$10
-
-
-56 
-jmp
- 
-Æ…øps
-
-
-57 .
-globl
- 
-ve˘‹11
-
-
-58 
-ve˘‹11
-:
-
-59 
-pushl
- 
-$11
-
-
-60 
-jmp
- 
-Æ…øps
-
-
-61 .
-globl
- 
-ve˘‹12
-
-
-62 
-ve˘‹12
-:
-
-63 
-pushl
- 
-$12
-
-
-64 
-jmp
- 
-Æ…øps
-
-
-65 .
-globl
- 
-ve˘‹13
-
-
-66 
-ve˘‹13
-:
-
-67 
-pushl
- 
-$13
-
-
-68 
-jmp
- 
-Æ…øps
-
-
-69 .
-globl
- 
-ve˘‹14
-
-
-70 
-ve˘‹14
-:
-
-71 
-pushl
- 
-$14
-
-
-72 
-jmp
- 
-Æ…øps
-
-
-73 .
-globl
- 
-ve˘‹15
-
-
-74 
-ve˘‹15
-:
-
-75 
-pushl
- 
-$0
-
-
-76 
-pushl
- 
-$15
-
-
-77 
-jmp
- 
-Æ…øps
-
-
-78 .
-globl
- 
-ve˘‹16
-
-
-79 
-ve˘‹16
-:
-
-80 
-pushl
- 
-$0
-
-
-81 
-pushl
- 
-$16
-
-
-82 
-jmp
- 
-Æ…øps
-
-
-83 .
-globl
- 
-ve˘‹17
-
-
-84 
-ve˘‹17
-:
-
-85 
-pushl
- 
-$17
-
-
-86 
-jmp
- 
-Æ…øps
-
-
-87 .
-globl
- 
-ve˘‹18
-
-
-88 
-ve˘‹18
-:
-
-89 
-pushl
- 
-$0
-
-
-90 
-pushl
- 
-$18
-
-
-91 
-jmp
- 
-Æ…øps
-
-
-92 .
-globl
- 
-ve˘‹19
-
-
-93 
-ve˘‹19
-:
-
-94 
-pushl
- 
-$0
-
-
-95 
-pushl
- 
-$19
-
-
-96 
-jmp
- 
-Æ…øps
-
-
-97 .
-globl
- 
-ve˘‹20
-
-
-98 
-ve˘‹20
-:
-
-99 
-pushl
- 
-$0
-
-
-100 
-pushl
- 
-$20
-
-
-101 
-jmp
- 
-Æ…øps
-
-
-102 .
-globl
- 
-ve˘‹21
-
-
-103 
-ve˘‹21
-:
-
-104 
-pushl
- 
-$0
-
-
-105 
-pushl
- 
-$21
-
-
-106 
-jmp
- 
-Æ…øps
-
-
-107 .
-globl
- 
-ve˘‹22
-
-
-108 
-ve˘‹22
-:
-
-109 
-pushl
- 
-$0
-
-
-110 
-pushl
- 
-$22
-
-
-111 
-jmp
- 
-Æ…øps
-
-
-112 .
-globl
- 
-ve˘‹23
-
-
-113 
-ve˘‹23
-:
-
-114 
-pushl
- 
-$0
-
-
-115 
-pushl
- 
-$23
-
-
-116 
-jmp
- 
-Æ…øps
-
-
-117 .
-globl
- 
-ve˘‹24
-
-
-118 
-ve˘‹24
-:
-
-119 
-pushl
- 
-$0
-
-
-120 
-pushl
- 
-$24
-
-
-121 
-jmp
- 
-Æ…øps
-
-
-122 .
-globl
- 
-ve˘‹25
-
-
-123 
-ve˘‹25
-:
-
-124 
-pushl
- 
-$0
-
-
-125 
-pushl
- 
-$25
-
-
-126 
-jmp
- 
-Æ…øps
-
-
-127 .
-globl
- 
-ve˘‹26
-
-
-128 
-ve˘‹26
-:
-
-129 
-pushl
- 
-$0
-
-
-130 
-pushl
- 
-$26
-
-
-131 
-jmp
- 
-Æ…øps
-
-
-132 .
-globl
- 
-ve˘‹27
-
-
-133 
-ve˘‹27
-:
-
-134 
-pushl
- 
-$0
-
-
-135 
-pushl
- 
-$27
-
-
-136 
-jmp
- 
-Æ…øps
-
-
-137 .
-globl
- 
-ve˘‹28
-
-
-138 
-ve˘‹28
-:
-
-139 
-pushl
- 
-$0
-
-
-140 
-pushl
- 
-$28
-
-
-141 
-jmp
- 
-Æ…øps
-
-
-142 .
-globl
- 
-ve˘‹29
-
-
-143 
-ve˘‹29
-:
-
-144 
-pushl
- 
-$0
-
-
-145 
-pushl
- 
-$29
-
-
-146 
-jmp
- 
-Æ…øps
-
-
-147 .
-globl
- 
-ve˘‹30
-
-
-148 
-ve˘‹30
-:
-
-149 
-pushl
- 
-$0
-
-
-150 
-pushl
- 
-$30
-
-
-151 
-jmp
- 
-Æ…øps
-
-
-152 .
-globl
- 
-ve˘‹31
-
-
-153 
-ve˘‹31
-:
-
-154 
-pushl
- 
-$0
-
-
-155 
-pushl
- 
-$31
-
-
-156 
-jmp
- 
-Æ…øps
-
-
-157 .
-globl
- 
-ve˘‹32
-
-
-158 
-ve˘‹32
-:
-
-159 
-pushl
- 
-$0
-
-
-160 
-pushl
- 
-$32
-
-
-161 
-jmp
- 
-Æ…øps
-
-
-162 .
-globl
- 
-ve˘‹33
-
-
-163 
-ve˘‹33
-:
-
-164 
-pushl
- 
-$0
-
-
-165 
-pushl
- 
-$33
-
-
-166 
-jmp
- 
-Æ…øps
-
-
-167 .
-globl
- 
-ve˘‹34
-
-
-168 
-ve˘‹34
-:
-
-169 
-pushl
- 
-$0
-
-
-170 
-pushl
- 
-$34
-
-
-171 
-jmp
- 
-Æ…øps
-
-
-172 .
-globl
- 
-ve˘‹35
-
-
-173 
-ve˘‹35
-:
-
-174 
-pushl
- 
-$0
-
-
-175 
-pushl
- 
-$35
-
-
-176 
-jmp
- 
-Æ…øps
-
-
-177 .
-globl
- 
-ve˘‹36
-
-
-178 
-ve˘‹36
-:
-
-179 
-pushl
- 
-$0
-
-
-180 
-pushl
- 
-$36
-
-
-181 
-jmp
- 
-Æ…øps
-
-
-182 .
-globl
- 
-ve˘‹37
-
-
-183 
-ve˘‹37
-:
-
-184 
-pushl
- 
-$0
-
-
-185 
-pushl
- 
-$37
-
-
-186 
-jmp
- 
-Æ…øps
-
-
-187 .
-globl
- 
-ve˘‹38
-
-
-188 
-ve˘‹38
-:
-
-189 
-pushl
- 
-$0
-
-
-190 
-pushl
- 
-$38
-
-
-191 
-jmp
- 
-Æ…øps
-
-
-192 .
-globl
- 
-ve˘‹39
-
-
-193 
-ve˘‹39
-:
-
-194 
-pushl
- 
-$0
-
-
-195 
-pushl
- 
-$39
-
-
-196 
-jmp
- 
-Æ…øps
-
-
-197 .
-globl
- 
-ve˘‹40
-
-
-198 
-ve˘‹40
-:
-
-199 
-pushl
- 
-$0
-
-
-200 
-pushl
- 
-$40
-
-
-201 
-jmp
- 
-Æ…øps
-
-
-202 .
-globl
- 
-ve˘‹41
-
-
-203 
-ve˘‹41
-:
-
-204 
-pushl
- 
-$0
-
-
-205 
-pushl
- 
-$41
-
-
-206 
-jmp
- 
-Æ…øps
-
-
-207 .
-globl
- 
-ve˘‹42
-
-
-208 
-ve˘‹42
-:
-
-209 
-pushl
- 
-$0
-
-
-210 
-pushl
- 
-$42
-
-
-211 
-jmp
- 
-Æ…øps
-
-
-212 .
-globl
- 
-ve˘‹43
-
-
-213 
-ve˘‹43
-:
-
-214 
-pushl
- 
-$0
-
-
-215 
-pushl
- 
-$43
-
-
-216 
-jmp
- 
-Æ…øps
-
-
-217 .
-globl
- 
-ve˘‹44
-
-
-218 
-ve˘‹44
-:
-
-219 
-pushl
- 
-$0
-
-
-220 
-pushl
- 
-$44
-
-
-221 
-jmp
- 
-Æ…øps
-
-
-222 .
-globl
- 
-ve˘‹45
-
-
-223 
-ve˘‹45
-:
-
-224 
-pushl
- 
-$0
-
-
-225 
-pushl
- 
-$45
-
-
-226 
-jmp
- 
-Æ…øps
-
-
-227 .
-globl
- 
-ve˘‹46
-
-
-228 
-ve˘‹46
-:
-
-229 
-pushl
- 
-$0
-
-
-230 
-pushl
- 
-$46
-
-
-231 
-jmp
- 
-Æ…øps
-
-
-232 .
-globl
- 
-ve˘‹47
-
-
-233 
-ve˘‹47
-:
-
-234 
-pushl
- 
-$0
-
-
-235 
-pushl
- 
-$47
-
-
-236 
-jmp
- 
-Æ…øps
-
-
-237 .
-globl
- 
-ve˘‹48
-
-
-238 
-ve˘‹48
-:
-
-239 
-pushl
- 
-$0
-
-
-240 
-pushl
- 
-$48
-
-
-241 
-jmp
- 
-Æ…øps
-
-
-242 .
-globl
- 
-ve˘‹49
-
-
-243 
-ve˘‹49
-:
-
-244 
-pushl
- 
-$0
-
-
-245 
-pushl
- 
-$49
-
-
-246 
-jmp
- 
-Æ…øps
-
-
-247 .
-globl
- 
-ve˘‹50
-
-
-248 
-ve˘‹50
-:
-
-249 
-pushl
- 
-$0
-
-
-250 
-pushl
- 
-$50
-
-
-251 
-jmp
- 
-Æ…øps
-
-
-252 .
-globl
- 
-ve˘‹51
-
-
-253 
-ve˘‹51
-:
-
-254 
-pushl
- 
-$0
-
-
-255 
-pushl
- 
-$51
-
-
-256 
-jmp
- 
-Æ…øps
-
-
-257 .
-globl
- 
-ve˘‹52
-
-
-258 
-ve˘‹52
-:
-
-259 
-pushl
- 
-$0
-
-
-260 
-pushl
- 
-$52
-
-
-261 
-jmp
- 
-Æ…øps
-
-
-262 .
-globl
- 
-ve˘‹53
-
-
-263 
-ve˘‹53
-:
-
-264 
-pushl
- 
-$0
-
-
-265 
-pushl
- 
-$53
-
-
-266 
-jmp
- 
-Æ…øps
-
-
-267 .
-globl
- 
-ve˘‹54
-
-
-268 
-ve˘‹54
-:
-
-269 
-pushl
- 
-$0
-
-
-270 
-pushl
- 
-$54
-
-
-271 
-jmp
- 
-Æ…øps
-
-
-272 .
-globl
- 
-ve˘‹55
-
-
-273 
-ve˘‹55
-:
-
-274 
-pushl
- 
-$0
-
-
-275 
-pushl
- 
-$55
-
-
-276 
-jmp
- 
-Æ…øps
-
-
-277 .
-globl
- 
-ve˘‹56
-
-
-278 
-ve˘‹56
-:
-
-279 
-pushl
- 
-$0
-
-
-280 
-pushl
- 
-$56
-
-
-281 
-jmp
- 
-Æ…øps
-
-
-282 .
-globl
- 
-ve˘‹57
-
-
-283 
-ve˘‹57
-:
-
-284 
-pushl
- 
-$0
-
-
-285 
-pushl
- 
-$57
-
-
-286 
-jmp
- 
-Æ…øps
-
-
-287 .
-globl
- 
-ve˘‹58
-
-
-288 
-ve˘‹58
-:
-
-289 
-pushl
- 
-$0
-
-
-290 
-pushl
- 
-$58
-
-
-291 
-jmp
- 
-Æ…øps
-
-
-292 .
-globl
- 
-ve˘‹59
-
-
-293 
-ve˘‹59
-:
-
-294 
-pushl
- 
-$0
-
-
-295 
-pushl
- 
-$59
-
-
-296 
-jmp
- 
-Æ…øps
-
-
-297 .
-globl
- 
-ve˘‹60
-
-
-298 
-ve˘‹60
-:
-
-299 
-pushl
- 
-$0
-
-
-300 
-pushl
- 
-$60
-
-
-301 
-jmp
- 
-Æ…øps
-
-
-302 .
-globl
- 
-ve˘‹61
-
-
-303 
-ve˘‹61
-:
-
-304 
-pushl
- 
-$0
-
-
-305 
-pushl
- 
-$61
-
-
-306 
-jmp
- 
-Æ…øps
-
-
-307 .
-globl
- 
-ve˘‹62
-
-
-308 
-ve˘‹62
-:
-
-309 
-pushl
- 
-$0
-
-
-310 
-pushl
- 
-$62
-
-
-311 
-jmp
- 
-Æ…øps
-
-
-312 .
-globl
- 
-ve˘‹63
-
-
-313 
-ve˘‹63
-:
-
-314 
-pushl
- 
-$0
-
-
-315 
-pushl
- 
-$63
-
-
-316 
-jmp
- 
-Æ…øps
-
-
-317 .
-globl
- 
-ve˘‹64
-
-
-318 
-ve˘‹64
-:
-
-319 
-pushl
- 
-$0
-
-
-320 
-pushl
- 
-$64
-
-
-321 
-jmp
- 
-Æ…øps
-
-
-322 .
-globl
- 
-ve˘‹65
-
-
-323 
-ve˘‹65
-:
-
-324 
-pushl
- 
-$0
-
-
-325 
-pushl
- 
-$65
-
-
-326 
-jmp
- 
-Æ…øps
-
-
-327 .
-globl
- 
-ve˘‹66
-
-
-328 
-ve˘‹66
-:
-
-329 
-pushl
- 
-$0
-
-
-330 
-pushl
- 
-$66
-
-
-331 
-jmp
- 
-Æ…øps
-
-
-332 .
-globl
- 
-ve˘‹67
-
-
-333 
-ve˘‹67
-:
-
-334 
-pushl
- 
-$0
-
-
-335 
-pushl
- 
-$67
-
-
-336 
-jmp
- 
-Æ…øps
-
-
-337 .
-globl
- 
-ve˘‹68
-
-
-338 
-ve˘‹68
-:
-
-339 
-pushl
- 
-$0
-
-
-340 
-pushl
- 
-$68
-
-
-341 
-jmp
- 
-Æ…øps
-
-
-342 .
-globl
- 
-ve˘‹69
-
-
-343 
-ve˘‹69
-:
-
-344 
-pushl
- 
-$0
-
-
-345 
-pushl
- 
-$69
-
-
-346 
-jmp
- 
-Æ…øps
-
-
-347 .
-globl
- 
-ve˘‹70
-
-
-348 
-ve˘‹70
-:
-
-349 
-pushl
- 
-$0
-
-
-350 
-pushl
- 
-$70
-
-
-351 
-jmp
- 
-Æ…øps
-
-
-352 .
-globl
- 
-ve˘‹71
-
-
-353 
-ve˘‹71
-:
-
-354 
-pushl
- 
-$0
-
-
-355 
-pushl
- 
-$71
-
-
-356 
-jmp
- 
-Æ…øps
-
-
-357 .
-globl
- 
-ve˘‹72
-
-
-358 
-ve˘‹72
-:
-
-359 
-pushl
- 
-$0
-
-
-360 
-pushl
- 
-$72
-
-
-361 
-jmp
- 
-Æ…øps
-
-
-362 .
-globl
- 
-ve˘‹73
-
-
-363 
-ve˘‹73
-:
-
-364 
-pushl
- 
-$0
-
-
-365 
-pushl
- 
-$73
-
-
-366 
-jmp
- 
-Æ…øps
-
-
-367 .
-globl
- 
-ve˘‹74
-
-
-368 
-ve˘‹74
-:
-
-369 
-pushl
- 
-$0
-
-
-370 
-pushl
- 
-$74
-
-
-371 
-jmp
- 
-Æ…øps
-
-
-372 .
-globl
- 
-ve˘‹75
-
-
-373 
-ve˘‹75
-:
-
-374 
-pushl
- 
-$0
-
-
-375 
-pushl
- 
-$75
-
-
-376 
-jmp
- 
-Æ…øps
-
-
-377 .
-globl
- 
-ve˘‹76
-
-
-378 
-ve˘‹76
-:
-
-379 
-pushl
- 
-$0
-
-
-380 
-pushl
- 
-$76
-
-
-381 
-jmp
- 
-Æ…øps
-
-
-382 .
-globl
- 
-ve˘‹77
-
-
-383 
-ve˘‹77
-:
-
-384 
-pushl
- 
-$0
-
-
-385 
-pushl
- 
-$77
-
-
-386 
-jmp
- 
-Æ…øps
-
-
-387 .
-globl
- 
-ve˘‹78
-
-
-388 
-ve˘‹78
-:
-
-389 
-pushl
- 
-$0
-
-
-390 
-pushl
- 
-$78
-
-
-391 
-jmp
- 
-Æ…øps
-
-
-392 .
-globl
- 
-ve˘‹79
-
-
-393 
-ve˘‹79
-:
-
-394 
-pushl
- 
-$0
-
-
-395 
-pushl
- 
-$79
-
-
-396 
-jmp
- 
-Æ…øps
-
-
-397 .
-globl
- 
-ve˘‹80
-
-
-398 
-ve˘‹80
-:
-
-399 
-pushl
- 
-$0
-
-
-400 
-pushl
- 
-$80
-
-
-401 
-jmp
- 
-Æ…øps
-
-
-402 .
-globl
- 
-ve˘‹81
-
-
-403 
-ve˘‹81
-:
-
-404 
-pushl
- 
-$0
-
-
-405 
-pushl
- 
-$81
-
-
-406 
-jmp
- 
-Æ…øps
-
-
-407 .
-globl
- 
-ve˘‹82
-
-
-408 
-ve˘‹82
-:
-
-409 
-pushl
- 
-$0
-
-
-410 
-pushl
- 
-$82
-
-
-411 
-jmp
- 
-Æ…øps
-
-
-412 .
-globl
- 
-ve˘‹83
-
-
-413 
-ve˘‹83
-:
-
-414 
-pushl
- 
-$0
-
-
-415 
-pushl
- 
-$83
-
-
-416 
-jmp
- 
-Æ…øps
-
-
-417 .
-globl
- 
-ve˘‹84
-
-
-418 
-ve˘‹84
-:
-
-419 
-pushl
- 
-$0
-
-
-420 
-pushl
- 
-$84
-
-
-421 
-jmp
- 
-Æ…øps
-
-
-422 .
-globl
- 
-ve˘‹85
-
-
-423 
-ve˘‹85
-:
-
-424 
-pushl
- 
-$0
-
-
-425 
-pushl
- 
-$85
-
-
-426 
-jmp
- 
-Æ…øps
-
-
-427 .
-globl
- 
-ve˘‹86
-
-
-428 
-ve˘‹86
-:
-
-429 
-pushl
- 
-$0
-
-
-430 
-pushl
- 
-$86
-
-
-431 
-jmp
- 
-Æ…øps
-
-
-432 .
-globl
- 
-ve˘‹87
-
-
-433 
-ve˘‹87
-:
-
-434 
-pushl
- 
-$0
-
-
-435 
-pushl
- 
-$87
-
-
-436 
-jmp
- 
-Æ…øps
-
-
-437 .
-globl
- 
-ve˘‹88
-
-
-438 
-ve˘‹88
-:
-
-439 
-pushl
- 
-$0
-
-
-440 
-pushl
- 
-$88
-
-
-441 
-jmp
- 
-Æ…øps
-
-
-442 .
-globl
- 
-ve˘‹89
-
-
-443 
-ve˘‹89
-:
-
-444 
-pushl
- 
-$0
-
-
-445 
-pushl
- 
-$89
-
-
-446 
-jmp
- 
-Æ…øps
-
-
-447 .
-globl
- 
-ve˘‹90
-
-
-448 
-ve˘‹90
-:
-
-449 
-pushl
- 
-$0
-
-
-450 
-pushl
- 
-$90
-
-
-451 
-jmp
- 
-Æ…øps
-
-
-452 .
-globl
- 
-ve˘‹91
-
-
-453 
-ve˘‹91
-:
-
-454 
-pushl
- 
-$0
-
-
-455 
-pushl
- 
-$91
-
-
-456 
-jmp
- 
-Æ…øps
-
-
-457 .
-globl
- 
-ve˘‹92
-
-
-458 
-ve˘‹92
-:
-
-459 
-pushl
- 
-$0
-
-
-460 
-pushl
- 
-$92
-
-
-461 
-jmp
- 
-Æ…øps
-
-
-462 .
-globl
- 
-ve˘‹93
-
-
-463 
-ve˘‹93
-:
-
-464 
-pushl
- 
-$0
-
-
-465 
-pushl
- 
-$93
-
-
-466 
-jmp
- 
-Æ…øps
-
-
-467 .
-globl
- 
-ve˘‹94
-
-
-468 
-ve˘‹94
-:
-
-469 
-pushl
- 
-$0
-
-
-470 
-pushl
- 
-$94
-
-
-471 
-jmp
- 
-Æ…øps
-
-
-472 .
-globl
- 
-ve˘‹95
-
-
-473 
-ve˘‹95
-:
-
-474 
-pushl
- 
-$0
-
-
-475 
-pushl
- 
-$95
-
-
-476 
-jmp
- 
-Æ…øps
-
-
-477 .
-globl
- 
-ve˘‹96
-
-
-478 
-ve˘‹96
-:
-
-479 
-pushl
- 
-$0
-
-
-480 
-pushl
- 
-$96
-
-
-481 
-jmp
- 
-Æ…øps
-
-
-482 .
-globl
- 
-ve˘‹97
-
-
-483 
-ve˘‹97
-:
-
-484 
-pushl
- 
-$0
-
-
-485 
-pushl
- 
-$97
-
-
-486 
-jmp
- 
-Æ…øps
-
-
-487 .
-globl
- 
-ve˘‹98
-
-
-488 
-ve˘‹98
-:
-
-489 
-pushl
- 
-$0
-
-
-490 
-pushl
- 
-$98
-
-
-491 
-jmp
- 
-Æ…øps
-
-
-492 .
-globl
- 
-ve˘‹99
-
-
-493 
-ve˘‹99
-:
-
-494 
-pushl
- 
-$0
-
-
-495 
-pushl
- 
-$99
-
-
-496 
-jmp
- 
-Æ…øps
-
-
-497 .
-globl
- 
-ve˘‹100
-
-
-498 
-ve˘‹100
-:
-
-499 
-pushl
- 
-$0
-
-
-500 
-pushl
- 
-$100
-
-
-501 
-jmp
- 
-Æ…øps
-
-
-502 .
-globl
- 
-ve˘‹101
-
-
-503 
-ve˘‹101
-:
-
-504 
-pushl
- 
-$0
-
-
-505 
-pushl
- 
-$101
-
-
-506 
-jmp
- 
-Æ…øps
-
-
-507 .
-globl
- 
-ve˘‹102
-
-
-508 
-ve˘‹102
-:
-
-509 
-pushl
- 
-$0
-
-
-510 
-pushl
- 
-$102
-
-
-511 
-jmp
- 
-Æ…øps
-
-
-512 .
-globl
- 
-ve˘‹103
-
-
-513 
-ve˘‹103
-:
-
-514 
-pushl
- 
-$0
-
-
-515 
-pushl
- 
-$103
-
-
-516 
-jmp
- 
-Æ…øps
-
-
-517 .
-globl
- 
-ve˘‹104
-
-
-518 
-ve˘‹104
-:
-
-519 
-pushl
- 
-$0
-
-
-520 
-pushl
- 
-$104
-
-
-521 
-jmp
- 
-Æ…øps
-
-
-522 .
-globl
- 
-ve˘‹105
-
-
-523 
-ve˘‹105
-:
-
-524 
-pushl
- 
-$0
-
-
-525 
-pushl
- 
-$105
-
-
-526 
-jmp
- 
-Æ…øps
-
-
-527 .
-globl
- 
-ve˘‹106
-
-
-528 
-ve˘‹106
-:
-
-529 
-pushl
- 
-$0
-
-
-530 
-pushl
- 
-$106
-
-
-531 
-jmp
- 
-Æ…øps
-
-
-532 .
-globl
- 
-ve˘‹107
-
-
-533 
-ve˘‹107
-:
-
-534 
-pushl
- 
-$0
-
-
-535 
-pushl
- 
-$107
-
-
-536 
-jmp
- 
-Æ…øps
-
-
-537 .
-globl
- 
-ve˘‹108
-
-
-538 
-ve˘‹108
-:
-
-539 
-pushl
- 
-$0
-
-
-540 
-pushl
- 
-$108
-
-
-541 
-jmp
- 
-Æ…øps
-
-
-542 .
-globl
- 
-ve˘‹109
-
-
-543 
-ve˘‹109
-:
-
-544 
-pushl
- 
-$0
-
-
-545 
-pushl
- 
-$109
-
-
-546 
-jmp
- 
-Æ…øps
-
-
-547 .
-globl
- 
-ve˘‹110
-
-
-548 
-ve˘‹110
-:
-
-549 
-pushl
- 
-$0
-
-
-550 
-pushl
- 
-$110
-
-
-551 
-jmp
- 
-Æ…øps
-
-
-552 .
-globl
- 
-ve˘‹111
-
-
-553 
-ve˘‹111
-:
-
-554 
-pushl
- 
-$0
-
-
-555 
-pushl
- 
-$111
-
-
-556 
-jmp
- 
-Æ…øps
-
-
-557 .
-globl
- 
-ve˘‹112
-
-
-558 
-ve˘‹112
-:
-
-559 
-pushl
- 
-$0
-
-
-560 
-pushl
- 
-$112
-
-
-561 
-jmp
- 
-Æ…øps
-
-
-562 .
-globl
- 
-ve˘‹113
-
-
-563 
-ve˘‹113
-:
-
-564 
-pushl
- 
-$0
-
-
-565 
-pushl
- 
-$113
-
-
-566 
-jmp
- 
-Æ…øps
-
-
-567 .
-globl
- 
-ve˘‹114
-
-
-568 
-ve˘‹114
-:
-
-569 
-pushl
- 
-$0
-
-
-570 
-pushl
- 
-$114
-
-
-571 
-jmp
- 
-Æ…øps
-
-
-572 .
-globl
- 
-ve˘‹115
-
-
-573 
-ve˘‹115
-:
-
-574 
-pushl
- 
-$0
-
-
-575 
-pushl
- 
-$115
-
-
-576 
-jmp
- 
-Æ…øps
-
-
-577 .
-globl
- 
-ve˘‹116
-
-
-578 
-ve˘‹116
-:
-
-579 
-pushl
- 
-$0
-
-
-580 
-pushl
- 
-$116
-
-
-581 
-jmp
- 
-Æ…øps
-
-
-582 .
-globl
- 
-ve˘‹117
-
-
-583 
-ve˘‹117
-:
-
-584 
-pushl
- 
-$0
-
-
-585 
-pushl
- 
-$117
-
-
-586 
-jmp
- 
-Æ…øps
-
-
-587 .
-globl
- 
-ve˘‹118
-
-
-588 
-ve˘‹118
-:
-
-589 
-pushl
- 
-$0
-
-
-590 
-pushl
- 
-$118
-
-
-591 
-jmp
- 
-Æ…øps
-
-
-592 .
-globl
- 
-ve˘‹119
-
-
-593 
-ve˘‹119
-:
-
-594 
-pushl
- 
-$0
-
-
-595 
-pushl
- 
-$119
-
-
-596 
-jmp
- 
-Æ…øps
-
-
-597 .
-globl
- 
-ve˘‹120
-
-
-598 
-ve˘‹120
-:
-
-599 
-pushl
- 
-$0
-
-
-600 
-pushl
- 
-$120
-
-
-601 
-jmp
- 
-Æ…øps
-
-
-602 .
-globl
- 
-ve˘‹121
-
-
-603 
-ve˘‹121
-:
-
-604 
-pushl
- 
-$0
-
-
-605 
-pushl
- 
-$121
-
-
-606 
-jmp
- 
-Æ…øps
-
-
-607 .
-globl
- 
-ve˘‹122
-
-
-608 
-ve˘‹122
-:
-
-609 
-pushl
- 
-$0
-
-
-610 
-pushl
- 
-$122
-
-
-611 
-jmp
- 
-Æ…øps
-
-
-612 .
-globl
- 
-ve˘‹123
-
-
-613 
-ve˘‹123
-:
-
-614 
-pushl
- 
-$0
-
-
-615 
-pushl
- 
-$123
-
-
-616 
-jmp
- 
-Æ…øps
-
-
-617 .
-globl
- 
-ve˘‹124
-
-
-618 
-ve˘‹124
-:
-
-619 
-pushl
- 
-$0
-
-
-620 
-pushl
- 
-$124
-
-
-621 
-jmp
- 
-Æ…øps
-
-
-622 .
-globl
- 
-ve˘‹125
-
-
-623 
-ve˘‹125
-:
-
-624 
-pushl
- 
-$0
-
-
-625 
-pushl
- 
-$125
-
-
-626 
-jmp
- 
-Æ…øps
-
-
-627 .
-globl
- 
-ve˘‹126
-
-
-628 
-ve˘‹126
-:
-
-629 
-pushl
- 
-$0
-
-
-630 
-pushl
- 
-$126
-
-
-631 
-jmp
- 
-Æ…øps
-
-
-632 .
-globl
- 
-ve˘‹127
-
-
-633 
-ve˘‹127
-:
-
-634 
-pushl
- 
-$0
-
-
-635 
-pushl
- 
-$127
-
-
-636 
-jmp
- 
-Æ…øps
-
-
-637 .
-globl
- 
-ve˘‹128
-
-
-638 
-ve˘‹128
-:
-
-639 
-pushl
- 
-$0
-
-
-640 
-pushl
- 
-$128
-
-
-641 
-jmp
- 
-Æ…øps
-
-
-642 .
-globl
- 
-ve˘‹129
-
-
-643 
-ve˘‹129
-:
-
-644 
-pushl
- 
-$0
-
-
-645 
-pushl
- 
-$129
-
-
-646 
-jmp
- 
-Æ…øps
-
-
-647 .
-globl
- 
-ve˘‹130
-
-
-648 
-ve˘‹130
-:
-
-649 
-pushl
- 
-$0
-
-
-650 
-pushl
- 
-$130
-
-
-651 
-jmp
- 
-Æ…øps
-
-
-652 .
-globl
- 
-ve˘‹131
-
-
-653 
-ve˘‹131
-:
-
-654 
-pushl
- 
-$0
-
-
-655 
-pushl
- 
-$131
-
-
-656 
-jmp
- 
-Æ…øps
-
-
-657 .
-globl
- 
-ve˘‹132
-
-
-658 
-ve˘‹132
-:
-
-659 
-pushl
- 
-$0
-
-
-660 
-pushl
- 
-$132
-
-
-661 
-jmp
- 
-Æ…øps
-
-
-662 .
-globl
- 
-ve˘‹133
-
-
-663 
-ve˘‹133
-:
-
-664 
-pushl
- 
-$0
-
-
-665 
-pushl
- 
-$133
-
-
-666 
-jmp
- 
-Æ…øps
-
-
-667 .
-globl
- 
-ve˘‹134
-
-
-668 
-ve˘‹134
-:
-
-669 
-pushl
- 
-$0
-
-
-670 
-pushl
- 
-$134
-
-
-671 
-jmp
- 
-Æ…øps
-
-
-672 .
-globl
- 
-ve˘‹135
-
-
-673 
-ve˘‹135
-:
-
-674 
-pushl
- 
-$0
-
-
-675 
-pushl
- 
-$135
-
-
-676 
-jmp
- 
-Æ…øps
-
-
-677 .
-globl
- 
-ve˘‹136
-
-
-678 
-ve˘‹136
-:
-
-679 
-pushl
- 
-$0
-
-
-680 
-pushl
- 
-$136
-
-
-681 
-jmp
- 
-Æ…øps
-
-
-682 .
-globl
- 
-ve˘‹137
-
-
-683 
-ve˘‹137
-:
-
-684 
-pushl
- 
-$0
-
-
-685 
-pushl
- 
-$137
-
-
-686 
-jmp
- 
-Æ…øps
-
-
-687 .
-globl
- 
-ve˘‹138
-
-
-688 
-ve˘‹138
-:
-
-689 
-pushl
- 
-$0
-
-
-690 
-pushl
- 
-$138
-
-
-691 
-jmp
- 
-Æ…øps
-
-
-692 .
-globl
- 
-ve˘‹139
-
-
-693 
-ve˘‹139
-:
-
-694 
-pushl
- 
-$0
-
-
-695 
-pushl
- 
-$139
-
-
-696 
-jmp
- 
-Æ…øps
-
-
-697 .
-globl
- 
-ve˘‹140
-
-
-698 
-ve˘‹140
-:
-
-699 
-pushl
- 
-$0
-
-
-700 
-pushl
- 
-$140
-
-
-701 
-jmp
- 
-Æ…øps
-
-
-702 .
-globl
- 
-ve˘‹141
-
-
-703 
-ve˘‹141
-:
-
-704 
-pushl
- 
-$0
-
-
-705 
-pushl
- 
-$141
-
-
-706 
-jmp
- 
-Æ…øps
-
-
-707 .
-globl
- 
-ve˘‹142
-
-
-708 
-ve˘‹142
-:
-
-709 
-pushl
- 
-$0
-
-
-710 
-pushl
- 
-$142
-
-
-711 
-jmp
- 
-Æ…øps
-
-
-712 .
-globl
- 
-ve˘‹143
-
-
-713 
-ve˘‹143
-:
-
-714 
-pushl
- 
-$0
-
-
-715 
-pushl
- 
-$143
-
-
-716 
-jmp
- 
-Æ…øps
-
-
-717 .
-globl
- 
-ve˘‹144
-
-
-718 
-ve˘‹144
-:
-
-719 
-pushl
- 
-$0
-
-
-720 
-pushl
- 
-$144
-
-
-721 
-jmp
- 
-Æ…øps
-
-
-722 .
-globl
- 
-ve˘‹145
-
-
-723 
-ve˘‹145
-:
-
-724 
-pushl
- 
-$0
-
-
-725 
-pushl
- 
-$145
-
-
-726 
-jmp
- 
-Æ…øps
-
-
-727 .
-globl
- 
-ve˘‹146
-
-
-728 
-ve˘‹146
-:
-
-729 
-pushl
- 
-$0
-
-
-730 
-pushl
- 
-$146
-
-
-731 
-jmp
- 
-Æ…øps
-
-
-732 .
-globl
- 
-ve˘‹147
-
-
-733 
-ve˘‹147
-:
-
-734 
-pushl
- 
-$0
-
-
-735 
-pushl
- 
-$147
-
-
-736 
-jmp
- 
-Æ…øps
-
-
-737 .
-globl
- 
-ve˘‹148
-
-
-738 
-ve˘‹148
-:
-
-739 
-pushl
- 
-$0
-
-
-740 
-pushl
- 
-$148
-
-
-741 
-jmp
- 
-Æ…øps
-
-
-742 .
-globl
- 
-ve˘‹149
-
-
-743 
-ve˘‹149
-:
-
-744 
-pushl
- 
-$0
-
-
-745 
-pushl
- 
-$149
-
-
-746 
-jmp
- 
-Æ…øps
-
-
-747 .
-globl
- 
-ve˘‹150
-
-
-748 
-ve˘‹150
-:
-
-749 
-pushl
- 
-$0
-
-
-750 
-pushl
- 
-$150
-
-
-751 
-jmp
- 
-Æ…øps
-
-
-752 .
-globl
- 
-ve˘‹151
-
-
-753 
-ve˘‹151
-:
-
-754 
-pushl
- 
-$0
-
-
-755 
-pushl
- 
-$151
-
-
-756 
-jmp
- 
-Æ…øps
-
-
-757 .
-globl
- 
-ve˘‹152
-
-
-758 
-ve˘‹152
-:
-
-759 
-pushl
- 
-$0
-
-
-760 
-pushl
- 
-$152
-
-
-761 
-jmp
- 
-Æ…øps
-
-
-762 .
-globl
- 
-ve˘‹153
-
-
-763 
-ve˘‹153
-:
-
-764 
-pushl
- 
-$0
-
-
-765 
-pushl
- 
-$153
-
-
-766 
-jmp
- 
-Æ…øps
-
-
-767 .
-globl
- 
-ve˘‹154
-
-
-768 
-ve˘‹154
-:
-
-769 
-pushl
- 
-$0
-
-
-770 
-pushl
- 
-$154
-
-
-771 
-jmp
- 
-Æ…øps
-
-
-772 .
-globl
- 
-ve˘‹155
-
-
-773 
-ve˘‹155
-:
-
-774 
-pushl
- 
-$0
-
-
-775 
-pushl
- 
-$155
-
-
-776 
-jmp
- 
-Æ…øps
-
-
-777 .
-globl
- 
-ve˘‹156
-
-
-778 
-ve˘‹156
-:
-
-779 
-pushl
- 
-$0
-
-
-780 
-pushl
- 
-$156
-
-
-781 
-jmp
- 
-Æ…øps
-
-
-782 .
-globl
- 
-ve˘‹157
-
-
-783 
-ve˘‹157
-:
-
-784 
-pushl
- 
-$0
-
-
-785 
-pushl
- 
-$157
-
-
-786 
-jmp
- 
-Æ…øps
-
-
-787 .
-globl
- 
-ve˘‹158
-
-
-788 
-ve˘‹158
-:
-
-789 
-pushl
- 
-$0
-
-
-790 
-pushl
- 
-$158
-
-
-791 
-jmp
- 
-Æ…øps
-
-
-792 .
-globl
- 
-ve˘‹159
-
-
-793 
-ve˘‹159
-:
-
-794 
-pushl
- 
-$0
-
-
-795 
-pushl
- 
-$159
-
-
-796 
-jmp
- 
-Æ…øps
-
-
-797 .
-globl
- 
-ve˘‹160
-
-
-798 
-ve˘‹160
-:
-
-799 
-pushl
- 
-$0
-
-
-800 
-pushl
- 
-$160
-
-
-801 
-jmp
- 
-Æ…øps
-
-
-802 .
-globl
- 
-ve˘‹161
-
-
-803 
-ve˘‹161
-:
-
-804 
-pushl
- 
-$0
-
-
-805 
-pushl
- 
-$161
-
-
-806 
-jmp
- 
-Æ…øps
-
-
-807 .
-globl
- 
-ve˘‹162
-
-
-808 
-ve˘‹162
-:
-
-809 
-pushl
- 
-$0
-
-
-810 
-pushl
- 
-$162
-
-
-811 
-jmp
- 
-Æ…øps
-
-
-812 .
-globl
- 
-ve˘‹163
-
-
-813 
-ve˘‹163
-:
-
-814 
-pushl
- 
-$0
-
-
-815 
-pushl
- 
-$163
-
-
-816 
-jmp
- 
-Æ…øps
-
-
-817 .
-globl
- 
-ve˘‹164
-
-
-818 
-ve˘‹164
-:
-
-819 
-pushl
- 
-$0
-
-
-820 
-pushl
- 
-$164
-
-
-821 
-jmp
- 
-Æ…øps
-
-
-822 .
-globl
- 
-ve˘‹165
-
-
-823 
-ve˘‹165
-:
-
-824 
-pushl
- 
-$0
-
-
-825 
-pushl
- 
-$165
-
-
-826 
-jmp
- 
-Æ…øps
-
-
-827 .
-globl
- 
-ve˘‹166
-
-
-828 
-ve˘‹166
-:
-
-829 
-pushl
- 
-$0
-
-
-830 
-pushl
- 
-$166
-
-
-831 
-jmp
- 
-Æ…øps
-
-
-832 .
-globl
- 
-ve˘‹167
-
-
-833 
-ve˘‹167
-:
-
-834 
-pushl
- 
-$0
-
-
-835 
-pushl
- 
-$167
-
-
-836 
-jmp
- 
-Æ…øps
-
-
-837 .
-globl
- 
-ve˘‹168
-
-
-838 
-ve˘‹168
-:
-
-839 
-pushl
- 
-$0
-
-
-840 
-pushl
- 
-$168
-
-
-841 
-jmp
- 
-Æ…øps
-
-
-842 .
-globl
- 
-ve˘‹169
-
-
-843 
-ve˘‹169
-:
-
-844 
-pushl
- 
-$0
-
-
-845 
-pushl
- 
-$169
-
-
-846 
-jmp
- 
-Æ…øps
-
-
-847 .
-globl
- 
-ve˘‹170
-
-
-848 
-ve˘‹170
-:
-
-849 
-pushl
- 
-$0
-
-
-850 
-pushl
- 
-$170
-
-
-851 
-jmp
- 
-Æ…øps
-
-
-852 .
-globl
- 
-ve˘‹171
-
-
-853 
-ve˘‹171
-:
-
-854 
-pushl
- 
-$0
-
-
-855 
-pushl
- 
-$171
-
-
-856 
-jmp
- 
-Æ…øps
-
-
-857 .
-globl
- 
-ve˘‹172
-
-
-858 
-ve˘‹172
-:
-
-859 
-pushl
- 
-$0
-
-
-860 
-pushl
- 
-$172
-
-
-861 
-jmp
- 
-Æ…øps
-
-
-862 .
-globl
- 
-ve˘‹173
-
-
-863 
-ve˘‹173
-:
-
-864 
-pushl
- 
-$0
-
-
-865 
-pushl
- 
-$173
-
-
-866 
-jmp
- 
-Æ…øps
-
-
-867 .
-globl
- 
-ve˘‹174
-
-
-868 
-ve˘‹174
-:
-
-869 
-pushl
- 
-$0
-
-
-870 
-pushl
- 
-$174
-
-
-871 
-jmp
- 
-Æ…øps
-
-
-872 .
-globl
- 
-ve˘‹175
-
-
-873 
-ve˘‹175
-:
-
-874 
-pushl
- 
-$0
-
-
-875 
-pushl
- 
-$175
-
-
-876 
-jmp
- 
-Æ…øps
-
-
-877 .
-globl
- 
-ve˘‹176
-
-
-878 
-ve˘‹176
-:
-
-879 
-pushl
- 
-$0
-
-
-880 
-pushl
- 
-$176
-
-
-881 
-jmp
- 
-Æ…øps
-
-
-882 .
-globl
- 
-ve˘‹177
-
-
-883 
-ve˘‹177
-:
-
-884 
-pushl
- 
-$0
-
-
-885 
-pushl
- 
-$177
-
-
-886 
-jmp
- 
-Æ…øps
-
-
-887 .
-globl
- 
-ve˘‹178
-
-
-888 
-ve˘‹178
-:
-
-889 
-pushl
- 
-$0
-
-
-890 
-pushl
- 
-$178
-
-
-891 
-jmp
- 
-Æ…øps
-
-
-892 .
-globl
- 
-ve˘‹179
-
-
-893 
-ve˘‹179
-:
-
-894 
-pushl
- 
-$0
-
-
-895 
-pushl
- 
-$179
-
-
-896 
-jmp
- 
-Æ…øps
-
-
-897 .
-globl
- 
-ve˘‹180
-
-
-898 
-ve˘‹180
-:
-
-899 
-pushl
- 
-$0
-
-
-900 
-pushl
- 
-$180
-
-
-901 
-jmp
- 
-Æ…øps
-
-
-902 .
-globl
- 
-ve˘‹181
-
-
-903 
-ve˘‹181
-:
-
-904 
-pushl
- 
-$0
-
-
-905 
-pushl
- 
-$181
-
-
-906 
-jmp
- 
-Æ…øps
-
-
-907 .
-globl
- 
-ve˘‹182
-
-
-908 
-ve˘‹182
-:
-
-909 
-pushl
- 
-$0
-
-
-910 
-pushl
- 
-$182
-
-
-911 
-jmp
- 
-Æ…øps
-
-
-912 .
-globl
- 
-ve˘‹183
-
-
-913 
-ve˘‹183
-:
-
-914 
-pushl
- 
-$0
-
-
-915 
-pushl
- 
-$183
-
-
-916 
-jmp
- 
-Æ…øps
-
-
-917 .
-globl
- 
-ve˘‹184
-
-
-918 
-ve˘‹184
-:
-
-919 
-pushl
- 
-$0
-
-
-920 
-pushl
- 
-$184
-
-
-921 
-jmp
- 
-Æ…øps
-
-
-922 .
-globl
- 
-ve˘‹185
-
-
-923 
-ve˘‹185
-:
-
-924 
-pushl
- 
-$0
-
-
-925 
-pushl
- 
-$185
-
-
-926 
-jmp
- 
-Æ…øps
-
-
-927 .
-globl
- 
-ve˘‹186
-
-
-928 
-ve˘‹186
-:
-
-929 
-pushl
- 
-$0
-
-
-930 
-pushl
- 
-$186
-
-
-931 
-jmp
- 
-Æ…øps
-
-
-932 .
-globl
- 
-ve˘‹187
-
-
-933 
-ve˘‹187
-:
-
-934 
-pushl
- 
-$0
-
-
-935 
-pushl
- 
-$187
-
-
-936 
-jmp
- 
-Æ…øps
-
-
-937 .
-globl
- 
-ve˘‹188
-
-
-938 
-ve˘‹188
-:
-
-939 
-pushl
- 
-$0
-
-
-940 
-pushl
- 
-$188
-
-
-941 
-jmp
- 
-Æ…øps
-
-
-942 .
-globl
- 
-ve˘‹189
-
-
-943 
-ve˘‹189
-:
-
-944 
-pushl
- 
-$0
-
-
-945 
-pushl
- 
-$189
-
-
-946 
-jmp
- 
-Æ…øps
-
-
-947 .
-globl
- 
-ve˘‹190
-
-
-948 
-ve˘‹190
-:
-
-949 
-pushl
- 
-$0
-
-
-950 
-pushl
- 
-$190
-
-
-951 
-jmp
- 
-Æ…øps
-
-
-952 .
-globl
- 
-ve˘‹191
-
-
-953 
-ve˘‹191
-:
-
-954 
-pushl
- 
-$0
-
-
-955 
-pushl
- 
-$191
-
-
-956 
-jmp
- 
-Æ…øps
-
-
-957 .
-globl
- 
-ve˘‹192
-
-
-958 
-ve˘‹192
-:
-
-959 
-pushl
- 
-$0
-
-
-960 
-pushl
- 
-$192
-
-
-961 
-jmp
- 
-Æ…øps
-
-
-962 .
-globl
- 
-ve˘‹193
-
-
-963 
-ve˘‹193
-:
-
-964 
-pushl
- 
-$0
-
-
-965 
-pushl
- 
-$193
-
-
-966 
-jmp
- 
-Æ…øps
-
-
-967 .
-globl
- 
-ve˘‹194
-
-
-968 
-ve˘‹194
-:
-
-969 
-pushl
- 
-$0
-
-
-970 
-pushl
- 
-$194
-
-
-971 
-jmp
- 
-Æ…øps
-
-
-972 .
-globl
- 
-ve˘‹195
-
-
-973 
-ve˘‹195
-:
-
-974 
-pushl
- 
-$0
-
-
-975 
-pushl
- 
-$195
-
-
-976 
-jmp
- 
-Æ…øps
-
-
-977 .
-globl
- 
-ve˘‹196
-
-
-978 
-ve˘‹196
-:
-
-979 
-pushl
- 
-$0
-
-
-980 
-pushl
- 
-$196
-
-
-981 
-jmp
- 
-Æ…øps
-
-
-982 .
-globl
- 
-ve˘‹197
-
-
-983 
-ve˘‹197
-:
-
-984 
-pushl
- 
-$0
-
-
-985 
-pushl
- 
-$197
-
-
-986 
-jmp
- 
-Æ…øps
-
-
-987 .
-globl
- 
-ve˘‹198
-
-
-988 
-ve˘‹198
-:
-
-989 
-pushl
- 
-$0
-
-
-990 
-pushl
- 
-$198
-
-
-991 
-jmp
- 
-Æ…øps
-
-
-992 .
-globl
- 
-ve˘‹199
-
-
-993 
-ve˘‹199
-:
-
-994 
-pushl
- 
-$0
-
-
-995 
-pushl
- 
-$199
-
-
-996 
-jmp
- 
-Æ…øps
-
-
-997 .
-globl
- 
-ve˘‹200
-
-
-998 
-ve˘‹200
-:
-
-999 
-pushl
- 
-$0
-
-
-1000 
-pushl
- 
-$200
-
-
-1001 
-jmp
- 
-Æ…øps
-
-
-1002 .
-globl
- 
-ve˘‹201
-
-
-1003 
-ve˘‹201
-:
-
-1004 
-pushl
- 
-$0
-
-
-1005 
-pushl
- 
-$201
-
-
-1006 
-jmp
- 
-Æ…øps
-
-
-1007 .
-globl
- 
-ve˘‹202
-
-
-1008 
-ve˘‹202
-:
-
-1009 
-pushl
- 
-$0
-
-
-1010 
-pushl
- 
-$202
-
-
-1011 
-jmp
- 
-Æ…øps
-
-
-1012 .
-globl
- 
-ve˘‹203
-
-
-1013 
-ve˘‹203
-:
-
-1014 
-pushl
- 
-$0
-
-
-1015 
-pushl
- 
-$203
-
-
-1016 
-jmp
- 
-Æ…øps
-
-
-1017 .
-globl
- 
-ve˘‹204
-
-
-1018 
-ve˘‹204
-:
-
-1019 
-pushl
- 
-$0
-
-
-1020 
-pushl
- 
-$204
-
-
-1021 
-jmp
- 
-Æ…øps
-
-
-1022 .
-globl
- 
-ve˘‹205
-
-
-1023 
-ve˘‹205
-:
-
-1024 
-pushl
- 
-$0
-
-
-1025 
-pushl
- 
-$205
-
-
-1026 
-jmp
- 
-Æ…øps
-
-
-1027 .
-globl
- 
-ve˘‹206
-
-
-1028 
-ve˘‹206
-:
-
-1029 
-pushl
- 
-$0
-
-
-1030 
-pushl
- 
-$206
-
-
-1031 
-jmp
- 
-Æ…øps
-
-
-1032 .
-globl
- 
-ve˘‹207
-
-
-1033 
-ve˘‹207
-:
-
-1034 
-pushl
- 
-$0
-
-
-1035 
-pushl
- 
-$207
-
-
-1036 
-jmp
- 
-Æ…øps
-
-
-1037 .
-globl
- 
-ve˘‹208
-
-
-1038 
-ve˘‹208
-:
-
-1039 
-pushl
- 
-$0
-
-
-1040 
-pushl
- 
-$208
-
-
-1041 
-jmp
- 
-Æ…øps
-
-
-1042 .
-globl
- 
-ve˘‹209
-
-
-1043 
-ve˘‹209
-:
-
-1044 
-pushl
- 
-$0
-
-
-1045 
-pushl
- 
-$209
-
-
-1046 
-jmp
- 
-Æ…øps
-
-
-1047 .
-globl
- 
-ve˘‹210
-
-
-1048 
-ve˘‹210
-:
-
-1049 
-pushl
- 
-$0
-
-
-1050 
-pushl
- 
-$210
-
-
-1051 
-jmp
- 
-Æ…øps
-
-
-1052 .
-globl
- 
-ve˘‹211
-
-
-1053 
-ve˘‹211
-:
-
-1054 
-pushl
- 
-$0
-
-
-1055 
-pushl
- 
-$211
-
-
-1056 
-jmp
- 
-Æ…øps
-
-
-1057 .
-globl
- 
-ve˘‹212
-
-
-1058 
-ve˘‹212
-:
-
-1059 
-pushl
- 
-$0
-
-
-1060 
-pushl
- 
-$212
-
-
-1061 
-jmp
- 
-Æ…øps
-
-
-1062 .
-globl
- 
-ve˘‹213
-
-
-1063 
-ve˘‹213
-:
-
-1064 
-pushl
- 
-$0
-
-
-1065 
-pushl
- 
-$213
-
-
-1066 
-jmp
- 
-Æ…øps
-
-
-1067 .
-globl
- 
-ve˘‹214
-
-
-1068 
-ve˘‹214
-:
-
-1069 
-pushl
- 
-$0
-
-
-1070 
-pushl
- 
-$214
-
-
-1071 
-jmp
- 
-Æ…øps
-
-
-1072 .
-globl
- 
-ve˘‹215
-
-
-1073 
-ve˘‹215
-:
-
-1074 
-pushl
- 
-$0
-
-
-1075 
-pushl
- 
-$215
-
-
-1076 
-jmp
- 
-Æ…øps
-
-
-1077 .
-globl
- 
-ve˘‹216
-
-
-1078 
-ve˘‹216
-:
-
-1079 
-pushl
- 
-$0
-
-
-1080 
-pushl
- 
-$216
-
-
-1081 
-jmp
- 
-Æ…øps
-
-
-1082 .
-globl
- 
-ve˘‹217
-
-
-1083 
-ve˘‹217
-:
-
-1084 
-pushl
- 
-$0
-
-
-1085 
-pushl
- 
-$217
-
-
-1086 
-jmp
- 
-Æ…øps
-
-
-1087 .
-globl
- 
-ve˘‹218
-
-
-1088 
-ve˘‹218
-:
-
-1089 
-pushl
- 
-$0
-
-
-1090 
-pushl
- 
-$218
-
-
-1091 
-jmp
- 
-Æ…øps
-
-
-1092 .
-globl
- 
-ve˘‹219
-
-
-1093 
-ve˘‹219
-:
-
-1094 
-pushl
- 
-$0
-
-
-1095 
-pushl
- 
-$219
-
-
-1096 
-jmp
- 
-Æ…øps
-
-
-1097 .
-globl
- 
-ve˘‹220
-
-
-1098 
-ve˘‹220
-:
-
-1099 
-pushl
- 
-$0
-
-
-1100 
-pushl
- 
-$220
-
-
-1101 
-jmp
- 
-Æ…øps
-
-
-1102 .
-globl
- 
-ve˘‹221
-
-
-1103 
-ve˘‹221
-:
-
-1104 
-pushl
- 
-$0
-
-
-1105 
-pushl
- 
-$221
-
-
-1106 
-jmp
- 
-Æ…øps
-
-
-1107 .
-globl
- 
-ve˘‹222
-
-
-1108 
-ve˘‹222
-:
-
-1109 
-pushl
- 
-$0
-
-
-1110 
-pushl
- 
-$222
-
-
-1111 
-jmp
- 
-Æ…øps
-
-
-1112 .
-globl
- 
-ve˘‹223
-
-
-1113 
-ve˘‹223
-:
-
-1114 
-pushl
- 
-$0
-
-
-1115 
-pushl
- 
-$223
-
-
-1116 
-jmp
- 
-Æ…øps
-
-
-1117 .
-globl
- 
-ve˘‹224
-
-
-1118 
-ve˘‹224
-:
-
-1119 
-pushl
- 
-$0
-
-
-1120 
-pushl
- 
-$224
-
-
-1121 
-jmp
- 
-Æ…øps
-
-
-1122 .
-globl
- 
-ve˘‹225
-
-
-1123 
-ve˘‹225
-:
-
-1124 
-pushl
- 
-$0
-
-
-1125 
-pushl
- 
-$225
-
-
-1126 
-jmp
- 
-Æ…øps
-
-
-1127 .
-globl
- 
-ve˘‹226
-
-
-1128 
-ve˘‹226
-:
-
-1129 
-pushl
- 
-$0
-
-
-1130 
-pushl
- 
-$226
-
-
-1131 
-jmp
- 
-Æ…øps
-
-
-1132 .
-globl
- 
-ve˘‹227
-
-
-1133 
-ve˘‹227
-:
-
-1134 
-pushl
- 
-$0
-
-
-1135 
-pushl
- 
-$227
-
-
-1136 
-jmp
- 
-Æ…øps
-
-
-1137 .
-globl
- 
-ve˘‹228
-
-
-1138 
-ve˘‹228
-:
-
-1139 
-pushl
- 
-$0
-
-
-1140 
-pushl
- 
-$228
-
-
-1141 
-jmp
- 
-Æ…øps
-
-
-1142 .
-globl
- 
-ve˘‹229
-
-
-1143 
-ve˘‹229
-:
-
-1144 
-pushl
- 
-$0
-
-
-1145 
-pushl
- 
-$229
-
-
-1146 
-jmp
- 
-Æ…øps
-
-
-1147 .
-globl
- 
-ve˘‹230
-
-
-1148 
-ve˘‹230
-:
-
-1149 
-pushl
- 
-$0
-
-
-1150 
-pushl
- 
-$230
-
-
-1151 
-jmp
- 
-Æ…øps
-
-
-1152 .
-globl
- 
-ve˘‹231
-
-
-1153 
-ve˘‹231
-:
-
-1154 
-pushl
- 
-$0
-
-
-1155 
-pushl
- 
-$231
-
-
-1156 
-jmp
- 
-Æ…øps
-
-
-1157 .
-globl
- 
-ve˘‹232
-
-
-1158 
-ve˘‹232
-:
-
-1159 
-pushl
- 
-$0
-
-
-1160 
-pushl
- 
-$232
-
-
-1161 
-jmp
- 
-Æ…øps
-
-
-1162 .
-globl
- 
-ve˘‹233
-
-
-1163 
-ve˘‹233
-:
-
-1164 
-pushl
- 
-$0
-
-
-1165 
-pushl
- 
-$233
-
-
-1166 
-jmp
- 
-Æ…øps
-
-
-1167 .
-globl
- 
-ve˘‹234
-
-
-1168 
-ve˘‹234
-:
-
-1169 
-pushl
- 
-$0
-
-
-1170 
-pushl
- 
-$234
-
-
-1171 
-jmp
- 
-Æ…øps
-
-
-1172 .
-globl
- 
-ve˘‹235
-
-
-1173 
-ve˘‹235
-:
-
-1174 
-pushl
- 
-$0
-
-
-1175 
-pushl
- 
-$235
-
-
-1176 
-jmp
- 
-Æ…øps
-
-
-1177 .
-globl
- 
-ve˘‹236
-
-
-1178 
-ve˘‹236
-:
-
-1179 
-pushl
- 
-$0
-
-
-1180 
-pushl
- 
-$236
-
-
-1181 
-jmp
- 
-Æ…øps
-
-
-1182 .
-globl
- 
-ve˘‹237
-
-
-1183 
-ve˘‹237
-:
-
-1184 
-pushl
- 
-$0
-
-
-1185 
-pushl
- 
-$237
-
-
-1186 
-jmp
- 
-Æ…øps
-
-
-1187 .
-globl
- 
-ve˘‹238
-
-
-1188 
-ve˘‹238
-:
-
-1189 
-pushl
- 
-$0
-
-
-1190 
-pushl
- 
-$238
-
-
-1191 
-jmp
- 
-Æ…øps
-
-
-1192 .
-globl
- 
-ve˘‹239
-
-
-1193 
-ve˘‹239
-:
-
-1194 
-pushl
- 
-$0
-
-
-1195 
-pushl
- 
-$239
-
-
-1196 
-jmp
- 
-Æ…øps
-
-
-1197 .
-globl
- 
-ve˘‹240
-
-
-1198 
-ve˘‹240
-:
-
-1199 
-pushl
- 
-$0
-
-
-1200 
-pushl
- 
-$240
-
-
-1201 
-jmp
- 
-Æ…øps
-
-
-1202 .
-globl
- 
-ve˘‹241
-
-
-1203 
-ve˘‹241
-:
-
-1204 
-pushl
- 
-$0
-
-
-1205 
-pushl
- 
-$241
-
-
-1206 
-jmp
- 
-Æ…øps
-
-
-1207 .
-globl
- 
-ve˘‹242
-
-
-1208 
-ve˘‹242
-:
-
-1209 
-pushl
- 
-$0
-
-
-1210 
-pushl
- 
-$242
-
-
-1211 
-jmp
- 
-Æ…øps
-
-
-1212 .
-globl
- 
-ve˘‹243
-
-
-1213 
-ve˘‹243
-:
-
-1214 
-pushl
- 
-$0
-
-
-1215 
-pushl
- 
-$243
-
-
-1216 
-jmp
- 
-Æ…øps
-
-
-1217 .
-globl
- 
-ve˘‹244
-
-
-1218 
-ve˘‹244
-:
-
-1219 
-pushl
- 
-$0
-
-
-1220 
-pushl
- 
-$244
-
-
-1221 
-jmp
- 
-Æ…øps
-
-
-1222 .
-globl
- 
-ve˘‹245
-
-
-1223 
-ve˘‹245
-:
-
-1224 
-pushl
- 
-$0
-
-
-1225 
-pushl
- 
-$245
-
-
-1226 
-jmp
- 
-Æ…øps
-
-
-1227 .
-globl
- 
-ve˘‹246
-
-
-1228 
-ve˘‹246
-:
-
-1229 
-pushl
- 
-$0
-
-
-1230 
-pushl
- 
-$246
-
-
-1231 
-jmp
- 
-Æ…øps
-
-
-1232 .
-globl
- 
-ve˘‹247
-
-
-1233 
-ve˘‹247
-:
-
-1234 
-pushl
- 
-$0
-
-
-1235 
-pushl
- 
-$247
-
-
-1236 
-jmp
- 
-Æ…øps
-
-
-1237 .
-globl
- 
-ve˘‹248
-
-
-1238 
-ve˘‹248
-:
-
-1239 
-pushl
- 
-$0
-
-
-1240 
-pushl
- 
-$248
-
-
-1241 
-jmp
- 
-Æ…øps
-
-
-1242 .
-globl
- 
-ve˘‹249
-
-
-1243 
-ve˘‹249
-:
-
-1244 
-pushl
- 
-$0
-
-
-1245 
-pushl
- 
-$249
-
-
-1246 
-jmp
- 
-Æ…øps
-
-
-1247 .
-globl
- 
-ve˘‹250
-
-
-1248 
-ve˘‹250
-:
-
-1249 
-pushl
- 
-$0
-
-
-1250 
-pushl
- 
-$250
-
-
-1251 
-jmp
- 
-Æ…øps
-
-
-1252 .
-globl
- 
-ve˘‹251
-
-
-1253 
-ve˘‹251
-:
-
-1254 
-pushl
- 
-$0
-
-
-1255 
-pushl
- 
-$251
-
-
-1256 
-jmp
- 
-Æ…øps
-
-
-1257 .
-globl
- 
-ve˘‹252
-
-
-1258 
-ve˘‹252
-:
-
-1259 
-pushl
- 
-$0
-
-
-1260 
-pushl
- 
-$252
-
-
-1261 
-jmp
- 
-Æ…øps
-
-
-1262 .
-globl
- 
-ve˘‹253
-
-
-1263 
-ve˘‹253
-:
-
-1264 
-pushl
- 
-$0
-
-
-1265 
-pushl
- 
-$253
-
-
-1266 
-jmp
- 
-Æ…øps
-
-
-1267 .
-globl
- 
-ve˘‹254
-
-
-1268 
-ve˘‹254
-:
-
-1269 
-pushl
- 
-$0
-
-
-1270 
-pushl
- 
-$254
-
-
-1271 
-jmp
- 
-Æ…øps
-
-
-1272 .
-globl
- 
-ve˘‹255
-
-
-1273 
-ve˘‹255
-:
-
-1274 
-pushl
- 
-$0
-
-
-1275 
-pushl
- 
-$255
-
-
-1276 
-jmp
- 
-Æ…øps
-
-
-1278 #ve˘‹ 
-èbÀ
-
-
-1279 .
-d©a
-
-
-1280 .
-globl
- 
-ve˘‹s
-
-
-1281 
-ve˘‹s
-:
-
-1282 .
-ve˘‹0
-
-
-1283 .
-ve˘‹1
-
-
-1284 .
-ve˘‹2
-
-
-1285 .
-ve˘‹3
-
-
-1286 .
-ve˘‹4
-
-
-1287 .
-ve˘‹5
-
-
-1288 .
-ve˘‹6
-
-
-1289 .
-ve˘‹7
-
-
-1290 .
-ve˘‹8
-
-
-1291 .
-ve˘‹9
-
-
-1292 .
-ve˘‹10
-
-
-1293 .
-ve˘‹11
-
-
-1294 .
-ve˘‹12
-
-
-1295 .
-ve˘‹13
-
-
-1296 .
-ve˘‹14
-
-
-1297 .
-ve˘‹15
-
-
-1298 .
-ve˘‹16
-
-
-1299 .
-ve˘‹17
-
-
-1300 .
-ve˘‹18
-
-
-1301 .
-ve˘‹19
-
-
-1302 .
-ve˘‹20
-
-
-1303 .
-ve˘‹21
-
-
-1304 .
-ve˘‹22
-
-
-1305 .
-ve˘‹23
-
-
-1306 .
-ve˘‹24
-
-
-1307 .
-ve˘‹25
-
-
-1308 .
-ve˘‹26
-
-
-1309 .
-ve˘‹27
-
-
-1310 .
-ve˘‹28
-
-
-1311 .
-ve˘‹29
-
-
-1312 .
-ve˘‹30
-
-
-1313 .
-ve˘‹31
-
-
-1314 .
-ve˘‹32
-
-
-1315 .
-ve˘‹33
-
-
-1316 .
-ve˘‹34
-
-
-1317 .
-ve˘‹35
-
-
-1318 .
-ve˘‹36
-
-
-1319 .
-ve˘‹37
-
-
-1320 .
-ve˘‹38
-
-
-1321 .
-ve˘‹39
-
-
-1322 .
-ve˘‹40
-
-
-1323 .
-ve˘‹41
-
-
-1324 .
-ve˘‹42
-
-
-1325 .
-ve˘‹43
-
-
-1326 .
-ve˘‹44
-
-
-1327 .
-ve˘‹45
-
-
-1328 .
-ve˘‹46
-
-
-1329 .
-ve˘‹47
-
-
-1330 .
-ve˘‹48
-
-
-1331 .
-ve˘‹49
-
-
-1332 .
-ve˘‹50
-
-
-1333 .
-ve˘‹51
-
-
-1334 .
-ve˘‹52
-
-
-1335 .
-ve˘‹53
-
-
-1336 .
-ve˘‹54
-
-
-1337 .
-ve˘‹55
-
-
-1338 .
-ve˘‹56
-
-
-1339 .
-ve˘‹57
-
-
-1340 .
-ve˘‹58
-
-
-1341 .
-ve˘‹59
-
-
-1342 .
-ve˘‹60
-
-
-1343 .
-ve˘‹61
-
-
-1344 .
-ve˘‹62
-
-
-1345 .
-ve˘‹63
-
-
-1346 .
-ve˘‹64
-
-
-1347 .
-ve˘‹65
-
-
-1348 .
-ve˘‹66
-
-
-1349 .
-ve˘‹67
-
-
-1350 .
-ve˘‹68
-
-
-1351 .
-ve˘‹69
-
-
-1352 .
-ve˘‹70
-
-
-1353 .
-ve˘‹71
-
-
-1354 .
-ve˘‹72
-
-
-1355 .
-ve˘‹73
-
-
-1356 .
-ve˘‹74
-
-
-1357 .
-ve˘‹75
-
-
-1358 .
-ve˘‹76
-
-
-1359 .
-ve˘‹77
-
-
-1360 .
-ve˘‹78
-
-
-1361 .
-ve˘‹79
-
-
-1362 .
-ve˘‹80
-
-
-1363 .
-ve˘‹81
-
-
-1364 .
-ve˘‹82
-
-
-1365 .
-ve˘‹83
-
-
-1366 .
-ve˘‹84
-
-
-1367 .
-ve˘‹85
-
-
-1368 .
-ve˘‹86
-
-
-1369 .
-ve˘‹87
-
-
-1370 .
-ve˘‹88
-
-
-1371 .
-ve˘‹89
-
-
-1372 .
-ve˘‹90
-
-
-1373 .
-ve˘‹91
-
-
-1374 .
-ve˘‹92
-
-
-1375 .
-ve˘‹93
-
-
-1376 .
-ve˘‹94
-
-
-1377 .
-ve˘‹95
-
-
-1378 .
-ve˘‹96
-
-
-1379 .
-ve˘‹97
-
-
-1380 .
-ve˘‹98
-
-
-1381 .
-ve˘‹99
-
-
-1382 .
-ve˘‹100
-
-
-1383 .
-ve˘‹101
-
-
-1384 .
-ve˘‹102
-
-
-1385 .
-ve˘‹103
-
-
-1386 .
-ve˘‹104
-
-
-1387 .
-ve˘‹105
-
-
-1388 .
-ve˘‹106
-
-
-1389 .
-ve˘‹107
-
-
-1390 .
-ve˘‹108
-
-
-1391 .
-ve˘‹109
-
-
-1392 .
-ve˘‹110
-
-
-1393 .
-ve˘‹111
-
-
-1394 .
-ve˘‹112
-
-
-1395 .
-ve˘‹113
-
-
-1396 .
-ve˘‹114
-
-
-1397 .
-ve˘‹115
-
-
-1398 .
-ve˘‹116
-
-
-1399 .
-ve˘‹117
-
-
-1400 .
-ve˘‹118
-
-
-1401 .
-ve˘‹119
-
-
-1402 .
-ve˘‹120
-
-
-1403 .
-ve˘‹121
-
-
-1404 .
-ve˘‹122
-
-
-1405 .
-ve˘‹123
-
-
-1406 .
-ve˘‹124
-
-
-1407 .
-ve˘‹125
-
-
-1408 .
-ve˘‹126
-
-
-1409 .
-ve˘‹127
-
-
-1410 .
-ve˘‹128
-
-
-1411 .
-ve˘‹129
-
-
-1412 .
-ve˘‹130
-
-
-1413 .
-ve˘‹131
-
-
-1414 .
-ve˘‹132
-
-
-1415 .
-ve˘‹133
-
-
-1416 .
-ve˘‹134
-
-
-1417 .
-ve˘‹135
-
-
-1418 .
-ve˘‹136
-
-
-1419 .
-ve˘‹137
-
-
-1420 .
-ve˘‹138
-
-
-1421 .
-ve˘‹139
-
-
-1422 .
-ve˘‹140
-
-
-1423 .
-ve˘‹141
-
-
-1424 .
-ve˘‹142
-
-
-1425 .
-ve˘‹143
-
-
-1426 .
-ve˘‹144
-
-
-1427 .
-ve˘‹145
-
-
-1428 .
-ve˘‹146
-
-
-1429 .
-ve˘‹147
-
-
-1430 .
-ve˘‹148
-
-
-1431 .
-ve˘‹149
-
-
-1432 .
-ve˘‹150
-
-
-1433 .
-ve˘‹151
-
-
-1434 .
-ve˘‹152
-
-
-1435 .
-ve˘‹153
-
-
-1436 .
-ve˘‹154
-
-
-1437 .
-ve˘‹155
-
-
-1438 .
-ve˘‹156
-
-
-1439 .
-ve˘‹157
-
-
-1440 .
-ve˘‹158
-
-
-1441 .
-ve˘‹159
-
-
-1442 .
-ve˘‹160
-
-
-1443 .
-ve˘‹161
-
-
-1444 .
-ve˘‹162
-
-
-1445 .
-ve˘‹163
-
-
-1446 .
-ve˘‹164
-
-
-1447 .
-ve˘‹165
-
-
-1448 .
-ve˘‹166
-
-
-1449 .
-ve˘‹167
-
-
-1450 .
-ve˘‹168
-
-
-1451 .
-ve˘‹169
-
-
-1452 .
-ve˘‹170
-
-
-1453 .
-ve˘‹171
-
-
-1454 .
-ve˘‹172
-
-
-1455 .
-ve˘‹173
-
-
-1456 .
-ve˘‹174
-
-
-1457 .
-ve˘‹175
-
-
-1458 .
-ve˘‹176
-
-
-1459 .
-ve˘‹177
-
-
-1460 .
-ve˘‹178
-
-
-1461 .
-ve˘‹179
-
-
-1462 .
-ve˘‹180
-
-
-1463 .
-ve˘‹181
-
-
-1464 .
-ve˘‹182
-
-
-1465 .
-ve˘‹183
-
-
-1466 .
-ve˘‹184
-
-
-1467 .
-ve˘‹185
-
-
-1468 .
-ve˘‹186
-
-
-1469 .
-ve˘‹187
-
-
-1470 .
-ve˘‹188
-
-
-1471 .
-ve˘‹189
-
-
-1472 .
-ve˘‹190
-
-
-1473 .
-ve˘‹191
-
-
-1474 .
-ve˘‹192
-
-
-1475 .
-ve˘‹193
-
-
-1476 .
-ve˘‹194
-
-
-1477 .
-ve˘‹195
-
-
-1478 .
-ve˘‹196
-
-
-1479 .
-ve˘‹197
-
-
-1480 .
-ve˘‹198
-
-
-1481 .
-ve˘‹199
-
-
-1482 .
-ve˘‹200
-
-
-1483 .
-ve˘‹201
-
-
-1484 .
-ve˘‹202
-
-
-1485 .
-ve˘‹203
-
-
-1486 .
-ve˘‹204
-
-
-1487 .
-ve˘‹205
-
-
-1488 .
-ve˘‹206
-
-
-1489 .
-ve˘‹207
-
-
-1490 .
-ve˘‹208
-
-
-1491 .
-ve˘‹209
-
-
-1492 .
-ve˘‹210
-
-
-1493 .
-ve˘‹211
-
-
-1494 .
-ve˘‹212
-
-
-1495 .
-ve˘‹213
-
-
-1496 .
-ve˘‹214
-
-
-1497 .
-ve˘‹215
-
-
-1498 .
-ve˘‹216
-
-
-1499 .
-ve˘‹217
-
-
-1500 .
-ve˘‹218
-
-
-1501 .
-ve˘‹219
-
-
-1502 .
-ve˘‹220
-
-
-1503 .
-ve˘‹221
-
-
-1504 .
-ve˘‹222
-
-
-1505 .
-ve˘‹223
-
-
-1506 .
-ve˘‹224
-
-
-1507 .
-ve˘‹225
-
-
-1508 .
-ve˘‹226
-
-
-1509 .
-ve˘‹227
-
-
-1510 .
-ve˘‹228
-
-
-1511 .
-ve˘‹229
-
-
-1512 .
-ve˘‹230
-
-
-1513 .
-ve˘‹231
-
-
-1514 .
-ve˘‹232
-
-
-1515 .
-ve˘‹233
-
-
-1516 .
-ve˘‹234
-
-
-1517 .
-ve˘‹235
-
-
-1518 .
-ve˘‹236
-
-
-1519 .
-ve˘‹237
-
-
-1520 .
-ve˘‹238
-
-
-1521 .
-ve˘‹239
-
-
-1522 .
-ve˘‹240
-
-
-1523 .
-ve˘‹241
-
-
-1524 .
-ve˘‹242
-
-
-1525 .
-ve˘‹243
-
-
-1526 .
-ve˘‹244
-
-
-1527 .
-ve˘‹245
-
-
-1528 .
-ve˘‹246
-
-
-1529 .
-ve˘‹247
-
-
-1530 .
-ve˘‹248
-
-
-1531 .
-ve˘‹249
-
-
-1532 .
-ve˘‹250
-
-
-1533 .
-ve˘‹251
-
-
-1534 .
-ve˘‹252
-
-
-1535 .
-ve˘‹253
-
-
-1536 .
-ve˘‹254
-
-
-1537 .
-ve˘‹255
-
-
 	@vm.c
 
 1 
@@ -57672,13 +41658,10 @@ ush‹t
 1
 .
 0
-96
-912
+91
+840
 2_user_test.c
 asm.h
-backup/proc.c
-backup/proc.h
-backup_dir/proc.c
 bio.c
 bootasm.S
 bootmain.c
@@ -57736,8 +41719,6 @@ prac_syscall.c
 printf.c
 proc.c
 proc.h
-proc_FCFS.c
-proc_Priority.h
 rm.c
 sh.c
 sleeplock.c
@@ -57760,12 +41741,12 @@ uart.c
 ulib.c
 umalloc.c
 user.h
+user_mlfq.c
 user_priority.c
 user_priority2.c
 user_yield.c
 usertests.c
 usys.S
-vectors.S
 vm.c
 wc.c
 x86.h

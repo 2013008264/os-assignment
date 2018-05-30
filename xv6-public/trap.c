@@ -82,10 +82,134 @@ trap(struct trapframe *tf)
     break;
   // USER interrupt
   case T_USER_SYSCALL:
-  cprintf("user interrupt 128 called!\n");
-  break;
+    cprintf("user interrupt 128 called!\n");
+    break;
 
+  case T_PGFLT:
+    //Lazy allocation!!!
+    /////////////////////////////////////////////////////
+    //  cprintf("pid %d %s: trap %d err %d on cpu %d "
+    //        "eip 0x%x addr 0x%x--kill proc\n",
+    //        myproc()->pid, myproc()->name, tf->trapno,
+    //        tf->err, cpuid(), tf->eip, rcr2());
+    /////////////////////////////////////////////////////
+    if(myproc()->killed)
+      break;
+    if(rcr2() >= myproc()->sz) {
+      cprintf("Invalid memory access\n");
+      cprintf("%d %d 0x%x\n", myproc()->pid, myproc()->sz, rcr2());
+      myproc()->killed = 1;
+      break;
+    }    
+    if(myproc()->sz >= KERNBASE) {
+      cprintf("Failed to memory allocation\n");
+      myproc()->killed = 1;
+      break;
+    }
+    /*
+    if(myproc()->sz >= rcr2())
+    {
+      cprintf("Lazy allocation is needed\n");
+      if((mem = kalloc()) == 0) {
+        cprintf("Memory allocation is failed\n");
+        myproc()->killed = 1;
+        break;
+      }
+
+      memset(mem, 0, PGSIZE);
+      if(mappages(myproc()->pgdir, (char *)PGROUNDDOWN(rcr2()), PGSIZE, V2P(mem), PTE_W|PTE_U) < 0) {
+        cprintf("PTE recording is failed\n");
+        myproc()->killed = 1;
+        break;
+      }
+      lcr3(V2P(myproc()->pgdir));
+      break;
+    }
+    */
+    if(cow_handler(myproc()->pgdir, myproc()->sz, rcr2())) {
+      //cprintf("pid %d %s: trap %d err %d on cpu %d "
+      //      "eip 0x%x addr 0x%x--kill proc\n",
+      //      myproc()->pid, myproc()->name, tf->trapno,
+      //      tf->err, cpuid(), tf->eip, rcr2());
+      cprintf("Page fault handler !\n");
+      myproc()->killed = 1;
+      return;
+    }
+    break;
+    /* 
+    tmp = ((pte_t*)P2V(PTE_ADDR(*(myproc()->pgdir))));//[PTX(a)];
+    //cprintf("ASDF : 0x%x\n", tmp[PTX(rcr2())]); 
+    if(rcr2() >= myproc()->sz) {
+      cprintf("Invalid access 0x%x\n", V2P(rcr2()));
+      cprintf("pid %d %s: trap %d err %d on cpu %d "
+            "eip 0x%x addr 0x%x--kill proc\n",
+            myproc()->pid, myproc()->name, tf->trapno,
+            tf->err, cpuid(), tf->eip, rcr2());
+      myproc()->killed = 1;
+      return;
+    }
+    if(myproc()->sz >= KERNBASE) {
+      cprintf("Lack of memory\n"); 
+      cprintf("pid %d %s: trap %d err %d on cpu %d "
+            "eip 0x%x addr 0x%x--kill proc\n",
+            myproc()->pid, myproc()->name, tf->trapno,
+            tf->err, cpuid(), tf->eip, rcr2());
+      
+      myproc()->killed = 1;
+      return;
+    }
+    
+    a = PGROUNDDOWN(rcr2());
+    //cprintf("0x%x\n", V2P(rcr2()));
+    
+    //cprintf("0x%x\n", ((pte_t*)P2V(PTE_ADDR(*(myproc()->pgdir))))[PDX(a)]);
+    //cprintf("0x%x\n", tmp[PTX(a)]);
+    if((tmp[PTX(a)] & 5) == 5) {
+      //cprintf("CoW\n");
+      //if(get_pg_owner(PTE_ADDR(tmp[PTX(a)])) == 0)
+        tmp[PTX(a)] |= PTE_W;
+      //else {
+      //tmp[PTX(a)] |= PTE_W;
+      //  down_pg_owner(PTE_ADDR(tmp[PTX(a)]));
+        uint flags = PTE_FLAGS(tmp[PTX(a)]);
+        mem = kalloc();
+        memmove(mem, (char *)P2V(PTE_ADDR(tmp[PTX(a)])), PGSIZE);
+        tmp[PTX(a)] = V2P(mem) | flags;
+        //cprintf("0x%x\n", tmp[PTX(a)]);
+      //}
+      lcr3(V2P(myproc()->pgdir));
+      return;
+    }
+    else if(!(tmp[PTX(a)] & 1)) {
+    mem = kalloc();
+    if(mem == 0) {
+      cprintf("allocuvm out of memory\n");
+      cprintf("pid %d %s: trap %d err %d on cpu %d "
+            "eip 0x%x addr 0x%x--kill proc\n",
+            myproc()->pid, myproc()->name, tf->trapno,
+            tf->err, cpuid(), tf->eip, rcr2());
+      myproc()->killed = 1;
+      return;
+    }
+    memset(mem, 0, PGSIZE);
+    if(mappages(myproc()->pgdir, (char *)a, PGSIZE, V2P(mem), PTE_W|PTE_U) < 0) {
+      cprintf("allocuvm out of memory(2)\n");
+      cprintf("pid %d %s: trap %d err %d on cpu %d "
+            "eip 0x%x addr 0x%x--kill proc\n",
+            myproc()->pid, myproc()->name, tf->trapno,
+            tf->err, cpuid(), tf->eip, rcr2());
+      myproc()->killed = 1;
+      return;
+    }
+    lcr3(V2P(myproc()->pgdir)); 
+   // myproc()->sz = newsz;
+    switchuvm(myproc());
+    
+    return;
+    }
+    */
   //PAGEBREAK: 13
+  break;
   default:
     if(myproc() == 0 || (tf->cs&3) == 0){
       // In kernel, it must be our mistake. Kernel 이 잘못되면, panic 으로 멈춰버림.

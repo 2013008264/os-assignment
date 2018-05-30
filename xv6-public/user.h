@@ -31,6 +31,7 @@ int getppid(void);
 int yield(void);
 int setpriority(int, int);
 int getlev(void);
+int get_n_free_pages(void);
 
 // ulib.c
 int stat(char*, struct stat*);

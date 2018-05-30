@@ -21,6 +21,8 @@ struct {
   struct spinlock lock;
   int use_lock;
   struct run *freelist;
+  /* User code */
+  int num_free_pages;
 } kmem;
 
 // Initialization happens in two phases.
@@ -72,6 +74,7 @@ kfree(char *v)
   r = (struct run*)v;
   r->next = kmem.freelist;
   kmem.freelist = r;
+  kmem.num_free_pages++;
   if(kmem.use_lock)
     release(&kmem.lock);
 }
@@ -89,8 +92,14 @@ kalloc(void)
   r = kmem.freelist;
   if(r)
     kmem.freelist = r->next;
+  kmem.num_free_pages--;
   if(kmem.use_lock)
     release(&kmem.lock);
   return (char*)r;
 }
 
+int 
+get_n_free_pages(void)
+{
+  return kmem.num_free_pages;
+}

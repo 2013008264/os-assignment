@@ -77,8 +77,10 @@ sys_sbrk(void)
   if(argint(0, &n) < 0)
     return -1;
   addr = myproc()->sz;
+  // int growproc(int) just grow process' size. This does not allocate memory.
   if(growproc(n) < 0)
     return -1;
+
   return addr;
 }
 

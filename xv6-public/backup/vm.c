@@ -5,25 +5,18 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
-#include "spinlock.h"
 #include "elf.h"
 
 extern char data[];  // defined by kernel.ld
 pde_t *kpgdir;  // for use in scheduler()
-struct {
-  struct spinlock lock;
-  char pg_reference[PHYSTOP >> PGSHIFT];
-}pg_owner;
+
 // Set up CPU's kernel segment descriptors.
 // Run once on entry on each CPU.
 void
 seginit(void)
 {
-  /************************************/
-  initlock(&pg_owner.lock, "pg_owner");
-
   struct cpu *c;
-  
+
   // Map "logical" addresses to virtual addresses using identity map.
   // Cannot share a CODE descriptor for both kernel and user
   // because it would have to have DPL_USR, but the CPU forbids
@@ -44,6 +37,7 @@ walkpgdir(pde_t *pgdir, const void *va, int alloc)
 {
   pde_t *pde;
   pte_t *pgtab;
+
   pde = &pgdir[PDX(va)];
   if(*pde & PTE_P){
     pgtab = (pte_t*)P2V(PTE_ADDR(*pde));
@@ -63,23 +57,20 @@ walkpgdir(pde_t *pgdir, const void *va, int alloc)
 // Create PTEs for virtual addresses starting at va that refer to
 // physical addresses starting at pa. va and size might not
 // be page-aligned.
-// static int
-int
+static int
 mappages(pde_t *pgdir, void *va, uint size, uint pa, int perm)
-{ // Page 를 mapping 합니다. 처음부터 끝가지
+{
   char *a, *last;
   pte_t *pte;
 
   a = (char*)PGROUNDDOWN((uint)va);
   last = (char*)PGROUNDDOWN(((uint)va) + size - 1);
   for(;;){
-    //PTE mapping 하는 곳인데.. 여기에 새로운 곳을 줘야 하는 거잖아.
     if((pte = walkpgdir(pgdir, a, 1)) == 0)
       return -1;
-    if(*pte & PTE_P) // Present bit
+    if(*pte & PTE_P)
       panic("remap");
     *pte = pa | perm | PTE_P;
-    //pg_owner[PTE_ADDR(*pte) >> PGSHIFT]++;
     if(a == last)
       break;
     a += PGSIZE;
@@ -205,7 +196,7 @@ inituvm(pde_t *pgdir, char *init, uint sz)
 // and the pages from addr to addr+sz must already be mapped.
 int
 loaduvm(pde_t *pgdir, char *addr, struct inode *ip, uint offset, uint sz)
-{// load uvm is here!!!
+{
   uint i, pa, n;
   pte_t *pte;
 
@@ -248,7 +239,6 @@ allocuvm(pde_t *pgdir, uint oldsz, uint newsz)
     }
     memset(mem, 0, PGSIZE);
     if(mappages(pgdir, (char*)a, PGSIZE, V2P(mem), PTE_W|PTE_U) < 0){
-      //PTE_Writable, and PTE_User bit.
       cprintf("allocuvm out of memory (2)\n");
       deallocuvm(pgdir, newsz, oldsz);
       kfree(mem);
@@ -280,15 +270,9 @@ deallocuvm(pde_t *pgdir, uint oldsz, uint newsz)
       pa = PTE_ADDR(*pte);
       if(pa == 0)
         panic("kfree");
-      acquire(&pg_owner.lock); 
-      if(pg_owner.pg_reference[pa >> PGSHIFT]) {
-        pg_owner.pg_reference[pa >> PGSHIFT]--;
-      } else {
-        char *v = P2V(pa);
-        kfree(v);
-        *pte = 0;
-      }
-      release(&pg_owner.lock);
+      char *v = P2V(pa);
+      kfree(v);
+      *pte = 0;
     }
   }
   return newsz;
@@ -323,97 +307,36 @@ clearpteu(pde_t *pgdir, char *uva)
   pte = walkpgdir(pgdir, uva, 0);
   if(pte == 0)
     panic("clearpteu");
-  if(*pte & PTE_W)
-    *pte &= ~PTE_U;
+  *pte &= ~PTE_U;
 }
 
 // Given a parent process's page table, create a copy
 // of it for a child.
-
-int 
-cow_handler(pde_t *pgdir, uint sz, uint _rcr2)
-{
-  pte_t *pte;
-  char *mem;
-  if(myproc() == 0)
-    panic("PAGE_FAULT_IN_NONPAGED_AREA");
-
-  if((pte = walkpgdir(pgdir, (void*)_rcr2, 0)) != 0) {
-    if((*pte & PTE_U) && (*pte & PTE_P) && !(*pte & PTE_W)) {
-      //Copy on write allocation is needed
-      acquire(&pg_owner.lock);
-      if(pg_owner.pg_reference[PTE_ADDR(*pte) >> PGSHIFT] == 0)
-        *pte |= PTE_W;
-      else { 
-        if((mem = kalloc()) == 0) {
-          cprintf("Memory allocation is failed\n");
-          return 1;
-        }
-        pg_owner.pg_reference[PTE_ADDR(*pte) >> PGSHIFT]--;
-        memmove(mem, (char *)P2V(PTE_ADDR(*pte)), PGSIZE);
-        *pte = V2P(mem) | PTE_FLAGS(*pte) | PTE_W;
-      }
-      release(&pg_owner.lock);
-    }
-    else if(!(*pte & PTE_P)) {
-    //Lazy allocation is needed!
-      if((mem = kalloc()) == 0) {
-        return 1;
-      }
-      memset(mem, 0, PGSIZE);
-      if(mappages(myproc()->pgdir, (char *)PGROUNDDOWN(_rcr2), PGSIZE, V2P(mem), PTE_W|PTE_U) < 0) {
-        return 1;
-      }
-    }
-    else{
-      //Other page fault (Actual page fault)
-      cprintf("Invalid memory access\n");
-      myproc()->killed = 1;
-    }
-  }
-  else
-    panic("PAGE_FAULT_IN_NONPAGED_AREA");
-  lcr3(V2P(pgdir));
-  return 0;
-}
-
 pde_t*
 copyuvm(pde_t *pgdir, uint sz)
 {
   pde_t *d;
   pte_t *pte;
   uint pa, i, flags;
-  //char *mem;
+  char *mem;
 
   if((d = setupkvm()) == 0)
     return 0;
   for(i = 0; i < sz; i += PGSIZE){
-    /************************************************/
     if((pte = walkpgdir(pgdir, (void *) i, 0)) == 0)
       panic("copyuvm: pte should exist");
     if(!(*pte & PTE_P))
       panic("copyuvm: page not present");
-    /************************************************/
     pa = PTE_ADDR(*pte);
-    flags = PTE_FLAGS(*pte) & (~(PTE_W)); // Writable bit masking.
-    /************************************************/
-    /*if((mem = kalloc()) == 0)
+    flags = PTE_FLAGS(*pte);
+    if((mem = kalloc()) == 0)
       goto bad;
     memmove(mem, (char*)P2V(pa), PGSIZE);
     if(mappages(d, (void*)i, PGSIZE, V2P(mem), flags) < 0)
-      goto bad;*/
-    /************************************************/
-    acquire(&pg_owner.lock);
-    pg_owner.pg_reference[pa >> PGSHIFT]++; 
-    release(&pg_owner.lock);
-    *pte = *pte & (~(PTE_W));
-    //cprintf("0x%x\n", *pte);
-    if(mappages(d, (void*)i, PGSIZE, pa, flags) < 0)
       goto bad;
   }
-  lcr3(V2P(pgdir));
-//  cprintf("%d\n", get_n_free_pages());
   return d;
+
 bad:
   freevm(d);
   return 0;

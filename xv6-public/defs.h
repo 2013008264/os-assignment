@@ -68,6 +68,7 @@ char*           kalloc(void);
 void            kfree(char*);
 void            kinit1(void*, void*);
 void            kinit2(void*, void*);
+int             get_n_free_pages(void);
 
 // kbd.c
 void            kbdintr(void);
@@ -192,7 +193,8 @@ void            switchuvm(struct proc*);
 void            switchkvm(void);
 int             copyout(pde_t*, uint, void*, uint);
 void            clearpteu(pde_t *pgdir, char *uva);
-
+int             mappages(pde_t *, void*, uint, uint, int);
+int             cow_handler(pde_t *pgdir, uint sz, uint _rcr2);
 //User function
 //prac_syscall.c
 int				myfunction(char *);
