@@ -331,7 +331,7 @@ clearpteu(pde_t *pgdir, char *uva)
 // of it for a child.
 
 int 
-cow_handler(pde_t *pgdir, uint sz, uint _rcr2)
+pfault_handler(pde_t *pgdir, uint sz, uint _rcr2)
 {
   pte_t *pte;
   char *mem;

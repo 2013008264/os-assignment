@@ -126,12 +126,12 @@ trap(struct trapframe *tf)
       break;
     }
     */
-    if(cow_handler(myproc()->pgdir, myproc()->sz, rcr2())) {
+    if(pfault_handler(myproc()->pgdir, myproc()->sz, rcr2())) {
       //cprintf("pid %d %s: trap %d err %d on cpu %d "
       //      "eip 0x%x addr 0x%x--kill proc\n",
       //      myproc()->pid, myproc()->name, tf->trapno,
       //      tf->err, cpuid(), tf->eip, rcr2());
-      cprintf("Page fault handler !\n");
+      cprintf("Page fault in pid %d", myproc()->pid);
       myproc()->killed = 1;
       return;
     }
