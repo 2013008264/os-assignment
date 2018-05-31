@@ -178,19 +178,8 @@ UPROGS=\
 	_usertests\
 	_wc\
 	_zombie\
-	_user_yield\
-	_user_priority\
-	_2_user_test\
 	_3_user_test\
-	_my_userapp\
-	_my_userapp2\
-	_my_test\
-	_prac_int_app\
-	_user_priority2\
-	_user_mlfq\
-	_p2_fcfs_test\
-	_p2_prior_test\
-	_p2_print_repeat\
+	_4_user_test\
 
 
 fs.img: mkfs README $(UPROGS)
@@ -259,10 +248,10 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
 # check in that version.
 
 EXTRA=\
-	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c my_test.c p2_fcfs_test.c p2_print_repeat.c\
-	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c my_userapp2.c p2_prior_test.c 3_user_test.c\
-	printf.c umalloc.c user_yield.c user_priority.c 2_user_test.c my_userapp.c  user_mlfq.c\
-	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list prac_int_app.c user_priority2.c\
+	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c \
+	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c 3_user_test.c\
+	printf.c umalloc.c 4_user_test.c\
+	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list \
 	.gdbinit.tmpl gdbutil\
 
 dist:

@@ -93,19 +93,10 @@ trap(struct trapframe *tf)
     //        myproc()->pid, myproc()->name, tf->trapno,
     //        tf->err, cpuid(), tf->eip, rcr2());
     /////////////////////////////////////////////////////
-    if(myproc()->killed)
-      break;
-    if(rcr2() >= myproc()->sz) {
-      cprintf("Invalid memory access\n");
-      cprintf("%d %d 0x%x\n", myproc()->pid, myproc()->sz, rcr2());
-      myproc()->killed = 1;
-      break;
-    }    
-    if(myproc()->sz >= KERNBASE) {
-      cprintf("Failed to memory allocation\n");
-      myproc()->killed = 1;
-      break;
-    }
+    if(rcr2() >= myproc()->sz)
+      goto bad; 
+    if(myproc()->sz >= KERNBASE)
+      goto bad;
     /*
     if(myproc()->sz >= rcr2())
     {
@@ -126,15 +117,13 @@ trap(struct trapframe *tf)
       break;
     }
     */
-    if(pfault_handler(myproc()->pgdir, myproc()->sz, rcr2())) {
-      //cprintf("pid %d %s: trap %d err %d on cpu %d "
-      //      "eip 0x%x addr 0x%x--kill proc\n",
-      //      myproc()->pid, myproc()->name, tf->trapno,
-      //      tf->err, cpuid(), tf->eip, rcr2());
-      cprintf("Page fault in pid %d", myproc()->pid);
-      myproc()->killed = 1;
-      return;
-    }
+    if(pfault_handler(myproc()->pgdir, myproc()->sz, rcr2())) 
+      goto bad;
+    break;
+  bad:
+    cprintf("Page fault in pid %d, process size : %d, address : 0x%x\n",
+        myproc()->pid, myproc()->sz, rcr2());
+    myproc()->killed = 1;
     break;
     /* 
     tmp = ((pte_t*)P2V(PTE_ADDR(*(myproc()->pgdir))));//[PTX(a)];

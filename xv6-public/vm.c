@@ -283,6 +283,7 @@ deallocuvm(pde_t *pgdir, uint oldsz, uint newsz)
       acquire(&pg_owner.lock); 
       if(pg_owner.pg_reference[pa >> PGSHIFT]) {
         pg_owner.pg_reference[pa >> PGSHIFT]--;
+        *pte &= ~(PTE_P);
       } else {
         char *v = P2V(pa);
         kfree(v);
@@ -299,7 +300,7 @@ deallocuvm(pde_t *pgdir, uint oldsz, uint newsz)
 void
 freevm(pde_t *pgdir)
 {
-  uint i;
+  uint i;//, pa;
 
   if(pgdir == 0)
     panic("freevm: no pgdir");
@@ -367,12 +368,20 @@ pfault_handler(pde_t *pgdir, uint sz, uint _rcr2)
     }
     else{
       //Other page fault (Actual page fault)
-      cprintf("Invalid memory access\n");
+      cprintf("Invalid memory access : page fault in kernel memory\n");
       myproc()->killed = 1;
     }
   }
-  else
-    panic("PAGE_FAULT_IN_NONPAGED_AREA");
+  else {
+    //Lazy allocation is needed! cuz page does not exist
+    if((mem = kalloc()) == 0) {
+      return 1;
+    }
+    memset(mem, 0, PGSIZE);
+    if(mappages(myproc()->pgdir, (char *)PGROUNDDOWN(_rcr2), PGSIZE, V2P(mem), PTE_W|PTE_U) < 0) {
+        return 1;
+    }
+  }
   lcr3(V2P(pgdir));
   return 0;
 }
@@ -392,7 +401,8 @@ copyuvm(pde_t *pgdir, uint sz)
     if((pte = walkpgdir(pgdir, (void *) i, 0)) == 0)
       panic("copyuvm: pte should exist");
     if(!(*pte & PTE_P))
-      panic("copyuvm: page not present");
+      continue;
+    //  panic("copyuvm: page not present");
     /************************************************/
     pa = PTE_ADDR(*pte);
     flags = PTE_FLAGS(*pte) & (~(PTE_W)); // Writable bit masking.

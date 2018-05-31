@@ -630,7 +630,7 @@ wait(void)
       if(p->state == ZOMBIE){
         // Found one.
         pid = p->pid;
-        kfree(p->kstack);
+        kfree(p->kstack);        
         p->kstack = 0;
         freevm(p->pgdir);
         p->pid = 0;
