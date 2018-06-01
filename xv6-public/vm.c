@@ -76,10 +76,9 @@ mappages(pde_t *pgdir, void *va, uint size, uint pa, int perm)
     //PTE mapping 하는 곳인데.. 여기에 새로운 곳을 줘야 하는 거잖아.
     if((pte = walkpgdir(pgdir, a, 1)) == 0)
       return -1;
-    if(*pte & PTE_P) // Present bit
+    if(*pte & PTE_P) 
       panic("remap");
     *pte = pa | perm | PTE_P;
-    //pg_owner[PTE_ADDR(*pte) >> PGSHIFT]++;
     if(a == last)
       break;
     a += PGSIZE;
@@ -300,7 +299,7 @@ deallocuvm(pde_t *pgdir, uint oldsz, uint newsz)
 void
 freevm(pde_t *pgdir)
 {
-  uint i;//, pa;
+  uint i;
 
   if(pgdir == 0)
     panic("freevm: no pgdir");
@@ -392,7 +391,6 @@ copyuvm(pde_t *pgdir, uint sz)
   pde_t *d;
   pte_t *pte;
   uint pa, i, flags;
-  //char *mem;
 
   if((d = setupkvm()) == 0)
     return 0;
@@ -401,29 +399,23 @@ copyuvm(pde_t *pgdir, uint sz)
     if((pte = walkpgdir(pgdir, (void *) i, 0)) == 0)
       panic("copyuvm: pte should exist");
     if(!(*pte & PTE_P))
+      /* Because of lazy allocation there is not present bit */
       continue;
-    //  panic("copyuvm: page not present");
-    /************************************************/
+
     pa = PTE_ADDR(*pte);
     flags = PTE_FLAGS(*pte) & (~(PTE_W)); // Writable bit masking.
-    /************************************************/
-    /*if((mem = kalloc()) == 0)
-      goto bad;
-    memmove(mem, (char*)P2V(pa), PGSIZE);
-    if(mappages(d, (void*)i, PGSIZE, V2P(mem), flags) < 0)
-      goto bad;*/
-    /************************************************/
+    
     acquire(&pg_owner.lock);
     pg_owner.pg_reference[pa >> PGSHIFT]++; 
     release(&pg_owner.lock);
+    
     *pte = *pte & (~(PTE_W));
-    //cprintf("0x%x\n", *pte);
     if(mappages(d, (void*)i, PGSIZE, pa, flags) < 0)
       goto bad;
   }
   lcr3(V2P(pgdir));
-//  cprintf("%d\n", get_n_free_pages());
   return d;
+
 bad:
   freevm(d);
   return 0;
